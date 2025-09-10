@@ -3,15 +3,19 @@ require('./includes/nav.inc.php');
 ?>
 
 <style>
-  /* Responsive Table Styles for Admin */
+  /* Responsive Table Styles for Admin - Optimized for Actions Visibility */
   .table-responsive-custom {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .article-table {
-    min-width: 1200px;
+    min-width: 1000px;
+    /* Reduced from 1200px */
     margin-bottom: 0;
+    table-layout: fixed;
+    /* Fixed layout for better control */
+    width: 100%;
   }
 
   .article-table th,
@@ -22,16 +26,20 @@ require('./includes/nav.inc.php');
   }
 
   .article-table .title-col {
-    max-width: 180px;
-    min-width: 140px;
+    width: 20%;
+    /* Fixed percentage width */
+    max-width: 160px;
+    min-width: 120px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
 
   .article-table .content-col {
-    max-width: 220px;
-    min-width: 180px;
+    width: 25%;
+    /* Fixed percentage width */
+    max-width: 180px;
+    min-width: 140px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -39,48 +47,80 @@ require('./includes/nav.inc.php');
   }
 
   .article-table .category-col {
+    width: 10%;
+    /* Fixed percentage width */
+    max-width: 90px;
+    min-width: 70px;
+  }
+
+  .article-table .author-col {
+    width: 12%;
+    /* Fixed percentage width */
     max-width: 100px;
     min-width: 80px;
   }
 
-  .article-table .author-col {
-    max-width: 120px;
-    min-width: 100px;
-  }
-
   .article-table .image-col {
-    width: 80px;
+    width: 8%;
+    /* Fixed percentage width */
+    max-width: 70px;
+    min-width: 60px;
     text-align: center;
   }
 
   .article-table .image-col img {
-    width: 50px;
-    height: 35px;
+    width: 45px;
+    height: 32px;
     object-fit: cover;
     border-radius: 4px;
     border: 1px solid #ddd;
   }
 
   .article-table .date-col {
-    width: 90px;
-    min-width: 80px;
+    width: 10%;
+    /* Fixed percentage width */
+    max-width: 80px;
+    min-width: 70px;
   }
 
   .article-table .actions-col {
-    width: 140px;
+    width: 15%;
+    /* Fixed percentage width - Always visible */
+    max-width: 150px;
     min-width: 130px;
     text-align: center;
+    position: sticky;
+    /* Sticky positioning */
+    right: 0;
+    background: white;
+    border-left: 1px solid #ddd;
+    z-index: 10;
   }
 
   .article-table .actions-col .btn {
     margin: 1px;
     padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  /* Header sticky for actions */
+  .article-table thead th.actions-col {
+    position: sticky;
+    right: 0;
+    background: #f5f5f5;
+    border-left: 1px solid #ddd;
+    z-index: 11;
   }
 
   /* Mobile responsive adjustments */
   @media (max-width: 768px) {
     .table-responsive-custom {
       border: 1px solid #ddd;
+    }
+
+    .article-table {
+      min-width: 800px;
+      /* Further reduced for mobile */
     }
 
     .article-table th,
@@ -90,23 +130,28 @@ require('./includes/nav.inc.php');
     }
 
     .article-table .title-col {
-      max-width: 140px;
-      min-width: 110px;
+      max-width: 120px;
+      min-width: 100px;
     }
 
     .article-table .content-col {
-      max-width: 160px;
-      min-width: 130px;
+      max-width: 140px;
+      min-width: 120px;
     }
 
     .article-table .image-col img {
-      width: 40px;
-      height: 30px;
+      width: 35px;
+      height: 25px;
+    }
+
+    .article-table .actions-col {
+      min-width: 110px;
     }
 
     .article-table .actions-col .btn {
       padding: 3px 6px;
-      font-size: 11px;
+      font-size: 10px;
+      margin: 0.5px;
     }
   }
 
@@ -117,6 +162,11 @@ require('./includes/nav.inc.php');
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
+  }
+
+  /* Highlight actions column */
+  .article-table .actions-col {
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   }
 </style>
 
@@ -182,6 +232,12 @@ require('./includes/nav.inc.php');
         </div>
         <div class="panel-body">
           <div class="table-responsive-custom">
+            <!-- Actions always visible notice -->
+            <div class="alert alert-info" style="margin-bottom: 10px; padding: 8px; font-size: 12px;">
+              <i class="glyphicon glyphicon-info-sign"></i>
+              <strong>Note:</strong> Actions column is always visible on the right. Scroll horizontally to see all
+              content.
+            </div>
             <table class="table table-striped table-hover article-table">
               <thead>
                 <tr>

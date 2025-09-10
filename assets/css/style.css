@@ -161,6 +161,12 @@
   padding-top: 5px;
   font-size: var(--hs-md);
   font-family: var(--ff-monts);
+  /* Enhanced title display - no truncation */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
 .img-slider .slide .info p {
@@ -418,6 +424,10 @@ form button {
   padding: 1rem;
   overflow: hidden;
   box-shadow: 2px 1px 8px rgba(0, 0, 0, 0.268);
+  /* Enhanced responsive layout */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 .card1 img {
   height: 400px;
@@ -436,6 +446,13 @@ form button {
   color: var(--black-color);
   letter-spacing: -2px;
   padding: 5px 15px;
+  /* Enhanced responsive text handling */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.3;
+  max-width: 100%;
 }
 
 .article .meta {
@@ -463,6 +480,25 @@ form button {
   font-size: 1rem;
   padding: 15px 5px;
   font-family: var(--ff-nunito);
+  /* Enhanced word-breaking for responsive layout */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  line-height: 1.6;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.article .article-content p {
+  /* Ensure paragraphs don't break layout */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  margin-bottom: 1em;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .article .article-content p:first-child::first-letter {

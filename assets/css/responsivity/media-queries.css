@@ -143,6 +143,11 @@
   }
   .img-slider .slide .info h1 {
     font-size: var(--hs-sml);
+    /* Enhanced responsive title display */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.2;
   }
 
   .img-slider .slide .info p {
@@ -175,6 +180,11 @@
   }
   .img-slider .slide .info h1 {
     font-size: var(--ts-lg);
+    /* Enhanced responsive title display for tablet */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.2;
   }
 
   .img-slider .slide .info p {
@@ -208,6 +218,11 @@
   }
   .img-slider .slide .info h1 {
     font-size: var(--ts-lg);
+    /* Enhanced responsive title display for mobile */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.2;
   }
 
   .img-slider .slide .info p {
@@ -276,6 +291,19 @@
   .page-container {
     grid-template-columns: 1fr;
   }
+  /* Enhanced tablet responsive fixes */
+  .article .article-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  .article-heading {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
 }
 
 /* ARTICLE TABLET POTRAIT*/
@@ -285,6 +313,23 @@
   }
   .card1 img {
     height: 350px;
+  }
+  /* Enhanced tablet portrait responsive fixes */
+  .article .article-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    font-size: 0.9rem;
+    padding: 12px 5px;
+  }
+  .article-heading {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    font-size: var(--hs-md);
+    letter-spacing: -1px;
   }
 }
 
@@ -296,12 +341,25 @@
     color: var(--black-color);
     letter-spacing: -1px;
     padding: 5px 0px;
+    /* Enhanced mobile text handling */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    line-height: 1.2;
   }
   .article .meta {
     flex-direction: column;
   }
   .article .article-content {
     font-size: 0.8rem;
+    /* Enhanced mobile content handling */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    padding: 10px 0px;
+    line-height: 1.5;
   }
   .card1 img {
     width: 100%;
@@ -311,6 +369,15 @@
   .article .meta i {
     color: black;
     padding: 5px;
+  }
+  /* Additional responsive fixes for mobile */
+  .card1 {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+  }
+  .page-container {
+    margin: 1rem 0;
+    grid-gap: 1rem;
   }
 }
 

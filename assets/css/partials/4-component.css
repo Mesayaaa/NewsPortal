@@ -36,6 +36,11 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  /* Enhanced responsive container */
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* TAG */
