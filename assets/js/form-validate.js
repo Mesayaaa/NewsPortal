@@ -16,148 +16,152 @@ let nameRegx = new RegExp(/^[a-zA-Z ]{4,30}$/);
 let emailRegx = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
 let passRegx = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/);
 
-loginForm.addEventListener('keyup', function (e) {
+// Login form validation - only if login form exists
+if(loginForm && loginEmail && loginPassword && loginError) {
+  loginForm.addEventListener('keyup', function (e) {
+    let loginMessages = [];
 
-  let loginMessages = [];
+    // Email Validation
+    if (loginEmail.value == '' || loginEmail.value == null) {
+      loginMessages.push('Email cannot be empty.');
+    }
+    if (!emailRegx.test(loginEmail.value)) {
+      loginMessages.push('Enter a valid email');
+    }
 
-  // Email Validation
-  if (loginEmail.value == '' || loginEmail.value == null) {
-    loginMessages.push('Email cannot be empty.');
-  }
-  if (!emailRegx.test(loginEmail.value)) {
-    loginMessages.push('Enter a valid email');
-  }
+    // Password Validation
+    if (loginPassword.value == '' || loginPassword.value == null) {
+      loginMessages.push('Password cannot be empty.');
+    }
+    if (!passRegx.test(loginPassword.value)) {
+      loginMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+    }
 
-  // Password Validation
-  if (loginPassword.value == '' || loginPassword.value == null) {
-    loginMessages.push('Password cannot be empty.');
-  }
-  if (!passRegx.test(loginPassword.value)) {
-    loginMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
+    if (loginMessages.length > 0) {
+      e.preventDefault();
+      if(signupError) signupError.innerHTML = "";
+      loginError.innerHTML = loginMessages.join('<br> ');
+    }
+    else {
+      loginError.innerHTML = "";
+    }
+  });
 
-  if (loginMessages.length > 0) {
-    e.preventDefault();
-    signupError.innerHTML = "";
-    loginError.innerHTML = loginMessages.join('<br> ');
-  }
-  else {
-    loginError.innerHTML = "";
-  }
-});
+  loginForm.addEventListener('submit', function (e) {
+    let loginMessages = [];
 
-signupForm.addEventListener('keyup', function (e) {
-  let signupMessages = [];
+    // Email Validation
+    if (loginEmail.value == '' || loginEmail.value == null) {
+      loginMessages.push('Email cannot be empty.');
+    }
+    if (!emailRegx.test(loginEmail.value)) {
+      loginMessages.push('Enter a valid email');
+    }
 
-  // Name Validation
-  if (signupName.value == '' || signupName.value == null) {
-    signupMessages.push('Name cannot be empty.');
-  }
-  if (!nameRegx.test(signupName.value)) {
-    signupMessages.push('Name must contain 4 to 30 alphabets only.');
-  }
+    // Password Validation
+    if (loginPassword.value == '' || loginPassword.value == null) {
+      loginMessages.push('Password cannot be empty.');
+    }
+    if (!passRegx.test(loginPassword.value)) {
+      loginMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+    }
 
-  // Email Validation
-  if (signupEmail.value == '' || signupEmail.value == null) {
-    signupMessages.push('Email cannot be empty.');
-  }
-  if (!emailRegx.test(signupEmail.value)) {
-    signupMessages.push('Enter a valid email');
-  }
+    if (loginMessages.length > 0) {
+      e.preventDefault();
+      if(signupError) signupError.innerHTML = "";
+      loginError.innerHTML = loginMessages.join('<br> ');
+    }
+    else {
+      loginError.innerHTML = "";
+    }
+  });
+}
 
-  // Password Validation
-  if (signupPassword.value == '' || signupPassword.value == null) {
-    signupMessages.push('Password cannot be empty.');
-  }
-  if (!passRegx.test(signupPassword.value)) {
-    signupMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
-  if (signupConfirmPass.value == '' || signupConfirmPass.value == null) {
-    signupMessages.push('Confirm Password cannot be empty.');
-  }
-  if (signupPassword.value != signupConfirmPass.value) {
-    signupMessages.push('Password do not match.');
-  }
+// Signup form validation - only if signup form exists
+if(signupForm && signupName && signupEmail && signupPassword && signupConfirmPass && signupError) {
+  signupForm.addEventListener('keyup', function (e) {
+    let signupMessages = [];
 
-  if (signupMessages.length > 0) {
-    e.preventDefault();
-    loginError.innerHTML = "";
-    signupError.innerHTML = signupMessages.join('<br> ');
-  }
-  else {
-    signupError.innerHTML = "";
-  }
-});
+    // Name Validation
+    if (signupName.value == '' || signupName.value == null) {
+      signupMessages.push('Name cannot be empty.');
+    }
+    if (!nameRegx.test(signupName.value)) {
+      signupMessages.push('Name must contain 4 to 30 alphabets only.');
+    }
 
-loginForm.addEventListener('submit', function (e) {
+    // Email Validation
+    if (signupEmail.value == '' || signupEmail.value == null) {
+      signupMessages.push('Email cannot be empty.');
+    }
+    if (!emailRegx.test(signupEmail.value)) {
+      signupMessages.push('Enter a valid email');
+    }
 
-  let loginMessages = [];
+    // Password Validation
+    if (signupPassword.value == '' || signupPassword.value == null) {
+      signupMessages.push('Password cannot be empty.');
+    }
+    if (!passRegx.test(signupPassword.value)) {
+      signupMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+    }
+    if (signupConfirmPass.value == '' || signupConfirmPass.value == null) {
+      signupMessages.push('Confirm Password cannot be empty.');
+    }
+    if (signupPassword.value != signupConfirmPass.value) {
+      signupMessages.push('Password do not match.');
+    }
 
-  // Email Validation
-  if (loginEmail.value == '' || loginEmail.value == null) {
-    loginMessages.push('Email cannot be empty.');
-  }
-  if (!emailRegx.test(loginEmail.value)) {
-    loginMessages.push('Enter a valid email');
-  }
+    if (signupMessages.length > 0) {
+      e.preventDefault();
+      if(loginError) loginError.innerHTML = "";
+      signupError.innerHTML = signupMessages.join('<br> ');
+    }
+    else {
+      signupError.innerHTML = "";
+    }
+  });
 
-  // Password Validation
-  if (loginPassword.value == '' || loginPassword.value == null) {
-    loginMessages.push('Password cannot be empty.');
-  }
-  if (!passRegx.test(loginPassword.value)) {
-    loginMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
+  signupForm.addEventListener('submit', function (e) {
+    let signupMessages = [];
 
-  if (loginMessages.length > 0) {
-    e.preventDefault();
-    signupError.innerHTML = "";
-    loginError.innerHTML = loginMessages.join('<br> ');
-  }
-  else {
-    loginError.innerHTML = "";
-  }
-});
+    // Name Validation
+    if (signupName.value == '' || signupName.value == null) {
+      signupMessages.push('Name cannot be empty.');
+    }
+    if (!nameRegx.test(signupName.value)) {
+      signupMessages.push('Name must contain 4 to 30 alphabets only.');
+    }
 
-signupForm.addEventListener('submit', function (e) {
-  let signupMessages = [];
+    // Email Validation
+    if (signupEmail.value == '' || signupEmail.value == null) {
+      signupMessages.push('Email cannot be empty.');
+    }
+    if (!emailRegx.test(signupEmail.value)) {
+      signupMessages.push('Enter a valid email');
+    }
 
-  // Name Validation
-  if (signupName.value == '' || signupName.value == null) {
-    signupMessages.push('Name cannot be empty.');
-  }
-  if (!nameRegx.test(signupName.value)) {
-    signupMessages.push('Name must contain 4 to 30 alphabets only.');
-  }
+    // Password Validation
+    if (signupPassword.value == '' || signupPassword.value == null) {
+      signupMessages.push('Password cannot be empty.');
+    }
+    if (!passRegx.test(signupPassword.value)) {
+      signupMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+    }
+    if (signupConfirmPass.value == '' || signupConfirmPass.value == null) {
+      signupMessages.push('Confirm Password cannot be empty.');
+    }
+    if (signupPassword.value != signupConfirmPass.value) {
+      signupMessages.push('Password do not match.');
+    }
 
-  // Email Validation
-  if (signupEmail.value == '' || signupEmail.value == null) {
-    signupMessages.push('Email cannot be empty.');
-  }
-  if (!emailRegx.test(signupEmail.value)) {
-    signupMessages.push('Enter a valid email');
-  }
-
-  // Password Validation
-  if (signupPassword.value == '' || signupPassword.value == null) {
-    signupMessages.push('Password cannot be empty.');
-  }
-  if (!passRegx.test(signupPassword.value)) {
-    signupMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
-  if (signupConfirmPass.value == '' || signupConfirmPass.value == null) {
-    signupMessages.push('Confirm Password cannot be empty.');
-  }
-  if (signupPassword.value != signupConfirmPass.value) {
-    signupMessages.push('Password do not match.');
-  }
-
-  if (signupMessages.length > 0) {
-    e.preventDefault();
-    loginError.innerHTML = "";
-    signupError.innerHTML = signupMessages.join('<br> ');
-  }
-  else {
-    signupError.innerHTML = "";
-  }
-});
+    if (signupMessages.length > 0) {
+      e.preventDefault();
+      if(loginError) loginError.innerHTML = "";
+      signupError.innerHTML = signupMessages.join('<br> ');
+    }
+    else {
+      signupError.innerHTML = "";
+    }
+  });
+}

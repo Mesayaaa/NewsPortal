@@ -409,4 +409,11 @@
   .input-field {
     width: 250px;
   }
+  
+  .register-form-wrapper,
+  .login-only-wrapper {
+    max-width: 300px;
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
 }

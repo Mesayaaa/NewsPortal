@@ -1,84 +1,83 @@
 <?php
-  // Fetching all the Functions and DB Code
-  require('../includes/functions.inc.php');
-  require('../includes/database.inc.php');
-  session_start();
+// Fetching all the Functions and DB Code
+require('../includes/functions.inc.php');
+require('../includes/database.inc.php');
+session_start();
 
-  // Checking if the Author is logged in already
-  if(isset($_SESSION['ADMIN_LOGGED_IN']) && $_SESSION['ADMIN_LOGGED_IN'] == "YES") {
+// Checking if the Admin is logged in already
+if (isset($_SESSION['ADMIN_LOGGED_IN']) && $_SESSION['ADMIN_LOGGED_IN'] == "YES") {
 
-    // Redirected to author dashboard
-    redirect('./author/index.php');
-  }
+  // Redirected to admin dashboard
+  redirect('./index.php');
+}
 
-  // Whenever login button is pressed
-  if(isset($_POST['login-submit'])) {
-    
-    // Fetching values via POST and passing them to user defined function 
-    // to get rid of special characters used in SQL
-    $loginEmail = get_safe_value($_POST['login-email']);
-    $loginPassword = get_safe_value($_POST['login-password']);
-    
-    // Login Query to check if the email submitted is present or registered
-    $loginQuery = " SELECT * FROM admin 
+// Whenever login button is pressed
+if (isset($_POST['login-submit'])) {
+
+  // Fetching values via POST and passing them to user defined function 
+  // to get rid of special characters used in SQL
+  $loginEmail = get_safe_value($_POST['login-email']);
+  $loginPassword = get_safe_value($_POST['login-password']);
+
+  // Login Query to check if the email submitted is present or registered
+  $loginQuery = " SELECT * FROM admin 
                     WHERE admin_email = '{$loginEmail}'";
-    
-    // Running the Login Query
-    $result = mysqli_query($con, $loginQuery);
-    
-    // Returns the number of rows from the result retrieved.
-    $rows = mysqli_num_rows($result);
-    
-    // If query has any result (records) => If any user with the email exists
-    if($rows > 0) {
-      
-      // Fetching the data of particular record as an Associative Array
-      while($data = mysqli_fetch_assoc($result)) {
-        
-        // Verifying whether the password matches the hash from DB
-        $password_check = password_verify($loginPassword, $data['admin_password']);
-        
-        // If password matches with the data from DB
-        if($password_check) {
 
-          // Setting author specific session variables
-          $_SESSION['ADMIN_LOGGED_IN'] = "YES";
-          $_SESSION['ADMIN_ID'] = $data['admin_id'];
+  // Running the Login Query
+  $result = mysqli_query($con, $loginQuery);
 
-          // Unsetting all the user & author specific session variables
-          unset($_SESSION['USER_NAME']);
-          unset($_SESSION['USER_LOGGED_IN']);
-          unset($_SESSION['USER_ID']);
-          unset($_SESSION['USER_EMAIL']);
-          
-          unset($_SESSION['AUTHOR_NAME']);
-          unset($_SESSION['AUTHOR_LOGGED_IN']);
-          unset($_SESSION['AUTHOR_ID']);
-          unset($_SESSION['AUTHOR_EMAIL']);
-          
-          // Redirected to author dashboard
-          // alert("Correct Password");
-          redirect('./index.php');
-        }
+  // Returns the number of rows from the result retrieved.
+  $rows = mysqli_num_rows($result);
 
-        // If the password fails to match
-        else {
-          
-          // Redirected to login page along with a message
-          alert("Wrong Password");
-          redirect('./login.php');
-        }
-      }     
-    }
-    
-    // If the email is not registered 
-    else {
-      
-      // Redirected to signup page along with a message
-      alert("This Email is not registered for Admin");
-      redirect('./login.php');
+  // If query has any result (records) => If any user with the email exists
+  if ($rows > 0) {
+
+    // Fetching the data of particular record as an Associative Array
+    while ($data = mysqli_fetch_assoc($result)) {
+
+      // Verifying whether the password matches the hash from DB
+      $password_check = password_verify($loginPassword, $data['admin_password']);
+
+      // If password matches with the data from DB
+      if ($password_check) {
+
+        // Setting admin specific session variables
+        $_SESSION['ADMIN_LOGGED_IN'] = "YES";
+        $_SESSION['ADMIN_ID'] = $data['admin_id'];
+
+        // Unsetting all the user & author specific session variables
+        unset($_SESSION['USER_NAME']);
+        unset($_SESSION['USER_LOGGED_IN']);
+        unset($_SESSION['USER_ID']);
+        unset($_SESSION['USER_EMAIL']);
+
+        unset($_SESSION['AUTHOR_NAME']);
+        unset($_SESSION['AUTHOR_LOGGED_IN']);
+        unset($_SESSION['AUTHOR_ID']);
+        unset($_SESSION['AUTHOR_EMAIL']);
+
+        // Redirected to admin dashboard
+        redirect('./index.php');
+      }
+
+      // If the password fails to match
+      else {
+
+        // Redirected to login page along with a message
+        alert("Wrong Password");
+        redirect('./login.php');
+      }
     }
   }
+
+  // If the email is not registered 
+  else {
+
+    // Redirected to login page along with a message
+    alert("This Email is not registered for Admin");
+    redirect('./login.php');
+  }
+}
 
 ?>
 <!DOCTYPE html>
@@ -131,5 +130,5 @@
 
 
   <?php
-    require('./includes/footer.inc.php')
-  ?>
+  require('./includes/footer.inc.php')
+    ?>
