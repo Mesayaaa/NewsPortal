@@ -12,9 +12,43 @@ const signupConfirmPass = document.getElementById("signup-confirm-password");
 const loginError = document.getElementById("login-errors");
 const signupError = document.getElementById("signup-errors");
 
-let nameRegx = new RegExp(/^[a-zA-Z ]{4,30}$/);
-let emailRegx = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
-let passRegx = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/);
+// Use validation rules from sweetalert-wrapper.js if available, otherwise fallback
+const nameRegx = (typeof ValidationRules !== 'undefined') ? ValidationRules.name : new RegExp(/^[a-zA-Z ]{4,30}$/);
+const emailRegx = (typeof ValidationRules !== 'undefined') ? ValidationRules.email : new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+const passRegx = (typeof ValidationRules !== 'undefined') ? ValidationRules.password : new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/);
+
+// Enhanced validation function
+function validateFormField(value, rule, fieldName, showToastError = false) {
+    if (typeof validateField !== 'undefined') {
+        const errors = validateField(value, rule, fieldName);
+        if (errors.length > 0 && showToastError) {
+            showFieldError(fieldName, errors[0]);
+        }
+        return errors.length === 0;
+    }
+    
+    // Fallback validation
+    if (!value || value.trim() === '') {
+        if (showToastError && typeof showFieldError !== 'undefined') {
+            showFieldError(fieldName, 'This field is required');
+        }
+        return false;
+    }
+    
+    if (rule && !rule.test(value)) {
+        if (showToastError && typeof showFieldError !== 'undefined') {
+            const messages = {
+                'Name': 'Name must contain 4 to 30 alphabets only',
+                'Email': 'Enter a valid email address',
+                'Password': 'Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase'
+            };
+            showFieldError(fieldName, messages[fieldName] || `Invalid ${fieldName.toLowerCase()}`);
+        }
+        return false;
+    }
+    
+    return true;
+}
 
 // Login form validation - only if login form exists
 if(loginForm && loginEmail && loginPassword && loginError) {
@@ -34,7 +68,7 @@ if(loginForm && loginEmail && loginPassword && loginError) {
       loginMessages.push('Password cannot be empty.');
     }
     if (!passRegx.test(loginPassword.value)) {
-      loginMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+      loginMessages.push('Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase.');
     }
 
     if (loginMessages.length > 0) {
@@ -63,15 +97,24 @@ if(loginForm && loginEmail && loginPassword && loginError) {
       loginMessages.push('Password cannot be empty.');
     }
     if (!passRegx.test(loginPassword.value)) {
-      loginMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+      loginMessages.push('Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase.');
     }
 
     if (loginMessages.length > 0) {
       e.preventDefault();
-      if(signupError) signupError.innerHTML = "";
-      loginError.innerHTML = loginMessages.join('<br> ');
+      
+      // Use SweetAlert2 if available, otherwise fallback to DOM
+      if (typeof showValidationErrors !== 'undefined') {
+        showValidationErrors(loginMessages, 'Login Validation Error');
+      } else {
+        if(signupError) signupError.innerHTML = "";
+        loginError.innerHTML = loginMessages.join('<br> ');
+      }
     }
     else {
+      if (typeof showValidationSuccess !== 'undefined') {
+        showValidationSuccess('Login form is valid!');
+      }
       loginError.innerHTML = "";
     }
   });
@@ -103,7 +146,7 @@ if(signupForm && signupName && signupEmail && signupPassword && signupConfirmPas
       signupMessages.push('Password cannot be empty.');
     }
     if (!passRegx.test(signupPassword.value)) {
-      signupMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+      signupMessages.push('Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase.');
     }
     if (signupConfirmPass.value == '' || signupConfirmPass.value == null) {
       signupMessages.push('Confirm Password cannot be empty.');
@@ -114,6 +157,8 @@ if(signupForm && signupName && signupEmail && signupPassword && signupConfirmPas
 
     if (signupMessages.length > 0) {
       e.preventDefault();
+      
+      // For keyup events, just show inline errors to avoid too many popups
       if(loginError) loginError.innerHTML = "";
       signupError.innerHTML = signupMessages.join('<br> ');
     }
@@ -146,7 +191,7 @@ if(signupForm && signupName && signupEmail && signupPassword && signupConfirmPas
       signupMessages.push('Password cannot be empty.');
     }
     if (!passRegx.test(signupPassword.value)) {
-      signupMessages.push('Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+      signupMessages.push('Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase.');
     }
     if (signupConfirmPass.value == '' || signupConfirmPass.value == null) {
       signupMessages.push('Confirm Password cannot be empty.');
@@ -157,10 +202,19 @@ if(signupForm && signupName && signupEmail && signupPassword && signupConfirmPas
 
     if (signupMessages.length > 0) {
       e.preventDefault();
-      if(loginError) loginError.innerHTML = "";
-      signupError.innerHTML = signupMessages.join('<br> ');
+      
+      // Use SweetAlert2 if available, otherwise fallback to DOM
+      if (typeof showValidationErrors !== 'undefined') {
+        showValidationErrors(signupMessages, 'Registration Validation Error');
+      } else {
+        if(loginError) loginError.innerHTML = "";
+        signupError.innerHTML = signupMessages.join('<br> ');
+      }
     }
     else {
+      if (typeof showValidationSuccess !== 'undefined') {
+        showValidationSuccess('Registration form is valid!');
+      }
       signupError.innerHTML = "";
     }
   });

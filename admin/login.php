@@ -93,6 +93,13 @@ if (isset($_POST['login-submit'])) {
   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
   <link href="../assets/css/admin/style.css" rel="stylesheet" />
   <link href="../assets/css/partials/1-variables.css" rel="stylesheet" />
+
+  <!-- SWEETALERT2 CSS & JS -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+
+  <!-- CUSTOM SWEETALERT2 WRAPPER -->
+  <script src="../assets/js/sweetalert-wrapper.js"></script>
 </head>
 
 <body>

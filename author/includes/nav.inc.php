@@ -1,60 +1,60 @@
 <?php
-  require('../includes/functions.inc.php');
-  require('../includes/database.inc.php');
-  session_start();
+require('../includes/functions.inc.php');
+require('../includes/database.inc.php');
+session_start();
 
-  if(!isset($_SESSION['AUTHOR_LOGGED_IN'])) {
-    alert("Please Login to Enter Author Portal");
-    redirect('../author-login.php');
-  }
-  $author_id = $_SESSION['AUTHOR_ID'];
-  $author_name = $_SESSION['AUTHOR_NAME'];
+if (!isset($_SESSION['AUTHOR_LOGGED_IN'])) {
+  alert("Please Login to Enter Author Portal");
+  redirect('../author-login.php');
+}
+$author_id = $_SESSION['AUTHOR_ID'];
+$author_name = $_SESSION['AUTHOR_NAME'];
 
-  // Getting the URI From the Web
-  $uri = $_SERVER['REQUEST_URI'];
+// Getting the URI From the Web
+$uri = $_SERVER['REQUEST_URI'];
 
-  // Variable to store the page title used in title tag
-  $page_title = "";
+// Variable to store the page title used in title tag
+$page_title = "";
 
-  // Flag variables to know which Page we are at
-  $home = true; 
-  $pass = false; 
-  $name = false; 
-  $article = false; 
-  $edit = false; 
-  
-  // Strpos returns the position of the search string in the main string or returns 0 (false)
-  // Checking if the page is Home Page
-  if(strpos($uri,"/index.php") != false){
-    $page_title = " Dashboard";
-  }
+// Flag variables to know which Page we are at
+$home = true;
+$pass = false;
+$name = false;
+$article = false;
+$edit = false;
 
-  if(strpos($uri,"/articles.php") != false){
-    $page_title = " Articles";
-    $home = false;
-    $article = true;
-  }
+// Strpos returns the position of the search string in the main string or returns 0 (false)
+// Checking if the page is Home Page
+if (strpos($uri, "/index.php") != false) {
+  $page_title = " Dashboard";
+}
 
-  if(strpos($uri,"/edit-article.php") != false){
-    $page_title = "Edit Article";
-    $home = false;
-  }
+if (strpos($uri, "/articles.php") != false) {
+  $page_title = " Articles";
+  $home = false;
+  $article = true;
+}
 
-  if(strpos($uri,"/add-article.php") != false){
-    $page_title = "Add Article";
-    $home = false;
-  }
-  
-  if(strpos($uri,"/change-password.php") != false){
-    $page_title = "Change Password";
-    $home = false;
-    $pass = true;
-  }
-  if(strpos($uri,"/change-name.php") != false){
-    $page_title = "Change Name";
-    $home = false;
-    $name = true;
-  }
+if (strpos($uri, "/edit-article.php") != false) {
+  $page_title = "Edit Article";
+  $home = false;
+}
+
+if (strpos($uri, "/add-article.php") != false) {
+  $page_title = "Add Article";
+  $home = false;
+}
+
+if (strpos($uri, "/change-password.php") != false) {
+  $page_title = "Change Password";
+  $home = false;
+  $pass = true;
+}
+if (strpos($uri, "/change-name.php") != false) {
+  $page_title = "Change Name";
+  $home = false;
+  $name = true;
+}
 
 
 ?>
@@ -71,6 +71,13 @@
   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
   <link href="../assets/css/admin/style.css" rel="stylesheet" />
   <link href="../assets/css/partials/1-variables.css" rel="stylesheet" />
+
+  <!-- SWEETALERT2 CSS & JS -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+
+  <!-- CUSTOM SWEETALERT2 WRAPPER -->
+  <script src="../assets/js/sweetalert-wrapper.js"></script>
 </head>
 
 <body>
@@ -88,13 +95,17 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li <?php if($home) echo 'class="active"' ?>><a href="./index.php">Dashboard</a></li>
-          <li <?php if($article) echo 'class="active"' ?>><a href="./articles.php">Articles</a></li>
-          <li <?php if($pass) echo 'class="active"' ?>><a href="./change-password.php">Change Password</a></li>
-          <li <?php if($name) echo 'class="active"' ?>><a href="./change-name.php">Change Name</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a><?php echo $author_name ?></a></li>
+          <li <?php if ($home)
+            echo 'class="active"' ?>><a href="./index.php">Dashboard</a></li>
+            <li <?php if ($article)
+            echo 'class="active"' ?>><a href="./articles.php">Articles</a></li>
+            <li <?php if ($pass)
+            echo 'class="active"' ?>><a href="./change-password.php">Change Password</a></li>
+            <li <?php if ($name)
+            echo 'class="active"' ?>><a href="./change-name.php">Change Name</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a><?php echo $author_name ?></a></li>
           <li><a href="./logout.php">Logout</a></li>
         </ul>
       </div>

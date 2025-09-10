@@ -126,6 +126,13 @@ if (strpos($uri, "news.php") != false) {
 
   <!-- FONTAWESOME LINK -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+
+  <!-- SWEETALERT2 CSS & JS -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+
+  <!-- CUSTOM SWEETALERT2 WRAPPER -->
+  <script src="./assets/js/sweetalert-wrapper.js"></script>
 </head>
 
 <body>

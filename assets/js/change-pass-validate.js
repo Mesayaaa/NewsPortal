@@ -11,106 +11,94 @@ var commonError = document.getElementById('error-common');
 
 var formErrors = document.getElementById("errors");
 
-var passRegx = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/);
+// Enhanced password regex with validation rules from sweetalert-wrapper.js
+var passRegx = typeof ValidationRules !== 'undefined' && ValidationRules.password 
+  ? new RegExp(ValidationRules.password) 
+  : new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/);
 
-changePassForm.addEventListener('keyup', function (e) {
-
+// Validation helper function
+function validatePasswordChange() {
   let errorMessages = [];
 
   // Old Password Validation
-  if (oldPassword.value == '' || oldPassword.value == null) {
+  if (!oldPassword.value || oldPassword.value.trim() === '') {
     errorMessages.push('Old Password cannot be empty.');
-  }
-  if (!passRegx.test(oldPassword.value)) {
-    errorMessages.push('Old Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+  } else if (!passRegx.test(oldPassword.value)) {
+    errorMessages.push('Old Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase.');
   }
 
   // New Password Validation
-  if (newPassword.value == '' || newPassword.value == null) {
+  if (!newPassword.value || newPassword.value.trim() === '') {
     errorMessages.push('New Password cannot be empty.');
+  } else if (!passRegx.test(newPassword.value)) {
+    errorMessages.push('New Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase.');
   }
-  if (!passRegx.test(newPassword.value)) {
-    errorMessages.push('New Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
+
+  // Confirm Password Validation
+  if (!confirmNewPassword.value || confirmNewPassword.value.trim() === '') {
+    errorMessages.push('Confirm Password cannot be empty.');
+  } else if (newPassword.value !== confirmNewPassword.value) {
+    errorMessages.push('Passwords do not match.');
   }
-  if (newPassword.value != confirmNewPassword.value) {
-    errorMessages.push('Password do not match.');
+
+  // Same password check
+  if (newPassword.value && oldPassword.value && newPassword.value === oldPassword.value) {
+    errorMessages.push('Old and New Password should not be the same.');
   }
-  if (newPassword.value == oldPassword.value) {
-    errorMessages.push('Old and New Password should not be same.');
-  }
+
+  return errorMessages;
+}
+
+changePassForm.addEventListener('keyup', function (e) {
+  let errorMessages = validatePasswordChange();
+
   if (errorMessages.length > 0) {
-    e.preventDefault();
-    formErrors.innerHTML = errorMessages.join('<br> ');
-  }
-  else {
-    formErrors.innerHTML = "";
+    // For keyup events, just show inline errors to avoid too many popups
+    if (formErrors) {
+      formErrors.innerHTML = errorMessages.join('<br>');
+    }
+  } else {
+    if (formErrors) {
+      formErrors.innerHTML = "";
+    }
   }
 });
 
 changePassForm.addEventListener('submit', function (e) {
+  let errorMessages = validatePasswordChange();
 
-  let errorMessages = [];
-
-  // Old Password Validation
-  if (oldPassword.value == '' || oldPassword.value == null) {
-    errorMessages.push('Old Password cannot be empty.');
-  }
-  if (!passRegx.test(oldPassword.value)) {
-    errorMessages.push('Old Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
-
-  // New Password Validation
-  if (newPassword.value == '' || newPassword.value == null) {
-    errorMessages.push('New Password cannot be empty.');
-  }
-  if (!passRegx.test(newPassword.value)) {
-    errorMessages.push('New Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
-  if (newPassword.value != confirmNewPassword.value) {
-    errorMessages.push('Password do not match.');
-  }
-  if (newPassword.value == oldPassword.value) {
-    errorMessages.push('Old and New Password should not be same.');
-  }
   if (errorMessages.length > 0) {
     e.preventDefault();
-    formErrors.innerHTML = errorMessages.join('<br> ');
-  }
-  else {
-    formErrors.innerHTML = "";
+    
+    // Use SweetAlert2 if available, otherwise fallback to DOM
+    if (typeof showValidationErrors !== 'undefined') {
+      showValidationErrors(errorMessages, 'Password Change Validation Error');
+    } else {
+      if (formErrors) {
+        formErrors.innerHTML = errorMessages.join('<br>');
+      }
+    }
+  } else {
+    if (typeof showValidationSuccess !== 'undefined') {
+      showValidationSuccess('Password change form is valid!');
+    }
+    if (formErrors) {
+      formErrors.innerHTML = "";
+    }
   }
 });
 
 changePassForm.addEventListener('change', function (e) {
+  let errorMessages = validatePasswordChange();
 
-  let errorMessages = [];
-
-  // Old Password Validation
-  if (oldPassword.value == '' || oldPassword.value == null) {
-    errorMessages.push('Old Password cannot be empty.');
-  }
-  if (!passRegx.test(oldPassword.value)) {
-    errorMessages.push('Old Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
-
-  // New Password Validation
-  if (newPassword.value == '' || newPassword.value == null) {
-    errorMessages.push('New Password cannot be empty.');
-  }
-  if (!passRegx.test(newPassword.value)) {
-    errorMessages.push('New Password must be 6 to 20 characters long with aleast 1 number, 1 uppercase and 1 lowecase.');
-  }
-  if (newPassword.value != confirmNewPassword.value) {
-    errorMessages.push('Password do not match.');
-  }
-  if (newPassword.value == oldPassword.value) {
-    errorMessages.push('Old and New Password should not be same.');
-  }
   if (errorMessages.length > 0) {
-    e.preventDefault();
-    formErrors.innerHTML = errorMessages.join('<br> ');
-  }
-  else {
-    formErrors.innerHTML = "";
+    // For change events, just show inline errors
+    if (formErrors) {
+      formErrors.innerHTML = errorMessages.join('<br>');
+    }
+  } else {
+    if (formErrors) {
+      formErrors.innerHTML = "";
+    }
   }
 });
