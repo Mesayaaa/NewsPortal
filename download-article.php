@@ -39,11 +39,12 @@ else {
 }
 
 
-// Article Query to fetch all the article data for respective article id
-$articleQuery = " SELECT *
+// Article Query to fetch all the article data with author name for respective article id
+$articleQuery = " SELECT article.*, author.author_name
                     FROM article
-                    WHERE article_id = {$article_id} 
-                    AND article_active = 1";
+                    INNER JOIN author ON article.author_id = author.author_id
+                    WHERE article.article_id = {$article_id} 
+                    AND article.article_active = 1";
 
 // Running the Article Query
 $res = mysqli_query($con, $articleQuery);
@@ -68,6 +69,7 @@ if ($row > 0) {
     $article_title = $data['article_title'];
     $article_desc = $data['article_description'];
     $article_date = $data['article_date'];
+    $author_name = $data['author_name'];
 
     // Article date is updated to a timestamp 
     $article_date = strtotime($article_date);
@@ -99,7 +101,7 @@ if ($row > 0) {
       <article>
         <h1>' . $article_title . '</h1>
         <div> 
-          <p>Winnicode<br><br>' . date("d M Y", $article_date) . '</p>
+          <p>By: ' . $author_name . '<br><br>' . date("d M Y", $article_date) . '</p>
         </div>
         <div>
           <p>
