@@ -39,6 +39,9 @@
       $article_date = $data['article_date'];
       $article_trend = $data['article_trend'];
 
+      // Limit article title length for hero section display to prevent long titles
+      $article_title = strlen($article_title) > 60 ? substr($article_title, 0, 60) . '...' : $article_title;
+
       // Updating the description with a substring containing at most length of 150 characters
       $article_desc = substr($article_desc, 0, 250) . '...';
 
