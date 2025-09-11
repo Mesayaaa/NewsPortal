@@ -1,45 +1,44 @@
 <?php
-  require('./includes/nav.inc.php');
-  
-  if (isset($_POST['submit'])) { 
-    
-    if(isset($_SESSION['ADMIN_ID'])){ 
-      $ADMIN_ID = $_SESSION['ADMIN_ID'];
-    }
-    else {
-      alert("Please Login to Enter Admin Panel");
-      redirect('./login.php');
-    }
-    
-    $category_name = $_POST['category_title'];
-    $category_desc = $_POST['category_desc'];
-    $category_color = $_POST['category_color'];
+require('./includes/nav.inc.php');
 
-    $category_name = str_replace('"','\"',$category_name);
-    $category_desc = str_replace('"','\"',$category_desc);
+if (isset($_POST['submit'])) {
 
-    $name   = $category_name.time(); 
-    $extension  = pathinfo( $_FILES["category_img"]["name"], PATHINFO_EXTENSION ); 
-    $basename   = $name . "." . $extension; 
+  if (isset($_SESSION['ADMIN_ID'])) {
+    $ADMIN_ID = $_SESSION['ADMIN_ID'];
+  } else {
+    alert("Please Login to Enter Admin Panel", "warning", "Access Denied");
+    redirect('./login.php');
+  }
 
-    $tempname = $_FILES["category_img"]["tmp_name"];     
-    $folder = "../assets/images/category/{$basename}"; 
-    
-    $sql = "INSERT INTO category 
+  $category_name = $_POST['category_title'];
+  $category_desc = $_POST['category_desc'];
+  $category_color = $_POST['category_color'];
+
+  $category_name = str_replace('"', '\"', $category_name);
+  $category_desc = str_replace('"', '\"', $category_desc);
+
+  $name = $category_name . time();
+  $extension = pathinfo($_FILES["category_img"]["name"], PATHINFO_EXTENSION);
+  $basename = $name . "." . $extension;
+
+  $tempname = $_FILES["category_img"]["tmp_name"];
+  $folder = "../assets/images/category/{$basename}";
+
+  $sql = "INSERT INTO category 
             (category_name,category_color,category_description,category_image) 
             VALUES 
-            (\"$category_name\",\"$category_color\",\"$category_desc\",\"$basename\")"; 
+            (\"$category_name\",\"$category_color\",\"$category_desc\",\"$basename\")";
 
-    $result = mysqli_query($con, $sql); 
-    
-    if ($result)  { 
-      move_uploaded_file($tempname, $folder);
-      alert("Category Added !");
-      redirect('./categories.php');
-    }else{ 
-      echo "Failed to upload Data"; 
-    } 
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    move_uploaded_file($tempname, $folder);
+    alert("Category Added !", "success", "Success");
+    redirect('./categories.php');
+  } else {
+    echo "Failed to upload Data";
   }
+}
 ?>
 
 <section id="breadcrumb">
@@ -56,7 +55,7 @@
   <div class="container">
     <div class="row">
       <?php
-        require('./includes/quick-links.inc.php');
+      require('./includes/quick-links.inc.php');
       ?>
       <div class="col-md-9">
         <!-- Website Overview -->
@@ -115,5 +114,5 @@
 </section>
 
 <?php
-  require('./includes/footer.inc.php')
-?>
+require('./includes/footer.inc.php')
+  ?>

@@ -64,7 +64,7 @@ if (isset($_POST['login-submit'])) {
       else {
 
         // Redirected to login page along with a message
-        alert("Wrong Password");
+        alert("Wrong Password", "error", "Login Failed");
         redirect('./login.php');
       }
     }
@@ -74,7 +74,7 @@ if (isset($_POST['login-submit'])) {
   else {
 
     // Redirected to login page along with a message
-    alert("This Email is not registered for Admin");
+    alert("This Email is not registered for Admin", "error", "Login Failed");
     redirect('./login.php');
   }
 }

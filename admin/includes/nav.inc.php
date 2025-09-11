@@ -4,7 +4,7 @@ require('../includes/database.inc.php');
 session_start();
 
 if (!isset($_SESSION['ADMIN_LOGGED_IN'])) {
-  alert("Please Login to Enter Admin Panel");
+  alert("Please Login to Enter Admin Panel", "warning", "Access Denied");
   redirect('./login.php');
 }
 

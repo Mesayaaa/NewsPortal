@@ -1,47 +1,46 @@
 <?php
-  require('./includes/nav.inc.php');
-  
-  if (isset($_POST['submit'])) { 
-    
-    if(isset($_SESSION['AUTHOR_ID'])){ 
-      $author_id = $_SESSION['AUTHOR_ID'];
-    }
-    else {
-      alert("Please Login to Enter Author Portal");
-      redirect('../author-login.php');
-    }
-    
-    $article_title = $_POST['article_title'];
-    $article_desc = $_POST['article_desc'];
-    $article_cat_id = $_POST['category_id'];
+require('./includes/nav.inc.php');
 
-    $article_title = str_replace('"','\"',$article_title);
-    $article_desc = str_replace('"','\"',$article_desc);
+if (isset($_POST['submit'])) {
 
-    $name   = 'article-'.$article_cat_id.'-'.time(); 
-    $extension  = pathinfo( $_FILES["article_img"]["name"], PATHINFO_EXTENSION ); 
-    $basename   = $name . "." . $extension; 
+  if (isset($_SESSION['AUTHOR_ID'])) {
+    $author_id = $_SESSION['AUTHOR_ID'];
+  } else {
+    alert("Please Login to Enter Author Portal", "warning", "Access Denied");
+    redirect('../author-login.php');
+  }
 
-    $tempname = $_FILES["article_img"]["tmp_name"];     
-    $folder = "../assets/images/articles/{$basename}"; 
-    
-    $article_date = date("Y-m-d");
+  $article_title = $_POST['article_title'];
+  $article_desc = $_POST['article_desc'];
+  $article_cat_id = $_POST['category_id'];
 
-    $sql = "INSERT INTO article 
+  $article_title = str_replace('"', '\"', $article_title);
+  $article_desc = str_replace('"', '\"', $article_desc);
+
+  $name = 'article-' . $article_cat_id . '-' . time();
+  $extension = pathinfo($_FILES["article_img"]["name"], PATHINFO_EXTENSION);
+  $basename = $name . "." . $extension;
+
+  $tempname = $_FILES["article_img"]["tmp_name"];
+  $folder = "../assets/images/articles/{$basename}";
+
+  $article_date = date("Y-m-d");
+
+  $sql = "INSERT INTO article 
             (category_id,author_id,article_title,article_image,article_description,article_date,article_trend,article_active) 
             VALUES 
-            (\"$article_cat_id\",\"$author_id\",\"$article_title\",\"$basename\",\"$article_desc\",\"$article_date\",0,0)"; 
+            (\"$article_cat_id\",\"$author_id\",\"$article_title\",\"$basename\",\"$article_desc\",\"$article_date\",0,0)";
 
-    $result = mysqli_query($con, $sql); 
-    
-    if ($result)  { 
-      move_uploaded_file($tempname, $folder);
-      alert("Article posted. Please wait for Admin to activate it.");
-      redirect('./articles.php');
-    }else{ 
-      echo "Failed to upload Data"; 
-    } 
+  $result = mysqli_query($con, $sql);
+
+  if ($result) {
+    move_uploaded_file($tempname, $folder);
+    alert("Article posted. Please wait for Admin to activate it.", "success", "Article Posted");
+    redirect('./articles.php');
+  } else {
+    echo "Failed to upload Data";
   }
+}
 ?>
 
 <section id="breadcrumb">
@@ -58,7 +57,7 @@
   <div class="container">
     <div class="row">
       <?php
-        require('./includes/quick-links.inc.php');
+      require('./includes/quick-links.inc.php');
       ?>
       <div class="col-md-9">
         <!-- Website Overview -->
@@ -79,18 +78,18 @@
                 <select name="category_id" class="form-control" id="category">
                   <option value="0" selected>Choose Any Category...</option>
                   <?php
-                    $cat_sql = "SELECT category_id, category_name FROM category ORDER BY category_name ASC";
-                    $cat_res = mysqli_query($con,$cat_sql);
-                    $cat_row = mysqli_num_rows($cat_res);
-                    
-                    while($cat_data = mysqli_fetch_assoc($cat_res)) {
-                      $cat_id = $cat_data['category_id'];   
-                      $cat_name = $cat_data['category_name'];
-                      echo '
-                        <option value="'.$cat_id.'">'.$cat_name.'</option>
-                      ';   
-                    }
-                    ?>
+                  $cat_sql = "SELECT category_id, category_name FROM category ORDER BY category_name ASC";
+                  $cat_res = mysqli_query($con, $cat_sql);
+                  $cat_row = mysqli_num_rows($cat_res);
+
+                  while ($cat_data = mysqli_fetch_assoc($cat_res)) {
+                    $cat_id = $cat_data['category_id'];
+                    $cat_name = $cat_data['category_name'];
+                    echo '
+                        <option value="' . $cat_id . '">' . $cat_name . '</option>
+                      ';
+                  }
+                  ?>
                 </select>
                 <p id="error-cat" class="error-msg text-danger"></p>
               </div>
@@ -123,5 +122,5 @@
 </section>
 
 <?php
-  require('./includes/footer.inc.php')
-?>
+require('./includes/footer.inc.php')
+  ?>

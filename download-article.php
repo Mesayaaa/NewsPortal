@@ -13,7 +13,7 @@ session_start();
 if (!isset($_SESSION['USER_LOGGED_IN'])) {
 
   // Redirected to login page along with a message
-  alert('Please log in to Download Article');
+  alert('Please log in to Download Article', "warning", "Access Denied");
   redirect('./user-login.php');
 }
 
@@ -99,7 +99,7 @@ if ($row > 0) {
       <article>
         <h1>' . $article_title . '</h1>
         <div> 
-          <p>João José.<br><br>' . date("d M Y", $article_date) . '</p>
+          <p>Winnicode<br><br>' . date("d M Y", $article_date) . '</p>
         </div>
         <div>
           <p>

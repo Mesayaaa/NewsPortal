@@ -35,7 +35,7 @@ if (isset($_POST['signup-submit'])) {
     if ($check_row > 0) {
 
         // Redirecting to the registration page along with a message
-        alert("Email Already Exists");
+        alert("Email Already Exists", "error", "Registration Failed");
         redirect('./user-register.php');
     }
 
@@ -55,7 +55,7 @@ if (isset($_POST['signup-submit'])) {
         if ($result) {
 
             // Redirected to login page with a message
-            alert("Signup Successful, Please Login");
+            alert("Signup Successful, Please Login", "success", "Registration Success");
             redirect('./user-login.php');
         }
 

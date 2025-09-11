@@ -4,7 +4,7 @@ require('../includes/database.inc.php');
 session_start();
 
 if (!isset($_SESSION['AUTHOR_LOGGED_IN'])) {
-  alert("Please Login to Enter Author Portal");
+  alert("Please Login to Enter Author Portal", "warning", "Access Denied");
   redirect('../author-login.php');
 }
 $author_id = $_SESSION['AUTHOR_ID'];

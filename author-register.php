@@ -32,7 +32,7 @@ if (isset($_POST['signup-submit'])) {
     if ($check_row > 0) {
 
         // Redirecting to the registration page along with a message
-        alert("Email Already Exists");
+        alert("Email Already Exists", "error", "Registration Failed");
         redirect('./author-register.php');
     }
 
@@ -77,7 +77,7 @@ if (isset($_POST['signup-submit'])) {
             if ($author_result && $user_result) {
 
                 // Redirected to login page with a message
-                alert("Author Registration Successful, Please Login");
+                alert("Author Registration Successful, Please Login", "success", "Registration Success");
                 redirect('./author-login.php');
             }
 
@@ -114,7 +114,7 @@ if (isset($_POST['signup-submit'])) {
             if ($user_result && $author_result) {
 
                 // Redirected to login page with a message
-                alert("Author and User Registration Successful, Please Login");
+                alert("Author and User Registration Successful, Please Login", "success", "Registration Success");
                 redirect('./author-login.php');
             }
             // If the Query failed

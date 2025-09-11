@@ -59,7 +59,7 @@ if (isset($_POST['login-submit'])) {
       else {
 
         // Redirected to login page along with a message
-        alert("Wrong Password");
+        alert("Wrong Password", "error", "Login Failed");
         redirect('./user-login.php');
       }
     }
@@ -68,7 +68,7 @@ if (isset($_POST['login-submit'])) {
   else {
 
     // Redirected to signup page along with a message
-    alert("This Email is not registered. Please Register");
+    alert("This Email is not registered. Please Register", "error", "Login Failed");
     redirect('./user-login.php');
   }
 }

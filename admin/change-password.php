@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
   if (isset($_SESSION['ADMIN_ID'])) {
     $admin_id = $_SESSION['ADMIN_ID'];
   } else {
-    alert("Please Login to Enter Admin Portal");
+    alert("Please Login to Enter Admin Portal", "warning", "Access Denied");
     redirect('./login.php');
   }
 
@@ -30,15 +30,15 @@ if (isset($_POST['submit'])) {
 
       $update_result = mysqli_query($con, $update_sql);
       if (!$update_result) {
-        alert("Sorry. Try again later !");
+        alert("Sorry. Try again later !", "error", "Error");
       } else {
-        alert("Password Updated !");
+        alert("Password Updated !", "success", "Success");
       }
     } else {
-      alert("Wrong Password. Try again !");
+      alert("Wrong Password. Try again !", "error", "Error");
     }
   } else {
-    alert("Wrong Password. Try again !");
+    alert("Wrong Password. Try again !", "error", "Error");
   }
 }
 ?>
