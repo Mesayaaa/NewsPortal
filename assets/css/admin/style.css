@@ -1117,10 +1117,23 @@ input[type="file"]:hover {
   color: var(--dark-color);
 }
 
+.list-group-item1 {
+  border: none;
+  border-bottom: 1px solid #f1f3f4;
+  padding: 15px 20px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
 .list-group-item:hover {
   background: #f8f9fa;
   transform: translateX(5px);
   color: var(--primary-color);
+  -webkit-transform: translateX(5px);
+  -moz-transform: translateX(5px);
+  -ms-transform: translateX(5px);
+  -o-transform: translateX(5px);
 }
 
 .list-group-item.active {

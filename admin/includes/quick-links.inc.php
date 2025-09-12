@@ -18,7 +18,7 @@ $no_of_categories = $cat_data['no_of_categories'];
 ?>
 <div class="col-md-3">
   <div class="list-group">
-    <div class="list-group-item active main-color-bg">
+    <div class="list-group-item1 active main-color-bg">
       <span class="glyphicon glyphicon-dashboard"></span>
       <strong>Admin Panel</strong>
     </div>
@@ -54,8 +54,8 @@ $no_of_categories = $cat_data['no_of_categories'];
       <span class="glyphicon glyphicon-eye-open"></span>
       View Site
     </a>
-    <a href="./logout.php" class="list-group-item" style="color: #dc3545;">
-      <span class="glyphicon glyphicon-log-out"></span>
+    <a href="./logout.php" class="list-group-item" style="color: red;">
+      <span class=" glyphicon glyphicon-log-out"></span>
       Logout
     </a>
   </div>
