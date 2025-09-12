@@ -115,7 +115,7 @@ if (strpos($uri, "/change-name.php") != false) {
 
   <header id="header">
     <div class="container">
-      <div class="row">
+      <div class="row align-items-center">
         <div class="col-md-10">
           <h1><?php echo $page_title ?></h1>
         </div>

@@ -208,7 +208,7 @@ body {
 #header {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--hover-color) 100%);
   color: #ffffff;
-  padding: 30px 0;
+  padding: 25px 0; /* Reduced from 30px to 25px for more compact header */
   margin-bottom: 30px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -234,12 +234,21 @@ body {
   margin: 0;
   position: relative;
   z-index: 1;
+  line-height: 1; /* Reduced line height for better alignment */
+  display: flex;
+  align-items: center; /* Vertically center the text */
+  height: 60px; /* Fixed height instead of min-height */
 }
 
-#header .create {
+#header .create,
+#header .btn-box {
   padding-top: 0;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center; /* Vertically center the button */
+  justify-content: flex-end; /* Align button to the right */
+  height: 60px; /* Fixed height to match h1 */
 }
 
 #header .btn {
@@ -258,6 +267,27 @@ body {
   border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Header row alignment */
+#header .row.align-items-center {
+  display: flex;
+  align-items: center;
+  height: 60px; /* Fixed height for perfect alignment */
+}
+
+#header .row.align-items-center > div {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Take full height of parent */
+}
+
+/* Ensure both columns have the same height */
+#header .col-md-10,
+#header .col-md-2 {
+  height: 60px;
+  display: flex;
+  align-items: center;
 }
 
 /* Modern Dashboard Boxes */
