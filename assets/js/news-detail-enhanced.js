@@ -3,13 +3,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
     initSmoothScrolling();
-    
-    // Share functionality
-    initShareFunctionality();
-    
     // Back to top button
     initBackToTop();
-    
     // Sidebar drag functionality
     initSidebarDrag();
 });
@@ -31,114 +26,7 @@ function initSmoothScrolling() {
 }
 
 // Share functionality
-function initShareFunctionality() {
-    // Create share modal HTML
-    const shareModal = document.createElement('div');
-    shareModal.id = 'shareModal';
-    shareModal.className = 'share-modal';
-    shareModal.innerHTML = `
-        <div class="share-modal-content">
-            <h3 style="margin-bottom: 1rem; color: var(--black-color);">Share This Article</h3>
-            <div class="share-buttons">
-                <a href="#" class="share-btn facebook" data-platform="facebook">
-                    <i class="fab fa-facebook-f"></i>
-                    Facebook
-                </a>
-                <a href="#" class="share-btn twitter" data-platform="twitter">
-                    <i class="fab fa-twitter"></i>
-                    Twitter
-                </a>
-                <a href="#" class="share-btn whatsapp" data-platform="whatsapp">
-                    <i class="fab fa-whatsapp"></i>
-                    WhatsApp
-                </a>
-                <a href="#" class="share-btn linkedin" data-platform="linkedin">
-                    <i class="fab fa-linkedin-in"></i>
-                    LinkedIn
-                </a>
-            </div>
-            <button onclick="copyToClipboard()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: var(--dark-color); color: white; border: none; border-radius: 6px; cursor: pointer;">
-                <i class="fas fa-copy"></i> Copy Link
-            </button>
-            <button onclick="closeShareModal()" style="margin-top: 1rem; margin-left: 0.5rem; padding: 0.5rem 1rem; background: var(--light-color); color: var(--black-color); border: none; border-radius: 6px; cursor: pointer;">
-                Close
-            </button>
-        </div>
-    `;
-    
-    document.body.appendChild(shareModal);
-    
-    // Add event listeners to share buttons
-    shareModal.querySelectorAll('.share-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const platform = this.dataset.platform;
-            shareToSocialMedia(platform);
-        });
-    });
-}
-
-function shareArticle() {
-    const modal = document.getElementById('shareModal');
-    if (modal) {
-        modal.style.display = 'block';
-    }
-}
-
-function closeShareModal() {
-    const modal = document.getElementById('shareModal');
-    if (modal) {
-        modal.style.display = 'none';
-    }
-}
-
-function shareToSocialMedia(platform) {
-    const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(document.querySelector('.article-heading').textContent);
-    const description = encodeURIComponent(document.querySelector('.content-body').textContent.substring(0, 150) + '...');
-    
-    let shareUrl = '';
-    
-    switch(platform) {
-        case 'facebook':
-            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-            break;
-        case 'twitter':
-            shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
-            break;
-        case 'whatsapp':
-            shareUrl = `https://wa.me/?text=${title}%20${url}`;
-            break;
-        case 'linkedin':
-            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
-            break;
-    }
-    
-    if (shareUrl) {
-        window.open(shareUrl, '_blank', 'width=600,height=400');
-    }
-}
-
-function copyToClipboard() {
-    const url = window.location.href;
-    
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(url).then(() => {
-            showToast('Link copied to clipboard!', 'success');
-        });
-    } else {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = url;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        showToast('Link copied to clipboard!', 'success');
-    }
-    
-    closeShareModal();
-}
+// ...existing code...
 
 // Enhanced back to top functionality
 function initBackToTop() {
@@ -212,26 +100,10 @@ function showToast(message, type = 'info') {
 }
 
 // Keyboard shortcuts
-document.addEventListener('keydown', function(e) {
-    // Ctrl/Cmd + S to share
-    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
-        e.preventDefault();
-        shareArticle();
-    }
-    
-    // ESC to close modals
-    if (e.key === 'Escape') {
-        closeShareModal();
-    }
-});
+// ...existing code...
 
 // Click outside modal to close
-window.addEventListener('click', function(e) {
-    const shareModal = document.getElementById('shareModal');
-    if (e.target === shareModal) {
-        closeShareModal();
-    }
-});
+// ...existing code...
 
 // Performance optimizations
 function debounce(func, wait) {

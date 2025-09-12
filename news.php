@@ -163,12 +163,6 @@ if ($row > 0) {
                         <i class="fas fa-download"></i>
                         <span>Download PDF</span>
                       </a>';
-
-                // Share button
-                echo '<button class="btn btn-share" onclick="shareArticle()" title="Share this article">
-                        <i class="fas fa-share-alt"></i>
-                        <span>Share</span>
-                      </button>';
                 ?>
               </div>
             </div>
