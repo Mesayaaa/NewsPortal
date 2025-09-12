@@ -118,6 +118,30 @@ require('./includes/nav.inc.php');
     text-overflow: ellipsis;
     position: relative;
   }
+
+  /* Clean panel header styling to match admin */
+  .panel-default .panel-heading {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    border-bottom: 1px solid #dee2e6 !important;
+    color: var(--dark-color) !important;
+    padding: 15px 20px !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+  }
+
+  .panel-default .panel-title {
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    color: var(--dark-color) !important;
+    margin: 0 !important;
+    font-family: var(--ff-nunito) !important;
+  }
+
+  .panel-default {
+    border: 1px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  }
 </style>
 
 <script>
@@ -176,8 +200,8 @@ require('./includes/nav.inc.php');
 
       ?>
       <div class="panel panel-default">
-        <div class="panel-heading main-color-bg">
-          <h3 class="panel-title">Articles</h3>
+        <div class="panel-heading">
+          <h4 class="panel-title">Articles</h4>
         </div>
         <div class="panel-body">
           <div class="table-responsive-custom">
