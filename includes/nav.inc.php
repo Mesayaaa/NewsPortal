@@ -148,11 +148,7 @@ if (strpos($uri, "news.php") != false) {
   <!-- ======== NAVBAR ======== -->
   <nav class="navbar">
     <div class="logo"><a href="./index.php"><img src="./assets/images/logo.png" /></a></div>
-    <label for="btn" class="icon">
-      <span class="fa fa-bars"></span>
-    </label>
-    <input type="checkbox" id="btn" class="input" />
-    <ul class="ul">
+    <ul class="nav-menu">
       <!-- We ECHO class current based upon the boolean variables used in above PHP Snippet -->
       <li><a href="./index.php" <?php if ($home)
         echo 'class="current"' ?>>Home</a></li>

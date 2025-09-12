@@ -1,77 +1,132 @@
 <!--? ======== FOOTER ======== -->
 <footer class="footer">
-  <div class="footer-left">
-    <a href="./index.php"><img src="./assets/images/logo_light.png" /></a>
-    <p>
-      The collection point of world news. A one stop shop. We bring to you the current happenings around the world from
-      esteemed writers. Make sure to read up and keep up with us through this platform that we bring to you. NewsGrid
-    </p>
-    <div class="socials">
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-  </div>
-  <ul class="footer-right">
-    <li>
-      <h2>Quick Links</h2>
-      <ul class="box">
-        <li><a href="./index.php">Home</a></li>
-        <li><a href="./categories.php">Categories</a></li>
-        <li><a href="./bookmarks.php">Bookmarks</a></li>
-        <li><a href="./search.php?trending=1">Trending</a></li>
-      </ul>
-    </li>
-    <li>
-      <h2>Categories</h2>
-      <ul class="box">
-        <?php
+  <div class="footer-container">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <div class="footer-logo">
+          <a href="./index.php"><img src="./assets/images/logo_light.png" alt="NewsGrid Logo" /></a>
+        </div>
+        <p class="footer-description">
+          Your trusted source for global news and current affairs. We bring you comprehensive coverage from esteemed
+          journalists worldwide, keeping you informed about what matters most.
+        </p>
+        <div class="footer-stats">
+          <div class="stat-item">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Daily Readers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1000+</span>
+            <span class="stat-label">Articles</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24/7</span>
+            <span class="stat-label">Coverage</span>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link youtube" aria-label="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="#" class="social-link twitter" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link linkedin" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-section links">
+        <h3 class="footer-title">
+          <i class="fas fa-link"></i>
+          Quick Links
+        </h3>
+        <ul class="footer-links">
+          <li><a href="./index.php"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="./categories.php"><i class="fas fa-th-large"></i> Categories</a></li>
+          <li><a href="./bookmarks.php"><i class="fas fa-bookmark"></i> Bookmarks</a></li>
+          <li><a href="./search.php?trending=1"><i class="fas fa-fire"></i> Trending</a></li>
+          <li><a href="./search.php"><i class="fas fa-search"></i> Search</a></li>
+        </ul>
+      </div>
 
-          // Category Query to fetch random 3 categories
-  	      $categoryQuery= " SELECT  category_id, category_name
-                            FROM category 
-                            ORDER BY RAND() LIMIT 3";
-
-          // Running Category Query
-          $result = mysqli_query($con,$categoryQuery);
-
-          // Returns the number of rows from the result retrieved.
+      <div class="footer-section categories">
+        <h3 class="footer-title">
+          <i class="fas fa-tags"></i>
+          Popular Categories
+        </h3>
+        <ul class="footer-links">
+          <?php
+          // Category Query to fetch random 4 categories
+          $categoryQuery = "SELECT category_id, category_name FROM category ORDER BY RAND() LIMIT 4";
+          $result = mysqli_query($con, $categoryQuery);
           $row = mysqli_num_rows($result);
 
-
-          // If query has any result (records) => If there are categories
-          if($row > 0) {
-
-          // Fetching the data of particular record as an Associative Array
-          while($data = mysqli_fetch_assoc($result)) {
-
-            // Storing the category data in variables
-            $category_id = $data['category_id'];
-            $category_name = $data['category_name'];
-            
-        ?>
-        <li><a href="articles.php?id=<?php echo $category_id ?>"><?php echo $category_name ?></a></li>
-        <?php  
-              }
+          if ($row > 0) {
+            while ($data = mysqli_fetch_assoc($result)) {
+              $category_id = $data['category_id'];
+              $category_name = $data['category_name'];
+              ?>
+              <li><a href="articles.php?id=<?php echo $category_id ?>"><i class="fas fa-chevron-right"></i>
+                  <?php echo $category_name ?></a></li>
+            <?php
             }
+          }
           ?>
-        <li><a href="./categories.php">More +</a></li>
-      </ul>
-    </li>
-    <li>
-      <h2>Join Us</h2>
-      <ul class="box">
-        <li>
-          Share the story in your own words with the world. To Inspire with your writing make NewsGrid your platform to
-          help bring the stories of the globe to all people.
-        </li>
-        <a href="./author-login.php" class="my-1 btn btn-secondary">Sign Up</a>
-      </ul>
-    </li>
-  </ul>
+          <li><a href="./categories.php" class="view-all"><i class="fas fa-plus-circle"></i> View All Categories</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h3 class="footer-title">
+          <i class="fas fa-envelope"></i>
+          Stay Updated
+        </h3>
+        <p class="newsletter-description">
+          Subscribe to our newsletter and never miss breaking news and exclusive stories.
+        </p>
+        <form class="newsletter-form" action="#" method="POST">
+          <div class="input-group">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit" class="subscribe-btn">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
+        <div class="join-section">
+          <h4>Become a Writer</h4>
+          <p>Share your stories with the world and inspire millions of readers.</p>
+          <a href="./author-login.php" class="join-btn">
+            <i class="fas fa-pen"></i>
+            Join as Author
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="footer-bottom">
-    <p>All Rights Reserved by &copy; NewsGrid <?php echo date("Y")?></p>
+    <div class="footer-bottom-content">
+      <div class="copyright">
+        <p>&copy; <?php echo date("Y") ?> NewsGrid. All rights reserved.</p>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#" class="footer-bottom-link">Privacy Policy</a>
+        <a href="#" class="footer-bottom-link">Terms of Service</a>
+        <a href="#" class="footer-bottom-link">Contact Us</a>
+      </div>
+      <div class="back-to-top">
+        <button onclick="topFunction()" class="back-to-top-btn" title="Back to top">
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </div>
+    </div>
   </div>
 </footer>
 

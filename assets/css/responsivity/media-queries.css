@@ -40,152 +40,7 @@
   }
 }
 
-/* NAVBAR TABLET */
-@media (max-width: 968px) {
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(20px);
-  }
-  
-  .navbar ul {
-    margin-right: 0px;
-    float: left;
-    width: 100%;
-    height: auto;
-  }
-  
-  .navbar .logo {
-    padding: 15px 30px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .ul {
-    display: none;
-  }
-  
-  .navbar ul li,
-  .navbar ul ul li {
-    display: block;
-    width: 100%;
-    margin: 0;
-  }
-  
-  .navbar ul li a {
-    font-size: var(--ts-md);
-    font-weight: 500;
-    padding: 15px 20px;
-    border-radius: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    text-decoration: none !important;
-  }
-  
-  .navbar ul li a:hover {
-    background: rgba(199, 39, 39, 0.08);
-    transform: translateX(8px);
-    text-decoration: none !important;
-  }
-  
-/* .show class no longer needed */
-  
-  .navbar .icon {
-    display: block !important;
-    color: var(--black-color);
-    position: absolute;
-    top: 0;
-    right: 30px;
-    line-height: 70px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    padding: 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-  
-  .icon:hover {
-    background: rgba(199, 39, 39, 0.08);
-    color: var(--primary-color);
-  }
-  
-  .navbar ul ul {
-    top: 0;
-    border: none;
-    float: none;
-    position: static;
-    display: none;
-    opacity: 1;
-    visibility: visible;
-    background: rgba(249, 249, 249, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 0;
-    box-shadow: none;
-    margin-left: 20px;
-  }
-  
-  .navbar ul ul a {
-    padding: 12px 40px;
-    font-size: var(--ts-sml);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    text-decoration: none !important;
-  }
-  
-  /* Main menu toggle */
-  #btn:checked ~ .ul {
-    display: block !important;
-  }
-  
-  /* Mobile dropdown styles */
-  .navbar .dropdown-menu {
-    position: static;
-    background: rgba(249, 249, 249, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 0;
-    box-shadow: none;
-    margin-left: 20px;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    display: none;
-  }
-  
-  .navbar .dropdown.active .dropdown-menu {
-    display: block;
-  }
-  
-  .navbar ul ul li {
-    border-bottom: none;
-  }
-  
-  span.cancel:before {
-    content: "\f00d";
-  }
-  
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-/* NAVBAR PHONE */
-@media (min-width: 576px) and (max-width: 968px) {
-  .navbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
+/* NAVBAR MEDIA QUERIES REMOVED - DESKTOP ONLY */
 
 /* IMAGE SLIDER DESKTOP DOWN*/
 @media (max-width: 1220px) {
@@ -324,24 +179,79 @@
   }
 }
 
-/* FOOTER PHONE */
-@media (min-width: 700px) {
-  .footer-right > * {
-    flex: 1;
+/* FOOTER RESPONSIVE */
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
-
-  .footer-left {
-    flex: 1 0px;
+  
+  .footer-section.about {
+    grid-column: span 2;
   }
-
-  .footer-right {
-    flex: 2 0px;
+  
+  .footer-stats {
+    justify-content: center;
   }
 }
 
-@media (max-width: 588px) {
-  .footer {
-    padding-left: 30px;
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+  }
+  
+  .footer-section.about {
+    grid-column: span 1;
+    text-align: center;
+  }
+  
+  .footer-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .stat-item {
+    padding: 1rem;
+  }
+  
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .footer-bottom-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 0 15px;
+  }
+  
+  .footer-content {
+    padding: 1.5rem 0;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .footer-bottom-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+    border-radius: 8px;
+  }
+  
+  .subscribe-btn {
+    border-radius: 0 0 8px 8px;
   }
 }
 
