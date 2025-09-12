@@ -170,10 +170,22 @@ function createMoreCard($link)
 function createNoArticlesCard()
 {
   echo '
-    <div class="d-flex">
-      <a href="./categories.php" class="card card-more d-flex" style="height: 300px; max-width: 400px;">
-        <h4>Sorry ! No Articles in this Page</h4>
-      </a>
+    <div class="w-100 d-flex justify-content-center">
+      <div class="no-articles-card">
+        <div class="no-articles-icon">
+          <i class="far fa-bookmark"></i>
+        </div>
+        <h3 class="no-articles-title">No Bookmarks Yet!</h3>
+        <p class="no-articles-text">Start exploring and bookmark articles you want to read later.</p>
+        <div class="no-articles-actions">
+          <a href="./index.php" class="btn btn-primary-custom">
+            <i class="fas fa-home me-2"></i>Browse Articles
+          </a>
+          <a href="./categories.php" class="btn btn-outline-custom">
+            <i class="fas fa-tags me-2"></i>View Categories
+          </a>
+        </div>
+      </div>
     </div>
     ';
 }
