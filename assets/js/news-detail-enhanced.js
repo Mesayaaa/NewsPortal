@@ -25,9 +25,6 @@ function initSmoothScrolling() {
     });
 }
 
-// Share functionality
-// ...existing code...
-
 // Enhanced back to top functionality
 function initBackToTop() {
     const backToTopBtn = document.querySelector('.topNavBtn');
