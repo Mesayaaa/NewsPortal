@@ -63,20 +63,16 @@ if (isset($_POST['submit'])) {
                 <label>Old Name</label>
                 <input type="text" autocomplete="off" class="form-control" placeholder="Old Name" name="old_name"
                   id="old_name" required />
-                <p id="error-old" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>New Name</label>
                 <input type="text" autocomplete="off" class="form-control" placeholder="New Name" name="new_name"
                   id="new_name" required />
-                <p id="error-new" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Confirm New Name</label>
                 <input type="text" autocomplete="off" class="form-control" placeholder="Confirm New Name"
                   name="confirm_name" id="confirm_name" required />
-                <p id="error-confirm" class="error-msg text-danger"></p>
-                <p id="error-common" class="error-msg text-danger"></p>
               </div>
               <br>
               <div class="text-center">

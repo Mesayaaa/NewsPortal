@@ -1,64 +1,50 @@
 var changeNameForm = document.getElementById('change_name_form');
-
 var oldName = document.getElementById('old_name');
 var newName = document.getElementById('new_name');
 var confirmNewName = document.getElementById('confirm_name');
 
-var oldError = document.getElementById('error-old');
-var newError = document.getElementById('error-new');
-var confirmError = document.getElementById('error-confirm');
-var commonError = document.getElementById('error-common');
-
 let nameRegx = new RegExp(/^[a-zA-Z ]{4,30}$/);
 
-changeNameForm.addEventListener("keyup", function (e) {
+changeNameForm.addEventListener("submit", function (e) {
+  let errorMessages = [];
 
   if (oldName.value == '' || oldName.value == null) {
-    e.preventDefault();
-    oldError.innerHTML = "Name cannot be empty";
+    errorMessages.push('Old name cannot be empty.');
   }
   else if (!nameRegx.test(oldName.value)) {
-    e.preventDefault();
-    oldError.innerHTML = "Name must contain 4 to 30 alphabets only.";
-  }
-  else {
-    oldError.innerHTML = "";
+    errorMessages.push('Old name must contain 4 to 30 alphabets only.');
   }
 
   if (newName.value == '' || newName.value == null) {
-    e.preventDefault();
-    newError.innerHTML = "Name cannot be empty";
+    errorMessages.push('New name cannot be empty.');
   }
   else if (!nameRegx.test(newName.value)) {
-    e.preventDefault();
-    newError.innerHTML = "Name must contain 4 to 30 alphabets only.";
-  }
-  else {
-    newError.innerHTML = "";
+    errorMessages.push('New name must contain 4 to 30 alphabets only.');
   }
 
   if (confirmNewName.value == '' || confirmNewName.value == null) {
-    e.preventDefault();
-    confirmError.innerHTML = "Name cannot be empty";
+    errorMessages.push('Confirm name cannot be empty.');
   }
   else if (!nameRegx.test(confirmNewName.value)) {
-    e.preventDefault();
-    confirmError.innerHTML = "Name must contain 4 to 30 alphabets only.";
-  }
-  else {
-    confirmError.innerHTML = "";
+    errorMessages.push('Confirm name must contain 4 to 30 alphabets only.');
   }
 
   if (confirmNewName.value != newName.value) {
-    e.preventDefault();
-    commonError.innerHTML = "Name do not match.";
+    errorMessages.push('Names do not match.');
   }
   else if (newName.value == oldName.value) {
-    e.preventDefault();
-    commonError.innerHTML = "Old and new names should not be same.";
-  }
-  else {
-    commonError.innerHTML = "";
+    errorMessages.push('Old and new names should not be the same.');
   }
 
+  if (errorMessages.length > 0) {
+    e.preventDefault();
+    // Use SweetAlert for validation errors
+    if (typeof showValidationErrors !== 'undefined') {
+      showValidationErrors(errorMessages, 'Name Change Validation Error');
+    }
+  } else {
+    if (typeof showValidationSuccess !== 'undefined') {
+      showValidationSuccess('Name change form is valid!');
+    }
+  }
 });

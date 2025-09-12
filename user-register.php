@@ -102,12 +102,6 @@ if (isset($_POST['signup-submit'])) {
                     </div>
                 </form>
             </div>
-            <!-- Div to display the errors from the Registration form -->
-            <div class="form-errors">
-                <p class="errors" id="signup-errors">
-                    Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase letter
-                </p>
-            </div>
 
             <!-- Link to login page -->
             <div class="form-footer">

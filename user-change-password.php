@@ -172,10 +172,6 @@ if (isset($_POST['submit'])) {
           </div>
         </form>
       </div>
-      <!-- Div to display the errors from the form -->
-      <div class="form-errors">
-        <p class="errors" id="errors"></p>
-      </div>
     </div>
   </div>
 </div>

@@ -1,17 +1,11 @@
 var editForm = document.getElementById("edit_form");
 var imgPreview = document.getElementById("image_preview");
 var imgInp = document.getElementById("category_img");
-
 var categoryTitle = document.getElementById("category_title");
 var categoryDesc = document.getElementById("category_desc");
 var categoryColor = document.getElementById("category_color");
 
-var descError = document.getElementById("error-desc");
-var titleError = document.getElementById("error-title");
-var imgError = document.getElementById("error-img");
-var catError = document.getElementById("error-cat");
-
-let titleRegex = new RegExp(/^[-@.,?\/#&+\w\s:;\’\'\"\`]{3,20}$/);
+let titleRegex = new RegExp(/^[-@.,?\/#&+\w\s:;\'\'\"\`]{3,20}$/);
 
 imgInp.addEventListener("change", function () {
   var file = this.files[0];
@@ -25,95 +19,33 @@ imgInp.addEventListener("change", function () {
   }
 });
 
-editForm.addEventListener("keyup", function (e) {
-  if (categoryDesc.value == "" || categoryDesc.value == null) {
-    e.preventDefault();
-    descError.innerHTML = "Description cannot be empty !";
-  } else if (categoryDesc.value.length < 100) {
-    e.preventDefault();
-    descError.innerHTML =
-      "Description should be of minimum of 100 characters long";
-  } else {
-    descError.innerHTML = "";
-  }
-
-  if (categoryColor.value == "0") {
-    e.preventDefault();
-    catError.innerHTML = "Please Select a Color";
-  } else {
-    catError.innerHTML = "";
-  }
-
-  if (categoryTitle.value == "" || categoryTitle.value == null) {
-    e.preventDefault();
-    titleError.innerHTML = "Title cannot be empty !";
-  } else if (!titleRegex.test(categoryTitle.value)) {
-    e.preventDefault();
-    titleError.innerHTML =
-      "category should contain minimum of 3 alphanumeric characters long";
-  } else {
-    titleError.innerHTML = "";
-  }
-});
-
-editForm.addEventListener("change", function (e) {
-  if (categoryDesc.value == "" || categoryDesc.value == null) {
-    e.preventDefault();
-    descError.innerHTML = "Description cannot be empty !";
-  } else if (categoryDesc.value.length < 100) {
-    e.preventDefault();
-    descError.innerHTML =
-      "Description should be of minimum of 100 characters long";
-  } else {
-    descError.innerHTML = "";
-  }
-
-  if (categoryColor.value == "0") {
-    e.preventDefault();
-    catError.innerHTML = "Please Select a Color";
-  } else {
-    catError.innerHTML = "";
-  }
-
-  if (categoryTitle.value == "" || categoryTitle.value == null) {
-    e.preventDefault();
-    titleError.innerHTML = "Title cannot be empty !";
-  } else if (!titleRegex.test(categoryTitle.value)) {
-    e.preventDefault();
-    titleError.innerHTML =
-      "category should contain minimum of 3 alphanumeric characters long";
-  } else {
-    titleError.innerHTML = "";
-  }
-});
-
 editForm.addEventListener("submit", function (e) {
+  let errorMessages = [];
+
   if (categoryDesc.value == "" || categoryDesc.value == null) {
-    e.preventDefault();
-    descError.innerHTML = "Description cannot be empty !";
+    errorMessages.push('Description cannot be empty!');
   } else if (categoryDesc.value.length < 100) {
-    e.preventDefault();
-    descError.innerHTML =
-      "Description should be of minimum of 100 characters long";
-  } else {
-    descError.innerHTML = "";
+    errorMessages.push('Description should be minimum of 100 characters long.');
   }
 
   if (categoryColor.value == "0") {
-    e.preventDefault();
-    catError.innerHTML = "Please Select a Color";
-  } else {
-    catError.innerHTML = "";
+    errorMessages.push('Please select a color.');
   }
 
   if (categoryTitle.value == "" || categoryTitle.value == null) {
-    e.preventDefault();
-    titleError.innerHTML = "Title cannot be empty !";
+    errorMessages.push('Title cannot be empty!');
   } else if (!titleRegex.test(categoryTitle.value)) {
+    errorMessages.push('Category should contain minimum of 3 alphanumeric characters long.');
+  }
+
+  if (errorMessages.length > 0) {
     e.preventDefault();
-    titleError.innerHTML =
-      "category should contain minimum of 3 alphanumeric characters long";
+    if (typeof showValidationErrors !== 'undefined') {
+      showValidationErrors(errorMessages, 'Category Edit Validation Error');
+    }
   } else {
-    titleError.innerHTML = "";
+    if (typeof showValidationSuccess !== 'undefined') {
+      showValidationSuccess('Category edit form is valid!');
+    }
   }
 });

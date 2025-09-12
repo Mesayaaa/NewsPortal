@@ -81,6 +81,7 @@ if (strpos($uri, "/change-password.php") != false) {
 
   <!-- ADMIN ENHANCEMENTS -->
   <script src="../assets/js/admin/admin-enhancements.js"></script>
+  <script src="../assets/js/admin/file-upload-enhanced.js"></script>
 </head>
 
 <body>

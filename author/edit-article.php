@@ -131,7 +131,6 @@ if (isset($_POST['submit'])) {
                 <label>Article Title</label>
                 <input type="text" autocomplete="off" class="form-control" placeholder="Article Title"
                   value="<?php echo $article_title; ?>" name="article_title" id="article_title" required />
-                <p id="error-title" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Category</label>
@@ -162,7 +161,6 @@ if (isset($_POST['submit'])) {
                 <label>Article Description</label>
                 <textarea name="article_desc" autocomplete="off" id="article_desc" class="form-control"
                   placeholder="Article Description" rows="20" min="150" required><?php echo $article_desc; ?></textarea>
-                <p id="error-desc" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Article Image</label>

@@ -101,10 +101,6 @@ if (isset($_POST['login-submit'])) {
           </div>
         </form>
       </div>
-      <!-- Div to display the errors from the Login form -->
-      <div class="form-errors">
-        <p class="errors" id="login-errors"></p>
-      </div>
 
       <!-- Link to registration page -->
       <div class="form-footer">

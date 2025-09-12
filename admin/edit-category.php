@@ -117,7 +117,6 @@ if (isset($_POST['submit'])) {
                 <label>Category Name</label>
                 <input type="text" autocomplete="off" class="form-control" placeholder="Category Name"
                   name="category_title" id="category_title" required value="<?php echo $category_name ?>" />
-                <p id="error-title" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Category Color</label>
@@ -161,14 +160,12 @@ if (isset($_POST['submit'])) {
                   <option value="tag-brown" <?php echo $brown; ?>>Brown</option>
                   <option value="tag-blue" <?php echo $blue; ?>>Blue</option>
                 </select>
-                <p id="error-cat" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Category Description</label>
                 <textarea name="category_desc" autocomplete="off" id="category_desc" class="form-control"
                   placeholder="Category Description" rows="20" min="150"
                   required><?php echo $category_desc ?></textarea>
-                <p id="error-desc" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Category Image</label>
@@ -176,7 +173,6 @@ if (isset($_POST['submit'])) {
                   id="category_img" accept="image/*" />
                 <input type="hidden" class="form-control" name="category_old_img"
                   value="<?php echo $category_image ?>" />
-                <p id="error-img" class="error-msg text-danger"></p>
               </div>
               <div class="form-group text-center">
                 <img src="../assets/images/category/<?php echo $category_image ?>" class="image_preview"

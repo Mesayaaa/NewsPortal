@@ -78,6 +78,7 @@ if (strpos($uri, "/change-name.php") != false) {
 
   <!-- CUSTOM SWEETALERT2 WRAPPER -->
   <script src="../assets/js/sweetalert-wrapper.js"></script>
+  <script src="../assets/js/admin/file-upload-enhanced.js"></script>
 </head>
 
 <body>

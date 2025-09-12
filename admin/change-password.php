@@ -70,20 +70,16 @@ if (isset($_POST['submit'])) {
                 <label>Old Password</label>
                 <input type="password" autocomplete="off" class="form-control" placeholder="Old Password"
                   name="old_password" id="old_password" required />
-                <p id="error-old" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>New Password</label>
                 <input type="password" autocomplete="off" class="form-control" placeholder="New Password"
                   name="new_password" id="new_password" required />
-                <p id="error-new" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Confirm New Password</label>
                 <input type="password" autocomplete="off" class="form-control" placeholder="Confirm New Password"
                   name="confirm_new_password" id="confirm_new_password" required />
-                <p id="error-confirm" class="error-msg text-danger"></p>
-                <p id="error-common" class="error-msg text-danger"></p>
               </div>
               <br>
               <div class="text-center">

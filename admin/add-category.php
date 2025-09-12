@@ -69,7 +69,6 @@ if (isset($_POST['submit'])) {
                 <label>Category Name</label>
                 <input type="text" autocomplete="off" class="form-control" placeholder="Category Name"
                   name="category_title" id="category_title" required />
-                <p id="error-title" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Category Color</label>
@@ -83,19 +82,16 @@ if (isset($_POST['submit'])) {
                   <option value="tag-brown">Brown</option>
                   <option value="tag-blue">Blue</option>
                 </select>
-                <p id="error-cat" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Category Description</label>
                 <textarea name="category_desc" autocomplete="off" id="category_desc" class="form-control"
                   placeholder="Category Description" rows="20" min="150" required></textarea>
-                <p id="error-desc" class="error-msg text-danger"></p>
               </div>
               <div class="form-group">
                 <label>Category Image</label>
                 <input type="file" class="form-control" placeholder="Category Image" name="category_img"
                   id="category_img" accept="image/*" required />
-                <p id="error-img" class="error-msg text-danger"></p>
               </div>
               <div class="form-group text-center">
                 <img src="../assets/images/articles/choose.png" class="image_preview" id="image_preview" />

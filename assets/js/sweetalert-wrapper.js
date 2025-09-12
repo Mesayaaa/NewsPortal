@@ -57,11 +57,15 @@ function showWarning(title, message, timer = 3500) {
         timer: timer,
         timerProgressBar: true,
         showConfirmButton: false,
-        toast: false,
-        position: 'center',
+        toast: true,
+        position: 'top',
         background: '#fffbeb',
         color: '#92400e',
-        iconColor: '#f59e0b'
+        iconColor: '#f59e0b',
+        width: '400px',
+        customClass: {
+            popup: 'notice-toast'
+        }
     });
 }
 
@@ -73,11 +77,15 @@ function showInfo(title, message, timer = 3000) {
         timer: timer,
         timerProgressBar: true,
         showConfirmButton: false,
-        toast: false,
-        position: 'center',
+        toast: true,
+        position: 'top',
         background: '#f0f9ff',
         color: '#1e40af',
-        iconColor: '#3b82f6'
+        iconColor: '#3b82f6',
+        width: '400px',
+        customClass: {
+            popup: 'notice-toast'
+        }
     });
 }
 
@@ -125,13 +133,17 @@ function showValidationErrors(errors, title = 'Validation Error') {
         title: title,
         html: errorList,
         icon: 'error',
-        confirmButtonText: 'Fix Errors',
-        confirmButtonColor: '#dc2626',
+        timer: 5000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top',
         background: '#fef2f2',
         color: '#991b1b',
         iconColor: '#ef4444',
+        width: '450px',
         customClass: {
-            popup: 'validation-popup'
+            popup: 'validation-notice-toast'
         }
     });
     
@@ -139,11 +151,43 @@ function showValidationErrors(errors, title = 'Validation Error') {
 }
 
 function showFieldError(fieldName, message) {
-    showToast(`${fieldName}: ${message}`, 'error', 'top');
+    Swal.fire({
+        title: `${fieldName}`,
+        text: message,
+        icon: 'error',
+        timer: 4000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top',
+        background: '#fef2f2',
+        color: '#991b1b',
+        iconColor: '#ef4444',
+        width: '350px',
+        customClass: {
+            popup: 'validation-notice-toast'
+        }
+    });
 }
 
 function showValidationSuccess(message = 'All fields are valid!') {
-    showToast(message, 'success', 'top');
+    Swal.fire({
+        title: 'Success',
+        text: message,
+        icon: 'success',
+        timer: 3000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top',
+        background: '#f0f9ff',
+        color: '#065f46',
+        iconColor: '#10b981',
+        width: '350px',
+        customClass: {
+            popup: 'validation-notice-toast'
+        }
+    });
 }
 
 // Validation Helper Functions
@@ -231,3 +275,72 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+
+// Add custom CSS for notice and validation toasts
+const style = document.createElement('style');
+style.textContent = `
+    /* Custom styling for notice and validation toasts */
+    .notice-toast {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 12px !important;
+        font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        font-size: 14px !important;
+        margin-top: 20px !important;
+    }
+    
+    .validation-notice-toast {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 12px !important;
+        font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        font-size: 14px !important;
+        margin-top: 20px !important;
+        text-align: left !important;
+    }
+    
+    .validation-notice-toast .swal2-html-container {
+        text-align: left !important;
+        line-height: 1.5 !important;
+    }
+    
+    .swal2-toast .swal2-title {
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .swal2-toast .swal2-content {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+    }
+    
+    .swal2-toast.swal2-show {
+        animation: slideInDown 0.3s ease-out !important;
+    }
+    
+    .swal2-toast.swal2-hide {
+        animation: slideOutUp 0.3s ease-in !important;
+    }
+    
+    @keyframes slideInDown {
+        from {
+            transform: translate3d(0, -100%, 0);
+            opacity: 0;
+        }
+        to {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutUp {
+        from {
+            transform: translate3d(0, 0, 0);
+            opacity: 1;
+        }
+        to {
+            transform: translate3d(0, -100%, 0);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
