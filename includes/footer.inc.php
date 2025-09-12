@@ -121,11 +121,6 @@
         <a href="#" class="footer-bottom-link">Terms of Service</a>
         <a href="#" class="footer-bottom-link">Contact Us</a>
       </div>
-      <div class="back-to-top">
-        <button onclick="topFunction()" class="back-to-top-btn" title="Back to top">
-          <i class="fas fa-chevron-up"></i>
-        </button>
-      </div>
     </div>
   </div>
 </footer>
