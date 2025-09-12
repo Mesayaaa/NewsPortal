@@ -144,11 +144,28 @@
   padding: 0.75rem 1rem;
   margin-top: 0.5rem;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 50px; /* Ensure consistent height */
 }
 
 .trending-check:hover {
   background: rgba(199, 39, 39, 0.08);
   border-color: rgba(199, 39, 39, 0.2);
+}
+
+.trending-check .form-check-input {
+  margin: 0; /* Remove default Bootstrap margin */
+  flex-shrink: 0; /* Prevent checkbox from shrinking */
+}
+
+.trending-check .form-check-label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
 }
 
 .form-check-input:checked {
@@ -283,6 +300,15 @@
 @media (max-width: 420px) {
   .search-hero {
     height: 300px;
+  }
+  
+  .trending-check {
+    padding: 0.5rem 0.75rem;
+    min-height: 45px;
+  }
+  
+  .trending-check .form-check-label {
+    font-size: 0.9rem;
   }
 }
 

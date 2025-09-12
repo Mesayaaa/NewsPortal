@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Back to top button
     initBackToTop();
+    
+    // Sidebar drag functionality
+    initSidebarDrag();
 });
 
 // Smooth scrolling for internal links
@@ -323,3 +326,91 @@ function initAccessibility() {
 
 // Initialize accessibility
 document.addEventListener('DOMContentLoaded', initAccessibility);
+
+// Sidebar drag functionality
+function initSidebarDrag() {
+    const sidebarContents = document.querySelectorAll('.sidebar-content');
+    
+    sidebarContents.forEach(content => {
+        let isDragging = false;
+        let startY = 0;
+        let scrollTop = 0;
+        
+        // Check if content overflows (needs scrolling)
+        function checkOverflow() {
+            if (content.scrollHeight > content.clientHeight) {
+                content.classList.add('draggable');
+                
+                // Mouse events
+                content.addEventListener('mousedown', startDrag);
+                content.addEventListener('mousemove', drag);
+                content.addEventListener('mouseup', stopDrag);
+                content.addEventListener('mouseleave', stopDrag);
+                
+                // Touch events for mobile
+                content.addEventListener('touchstart', startDragTouch, {passive: false});
+                content.addEventListener('touchmove', dragTouch, {passive: false});
+                content.addEventListener('touchend', stopDrag);
+            } else {
+                content.classList.remove('draggable');
+            }
+        }
+        
+        // Initial check
+        checkOverflow();
+        
+        // Re-check on window resize
+        window.addEventListener('resize', checkOverflow);
+        
+        function startDrag(e) {
+            // Don't start drag if clicking on a link
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+                return;
+            }
+            
+            isDragging = true;
+            content.classList.add('dragging');
+            startY = e.pageY - content.offsetTop;
+            scrollTop = content.scrollTop;
+            e.preventDefault();
+        }
+        
+        function startDragTouch(e) {
+            // Don't start drag if touching a link
+            if (e.target.tagName === 'A' || e.target.closest('a')) {
+                return;
+            }
+            
+            isDragging = true;
+            content.classList.add('dragging');
+            const touch = e.touches[0];
+            startY = touch.pageY - content.offsetTop;
+            scrollTop = content.scrollTop;
+            e.preventDefault();
+        }
+        
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const y = e.pageY - content.offsetTop;
+            const walk = (y - startY) * 2; // Scroll speed multiplier
+            content.scrollTop = scrollTop - walk;
+        }
+        
+        function dragTouch(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const y = touch.pageY - content.offsetTop;
+            const walk = (y - startY) * 2; // Scroll speed multiplier
+            content.scrollTop = scrollTop - walk;
+        }
+        
+        function stopDrag() {
+            isDragging = false;
+            content.classList.remove('dragging');
+        }
+    });
+}
