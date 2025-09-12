@@ -31,6 +31,10 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
 }
 
 /* Remove all underlines from navbar - FORCE OVERRIDE */
@@ -69,10 +73,36 @@
   display: table;
 }
 
+/* Desktop - Keep it simple */
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
+  
+  .navbar .nav-menu {
+    display: flex;
+    position: static;
+    background: transparent;
+    height: auto;
+    width: auto;
+    flex-direction: row;
+  }
+  
+  /* Hide mobile-only items on desktop */
+  .mobile-only {
+    display: none !important;
+  }
+  
+  /* Show desktop-only items */
+  .desktop-only {
+    display: inline-block !important;
+  }
+}
+
 .navbar .logo {
-  float: left;
   padding: 15px 60px;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .navbar .logo:hover {
@@ -87,7 +117,6 @@
 
 .navbar ul,
 .navbar .nav-menu {
-  float: right;
   margin-right: 40px;
   list-style: none;
   position: relative;
@@ -195,6 +224,35 @@
 .navbar ul li a:hover #search-icon,
 .navbar .nav-menu li a:hover #search-icon {
   color: var(--primary-color);
+}
+
+/* HAMBURGER MENU - SIMPLE */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 999;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* IMAGE SLIDER DESKTOP */

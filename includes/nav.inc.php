@@ -148,7 +148,15 @@ if (strpos($uri, "news.php") != false) {
   <!-- ======== NAVBAR ======== -->
   <nav class="navbar">
     <div class="logo"><a href="./index.php"><img src="./assets/images/logo.png" /></a></div>
-    <ul class="nav-menu">
+
+    <!-- Hamburger Menu Button -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <ul class="nav-menu" id="nav-menu">
       <!-- We ECHO class current based upon the boolean variables used in above PHP Snippet -->
       <li><a href="./index.php" <?php if ($home)
         echo 'class="current"' ?>>Home</a></li>
@@ -160,7 +168,8 @@ if (strpos($uri, "news.php") != false) {
       if (isset($_SESSION['USER_NAME'])) {
       } else {
         ?>
-        <li class="dropdown">
+        <!-- Desktop login dropdown -->
+        <li class="dropdown desktop-only">
           <a href="./user-login.php" class="dropdown-toggle<?php if ($login || $register)
             echo ' current' ?>">Login <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
@@ -168,6 +177,12 @@ if (strpos($uri, "news.php") != false) {
               <li><a href="./author-login.php">Author</a></li>
             </ul>
           </li>
+
+          <!-- Mobile login menu items -->
+          <li class="mobile-only"><a href="./user-login.php" <?php if ($login && strpos($uri, "user-login.php") != false)
+            echo ' class="current"' ?>>Login as Reader</a></li>
+          <li class="mobile-only"><a href="./author-login.php" <?php if ($login && strpos($uri, "author-login.php") != false)
+            echo ' class="current"' ?>>Login as Author</a></li>
         <?php
       }
       ?>
@@ -182,17 +197,26 @@ if (strpos($uri, "news.php") != false) {
 
         // If user is logged in
         if (isset($_SESSION['USER_NAME'])) {
+          // Desktop dropdown Settings
           echo '
-          <li class="dropdown">
+          <li class="dropdown desktop-only">
             <a href="#" class="dropdown-toggle' . ($changePass ? ' current' : '') . '">Settings <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li><a href="./user-change-password.php">Change Password</a></li>
               <li><a href="./logout.php">Logout</a></li>
-              </ul>
+            </ul>
           </li>
           ';
-          echo '<li><a disabled>Hello ' . $_SESSION["USER_NAME"] . ' !</a></li>';
+
+          // Mobile menu items (akan disembunyikan di desktop)
+          echo '<li class="mobile-only"><a href="./user-change-password.php"' . ($changePass ? ' class="current"' : '') . '>Change Password</a></li>';
+          echo '<li class="mobile-only"><a href="./logout.php">Logout</a></li>';
+
+          echo '<li class="user-greeting"><a disabled>Hello ' . $_SESSION["USER_NAME"] . ' !</a></li>';
         }
         ?>
     </ul>
   </nav>
+
+  <!-- NAVBAR RESPONSIVE SCRIPT -->
+  <script src="./assets/js/navbar-collapse.js"></script>
