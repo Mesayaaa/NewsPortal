@@ -227,17 +227,11 @@ require('./includes/nav.inc.php');
 
       ?>
       <div class="panel panel-default">
-        <div class="panel-heading main-color-bg">
-          <h3 class="panel-title">Articles</h3>
+        <div class="panel-heading">
+          <h4 class="panel-title">Articles</h4>
         </div>
         <div class="panel-body">
           <div class="table-responsive-custom">
-            <!-- Actions always visible notice -->
-            <div class="alert alert-info" style="margin-bottom: 10px; padding: 8px; font-size: 12px;">
-              <i class="glyphicon glyphicon-info-sign"></i>
-              <strong>Note:</strong> Actions column is always visible on the right. Scroll horizontally to see all
-              content.
-            </div>
             <table class="table table-striped table-hover article-table">
               <thead>
                 <tr>

@@ -74,6 +74,13 @@ if (strpos($uri, "/change-password.php") != false) {
 
   <!-- CUSTOM SWEETALERT2 WRAPPER -->
   <script src="../assets/js/sweetalert-wrapper.js"></script>
+
+  <!-- BOOTSTRAP JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- ADMIN ENHANCEMENTS -->
+  <script src="../assets/js/admin/admin-enhancements.js"></script>
 </head>
 
 <body>
@@ -87,22 +94,56 @@ if (strpos($uri, "/change-password.php") != false) {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand">NewsGrid </a>
+        <a class="navbar-brand" href="./index.php">
+          <i class="glyphicon glyphicon-dashboard"></i>
+          NewsGrid Admin
+        </a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li <?php if ($home)
-            echo 'class="active"' ?>><a href="./index.php">Dashboard</a></li>
+            echo 'class="active"' ?>>
+              <a href="./index.php">
+                <i class="glyphicon glyphicon-home"></i>
+                Dashboard
+              </a>
+            </li>
             <li <?php if ($article)
-            echo 'class="active"' ?>><a href="./articles.php">Articles</a></li>
+            echo 'class="active"' ?>>
+              <a href="./articles.php">
+                <i class="glyphicon glyphicon-pencil"></i>
+                Articles
+              </a>
+            </li>
             <li <?php if ($category)
-            echo 'class="active"' ?>><a href="./categories.php">Categories</a></li>
+            echo 'class="active"' ?>>
+              <a href="./categories.php">
+                <i class="glyphicon glyphicon-list"></i>
+                Categories
+              </a>
+            </li>
             <li <?php if ($pass)
-            echo 'class="active"' ?>><a href="./change-password.php">Change Password</a></li>
+            echo 'class="active"' ?>>
+              <a href="./change-password.php">
+                <i class="glyphicon glyphicon-cog"></i>
+                Settings
+              </a>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a><?php echo $admin_name ?></a></li>
-          <li><a href="./logout.php">Logout</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="glyphicon glyphicon-user"></i>
+              <?php echo $admin_name ?>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="./change-password.php"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="./logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -111,13 +152,8 @@ if (strpos($uri, "/change-password.php") != false) {
   <header id="header">
     <div class="container">
       <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
           <h1><?php echo $page_title ?></h1>
-        </div>
-        <div class="col-md-2 btn-box">
-          <a href="./add-category.php" class="btn btn-warning" type="button">
-            Create a new Category
-          </a>
         </div>
       </div>
     </div>
