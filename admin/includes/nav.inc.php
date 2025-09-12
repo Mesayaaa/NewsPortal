@@ -96,7 +96,6 @@ if (strpos($uri, "/change-password.php") != false) {
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="./index.php">
-          <i class="glyphicon glyphicon-dashboard"></i>
           NewsGrid Admin
         </a>
       </div>

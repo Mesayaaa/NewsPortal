@@ -229,4 +229,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     `;
     document.head.appendChild(style);
+    
+    // Fix dropdown positioning to ensure it breaks out of container
+    function fixDropdownPositioning() {
+        // Wait for Bootstrap dropdown to initialize
+        setTimeout(() => {
+            const dropdowns = document.querySelectorAll('.navbar-nav .dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menu = dropdown.querySelector('.dropdown-menu');
+                
+                if (toggle && menu) {
+                    toggle.addEventListener('click', function(e) {
+                        // Ensure dropdown menu is positioned correctly
+                        setTimeout(() => {
+                            if (dropdown.classList.contains('open')) {
+                                // Get toggle position
+                                const toggleRect = toggle.getBoundingClientRect();
+                                const navbar = document.querySelector('.navbar');
+                                const navbarHeight = navbar ? navbar.offsetHeight : 70;
+                                
+                                // Position dropdown menu
+                                menu.style.position = 'fixed';
+                                menu.style.top = (toggleRect.bottom + 5) + 'px';
+                                menu.style.right = (window.innerWidth - toggleRect.right) + 'px';
+                                menu.style.left = 'auto';
+                                menu.style.zIndex = '10001';
+                            }
+                        }, 10);
+                    });
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    const menus = document.querySelectorAll('.dropdown-menu');
+                    menus.forEach(menu => {
+                        menu.style.position = '';
+                        menu.style.top = '';
+                        menu.style.right = '';
+                        menu.style.left = '';
+                    });
+                }
+            });
+            
+        }, 100);
+    }
+    
+    // Initialize dropdown positioning fix
+    fixDropdownPositioning();
 });

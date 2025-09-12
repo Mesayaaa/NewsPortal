@@ -1131,26 +1131,34 @@ input[type="file"]:hover {
   border-radius: 16px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
   padding: 12px 0;
-  margin-top: 12px;
+  margin-top: 8px;
   background: white;
   min-width: 200px;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 9999 !important;
+  z-index: 10000 !important;
   position: absolute !important;
+  top: 100% !important;
+  right: 0 !important; /* Right align */
+  left: auto !important; /* Override Bootstrap's left */
+  transform: translateY(0) !important; /* Ensure proper positioning */
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-nav .dropdown-menu::before {
   content: '';
   position: absolute;
   top: -8px;
-  right: 20px;
+  right: 30px; /* Adjusted to match right-aligned dropdown */
   width: 16px;
   height: 16px;
   background: white;
   transform: rotate(45deg);
   border-left: 1px solid rgba(0, 0, 0, 0.05);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 10001;
 }
 
 .navbar-nav .dropdown-menu li a {
@@ -1208,23 +1216,56 @@ input[type="file"]:hover {
 
 /* Dropdown Container */
 .navbar-nav .dropdown {
-  position: relative;
-  z-index: 9999;
+  position: relative; /* Keep relative positioning */
+  z-index: 10000;
 }
 
 .navbar-nav .open {
-  z-index: 9999 !important;
+  z-index: 10000 !important;
 }
 
 /* Ensure navbar has proper z-index hierarchy */
 .navbar {
-  z-index: 1040 !important;
+  z-index: 1050 !important; /* Increased z-index */
+  position: relative;
+  overflow: visible !important; /* Ensure dropdown is not clipped */
+}
+
+.navbar .container {
+  overflow: visible !important; /* Prevent container from clipping dropdown */
+  position: relative; /* Ensure container doesn't clip positioned elements */
+}
+
+.navbar .navbar-collapse {
+  overflow: visible !important; /* Prevent collapse from clipping dropdown */
 }
 
 /* Fix for Bootstrap dropdown positioning */
 .dropdown-menu {
-  z-index: 9999 !important;
+  z-index: 10000 !important;
   position: absolute !important;
+}
+
+/* Show dropdown when open */
+.navbar-nav .open .dropdown-menu {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Ensure dropdown appears above all other content */
+body {
+  overflow-x: visible !important;
+}
+
+#main, .container-fluid, .panel {
+  position: relative;
+  z-index: 1;  /* Lower than dropdown */
+}
+
+/* Override Bootstrap's dropdown display */
+.navbar-nav .dropdown-menu {
+  display: block !important; /* Always display, use opacity for show/hide */
 }
 
 /* Ensure main content sections don't interfere with dropdown */
