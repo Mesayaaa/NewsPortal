@@ -22,100 +22,176 @@
 
 /* NAVBAR DEKSTOP */
 .navbar {
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
   font-family: var(--ff-nunito);
   position: sticky;
   z-index: 12;
   top: 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
+
+/* Remove all underlines from navbar - FORCE OVERRIDE */
+.navbar *,
+.navbar *:before,
+.navbar *:after,
+.navbar a,
+.navbar a:hover,
+.navbar a:focus,
+.navbar a:active,
+.navbar a:visited,
+.navbar ul li a,
+.navbar ul li a:hover,
+.navbar ul li a:focus,
+.navbar ul li a:active,
+.navbar ul li a:visited,
+.navbar ul ul li a,
+.navbar ul ul li a:hover,
+.navbar ul ul li a:focus,
+.navbar ul ul li a:active,
+.navbar ul ul li a:visited {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-style: none !important;
+  text-decoration-color: transparent !important;
+  border-bottom: none !important;
+  border-bottom-style: none !important;
+  text-underline-offset: 0 !important;
+  -webkit-text-decoration: none !important;
+  -moz-text-decoration: none !important;
+}
+
 .navbar:after {
   content: "";
   clear: both;
   display: table;
 }
+
 .navbar .logo {
   float: left;
-  padding-left: 60px;
-  padding-top: 12px;
+  padding: 15px 60px;
+  transition: all 0.3s ease;
 }
+
+.navbar .logo:hover {
+  transform: scale(1.02);
+}
+
 .navbar .logo img {
   width: 180px;
+  height: auto;
+  transition: all 0.3s ease;
 }
+
 .navbar ul {
   float: right;
   margin-right: 40px;
   list-style: none;
   position: relative;
+  display: flex;
+  align-items: center;
+  height: 70px;
 }
+
 .navbar ul li {
   display: inline-block;
-  background: white;
-  margin: 0 5px;
+  background: transparent;
+  margin: 0 3px;
+  position: relative;
 }
+
 .navbar ul li a {
   color: var(--black-color);
-  line-height: 70px;
-  text-decoration: none;
-  border-radius: var(--border-radius);
+  text-decoration: none !important;
+  border-radius: 8px;
   font-size: var(--ts-md);
   font-weight: 500;
-  padding: 8px 15px;
-  transition: all 250ms ease-in-out;
+  padding: 10px 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
+
 .navbar ul li a:hover,
 .navbar ul li a:focus {
   outline: none;
-  background-color: var(--light-color);
+  background-color: rgba(199, 39, 39, 0.08);
+  color: var(--primary-color);
+  transform: translateY(-1px);
+  text-decoration: none !important;
 }
+
 .navbar ul li a.current {
   outline: none;
   color: white;
-  background-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--active-color) 100%);
+  box-shadow: 0 4px 12px rgba(199, 39, 39, 0.3);
 }
+
 .navbar ul li a.current #search-icon {
   color: white;
 }
-.navbar ul ul {
-  position: absolute;
-  top: 90px;
-  border-top: 4px solid var(--active-color);
-  opacity: 0;
-  visibility: hidden;
-  transition: top 0.3s;
-}
-.navbar ul ul ul {
-  border-top: none;
-}
-.navbar ul li:hover > ul {
-  top: 70px;
-  opacity: 1;
-  visibility: visible;
-}
-.navbar ul ul li {
-  position: relative;
-  margin: 0px;
-  padding-left: 5px;
-  width: 200px;
-  float: none;
-  display: list-item;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-}
-.navbar ul ul li a {
-  line-height: 50px;
-}
-.show,
+/* Legacy ul ul support removed - now using dropdown-menu class */
+/* Hide hamburger icon on desktop */
 .icon,
 .input {
   display: none;
+}
+
+/* Dropdown styles */
+.navbar .dropdown {
+  position: relative;
+}
+
+.navbar .dropdown-toggle i {
+  margin-left: 8px;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.navbar .dropdown.active .dropdown-toggle i {
+  transform: rotate(180deg);
+}
+
+.navbar .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  min-width: 220px;
+}
+
+.navbar .dropdown:hover .dropdown-menu,
+.navbar .dropdown.active .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 .fa-plus {
   font-size: var(--ts-md);
   margin-left: 40px;
 }
 #search-icon {
-  padding-left: 8px;
+  font-size: 1rem;
   color: var(--dark-color);
+  transition: all 0.2s ease;
+}
+
+.navbar ul li a:hover #search-icon {
+  color: var(--primary-color);
 }
 
 /* IMAGE SLIDER DESKTOP */
@@ -203,7 +279,8 @@
 .card-container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 2rem;
+  padding: 1rem 0;
 }
 
 /* FOOTER */

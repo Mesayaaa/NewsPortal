@@ -109,8 +109,9 @@ function createArticleCard($title, $img, $data, $category, $cat_id, $id, $color,
   echo '<div class="card-img">
         <img src="./assets/images/articles/' . $img . '" />
       </div>
-      <div>
-        <div class="tag ' . $color . '"><a href="articles.php?id=' . $cat_id . '">' . $category . '</a></div>';
+      <div class="card-content">
+        <div class="card-tags">
+          <div class="tag ' . $color . '"><a href="articles.php?id=' . $cat_id . '">' . $category . '</a></div>';
   if ($new) {
     echo '  <div class="tag tag-new">NEW</div>';
   }
@@ -118,14 +119,14 @@ function createArticleCard($title, $img, $data, $category, $cat_id, $id, $color,
     echo '  <div class="tag tag-trend"><a href="search.php?trending=1">TRENDING</a></div>';
   }
   echo '
-        <h3 class="card-title" href="./article.html">
+        </div>
+        <h3 class="card-title">
           ' . $title . '
         </h3>
         <p class="card-data">
           ' . $data . '
         </p>
-        <a href="news.php?id=' . $id . '" class="btn btn-card">Read More <span>&twoheadrightarrow; </span>
-        </a>
+        <a href="news.php?id=' . $id . '" class="btn btn-card">Read More <span>&rarr;</span></a>
       </div>
     </article>';
 }
@@ -138,8 +139,8 @@ function createCategoryCard($title, $img, $data, $id)
       <div class="card-img">
         <img src="./assets/images/category/' . $img . '" />
       </div>
-      <div>
-        <h3 class="card-title text-center" href="./article.html">
+      <div class="card-content">
+        <h3 class="card-title text-center">
           ' . $title . '
         </h3>
         <p class="card-data">
@@ -148,7 +149,7 @@ function createCategoryCard($title, $img, $data, $id)
         <div class="btn-block">
           <a href="articles.php?id=' . $id . '" class="btn btn-card">
             Read More 
-            <span>&twoheadrightarrow; </span>
+            <span>&rarr;</span>
           </a>
         </div>
       </div>
