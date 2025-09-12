@@ -1217,3 +1217,33 @@ form button {
 .subscribe-btn:hover {
   animation: pulse 1.5s infinite;
 }
+
+/* CRITICAL FIX: Bootstrap Override for Card Buttons */  
+a.btn-card {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: var(--ff-nunito) !important;
+}
+
+a.btn-card:hover {
+  background-color: var(--active-color) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(199, 39, 39, 0.3) !important;
+  text-decoration: none !important;
+}
+
+a.btn-card:focus,
+a.btn-card:active {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  box-shadow: 0 0 0 0.2rem rgba(199, 39, 39, 0.25) !important;
+}

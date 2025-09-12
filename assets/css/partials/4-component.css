@@ -191,6 +191,67 @@
 .btn-card:hover span {
   transform: translateX(4px);
 }
+
+/* Bootstrap Override - Higher specificity to ensure card buttons display correctly */
+.card a.btn-card,
+.card .btn.btn-card,
+a.btn-card.btn,
+.btn-card.btn {
+  font-weight: 600;
+  background: var(--primary-color);
+  padding: 12px 24px;
+  font-size: var(--ts-sml);
+  border-radius: 8px;
+  border: none;
+  color: white;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--ff-nunito);
+  letter-spacing: 0.025em;
+  line-height: 1.2;
+  box-shadow: none;
+}
+
+.card a.btn-card:hover,
+.card .btn.btn-card:hover,
+a.btn-card.btn:hover,
+.btn-card.btn:hover {
+  background: var(--active-color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(199, 39, 39, 0.3);
+  color: white;
+  text-decoration: none;
+  border-color: transparent;
+}
+
+.card a.btn-card:focus,
+.card .btn.btn-card:focus,
+a.btn-card.btn:focus,
+.btn-card.btn:focus {
+  background: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(199, 39, 39, 0.3);
+  color: white;
+  border-color: transparent;
+  outline: none;
+}
+
+.card a.btn-card span,
+.card .btn.btn-card span,
+a.btn-card.btn span,
+.btn-card.btn span {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1rem;
+}
+
+.card a.btn-card:hover span,
+.card .btn.btn-card:hover span,
+a.btn-card.btn:hover span,
+.btn-card.btn:hover span {
+  transform: translateX(4px);
+}
 /* CARDS */
 .card {
   background: #fff;

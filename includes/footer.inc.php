@@ -75,7 +75,7 @@
               ?>
               <li><a href="articles.php?id=<?php echo $category_id ?>"><i class="fas fa-chevron-right"></i>
                   <?php echo $category_name ?></a></li>
-            <?php
+              <?php
             }
           }
           ?>
@@ -132,6 +132,9 @@
 
 <!-- JQUERY SCRIPT -->
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- SCRIPT FOR BACK TO TOP BUTTON -->
 <script src="../assets/js/back-to-top.js"></script>
