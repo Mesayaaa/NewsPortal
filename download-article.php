@@ -119,7 +119,7 @@ $mpdf = new \Mpdf\Mpdf();
 $mpdf->showWatermarkText = true;
 
 // Setting Text to use as watermark
-$mpdf->SetWatermarkText('NewsGrid');
+$mpdf->SetWatermarkText('WinniCode');
 
 // Specifying the font to use for watermark text
 $mpdf->watermark_font = 'DejaVuSans';
@@ -137,7 +137,7 @@ $mpdf->SetTitle($article_title);
 $mpdf->WriteHTML($html);
 
 // Setting PDF file name
-$file = 'NewsGrid-NA' . $article_id . '-DT' . time() . '.pdf';
+$file = 'WinniCode-NA' . $article_id . '-DT' . time() . '.pdf';
 
 // Sends file inline to the browser
 $mpdf->output($file, 'I');

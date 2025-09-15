@@ -65,7 +65,7 @@ if (strpos($uri, "/change-name.php") != false) {
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NewsGrid Author Panel | <?php echo $page_title ?></title>
+  <title>WinniCode Author Panel | <?php echo $page_title ?></title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
@@ -92,7 +92,7 @@ if (strpos($uri, "/change-name.php") != false) {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand">NewsGrid Author</a>
+        <a class="navbar-brand">WinniCode Author</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">

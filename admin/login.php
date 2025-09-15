@@ -87,7 +87,7 @@ if (isset($_POST['login-submit'])) {
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NewsGrid Admin Panel | Login</title>
+  <title>WinniCode Admin Panel | Login</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
@@ -107,7 +107,7 @@ if (isset($_POST['login-submit'])) {
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center">NewsGrid <small>Admin Login</small></h1>
+          <h1 class="text-center">WinniCode <small>Admin Login</small></h1>
         </div>
       </div>
     </div>

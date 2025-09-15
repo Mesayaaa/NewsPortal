@@ -4,7 +4,7 @@
     <div class="footer-content">
       <div class="footer-section about">
         <div class="footer-logo">
-          <a href="./index.php"><img src="./assets/images/logo_light.png" alt="NewsGrid Logo" /></a>
+          <a href="./index.php"><img src="./assets/images/logo_light.png" alt="WinniCode Logo" /></a>
         </div>
         <p class="footer-description">
           Your trusted source for global news and current affairs. We bring you comprehensive coverage from esteemed
@@ -114,7 +114,7 @@
   <div class="footer-bottom">
     <div class="footer-bottom-content">
       <div class="copyright">
-        <p>&copy; <?php echo date("Y") ?> NewsGrid. All rights reserved.</p>
+        <p>&copy; <?php echo date("Y") ?> WinniCode. All rights reserved.</p>
       </div>
       <div class="footer-bottom-links">
         <a href="#" class="footer-bottom-link">Privacy Policy</a>

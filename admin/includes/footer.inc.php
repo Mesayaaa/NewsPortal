@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <p>&copy; <?php echo date('Y'); ?> NewsGrid Admin Panel. All Rights Reserved.</p>
+        <p>&copy; <?php echo date('Y'); ?> WinniCode Admin Panel. All Rights Reserved.</p>
       </div>
       <div class="col-md-4 text-right">
         <p>

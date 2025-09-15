@@ -128,7 +128,7 @@ if (strpos($uri, "news.php") != false) {
   <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
 
   <!-- TITLE OF THE PAGE -->
-  <title>NewsGrid | The Official News Portal | <?php echo $page_title; ?></title>
+  <title>WinniCode | The Official News Portal | <?php echo $page_title; ?></title>
 
   <!-- FONTAWESOME LINK -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />

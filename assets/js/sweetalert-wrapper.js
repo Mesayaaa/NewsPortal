@@ -1,9 +1,9 @@
 /**
- * NewsGrid Enhanced Alert System using SweetAlert2
+ * WinniCode Enhanced Alert System using SweetAlert2
  * Created for replacing default JavaScript alerts with beautiful modal alerts
  */
 
-// SweetAlert2 Wrapper Functions for NewsGrid
+// SweetAlert2 Wrapper Functions for WinniCode
 function showAlert(title, message, type = 'info', timer = 3000) {
     Swal.fire({
         title: title,

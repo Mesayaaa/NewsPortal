@@ -60,7 +60,7 @@ if (strpos($uri, "/change-password.php") != false) {
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NewsGrid Admin Panel | <?php echo $page_title ?></title>
+  <title>WinniCode Admin Panel | <?php echo $page_title ?></title>
 
   <link href="../assets/css/partials/4-component.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -96,7 +96,7 @@ if (strpos($uri, "/change-password.php") != false) {
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="./index.php">
-          NewsGrid Admin
+          WinniCode Admin
         </a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
