@@ -107,7 +107,7 @@ function createArticleCard($title, $img, $data, $category, $cat_id, $id, $color,
   }
 
   echo '<div class="card-img">
-        <img src="./assets/images/articles/' . $img . '" />
+        <img src="' . (!empty($img) ? './assets/images/articles/' . $img : './assets/images/fallback_news.png') . '" />
       </div>
       <div class="card-content">
         <div class="card-tags">
@@ -195,7 +195,7 @@ function createSlider($active, $img, $color, $category, $title, $content, $id, $
 {
   echo '
     <div class="slide ' . $active . '">
-      <img src="./assets/images/articles/' . $img . '"/>
+      <img src="' . (!empty($img) ? './assets/images/articles/' . $img : './assets/images/fallback_news.png') . '"/>
       <div class="info">
         <div class=" tag ' . $color . '">' . $category . '</div>';
   if ($new) {
@@ -221,7 +221,7 @@ function createAsideCard($img, $id, $title, $author, $date)
   echo '
       <div class="aside-card">
         <div class="aside-card-img">
-          <img src="./assets/images/articles/' . $img . '" />
+          <img src="' . (!empty($img) ? './assets/images/articles/' . $img : './assets/images/fallback_news.png') . '" />
         </div>
         <div>
           <a class="aside-card-title" href="news.php?id=' . $id . '">

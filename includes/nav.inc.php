@@ -154,7 +154,7 @@ if (strpos($uri, "news.php") != false) {
 
   <!-- ======== NAVBAR ======== -->
   <nav class="navbar">
-    <div class="logo"><a href="./index.php"><img src="./assets/images/logo.png" /></a></div>
+    <div class="logo"><a href="./index.php"><img src="./assets/images/logo_winni_code.png" /></a></div>
 
     <!-- Hamburger Menu Button -->
     <div class="hamburger" id="hamburger">

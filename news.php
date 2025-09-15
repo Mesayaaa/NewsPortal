@@ -132,7 +132,7 @@ if ($row > 0) {
 
             <!-- Article Image -->
             <div>
-              <img src="./assets/images/articles/<?php echo $article_image; ?>" class="article-image"
+              <img src="<?php echo !empty($article_image) ? './assets/images/articles/'.$article_image : './assets/images/fallback_news.png'; ?>" class="article-image"
                 alt="<?php echo htmlspecialchars($article_title); ?>" />
             </div>
 

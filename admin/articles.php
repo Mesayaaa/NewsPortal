@@ -278,7 +278,7 @@ require('./includes/nav.inc.php');
                           </div>
                         </td>
                         <td class="image-col">
-                          <img src="../assets/images/articles/' . htmlspecialchars($article_image) . '" 
+                          <img src="' . (!empty($article_image) ? '../assets/images/articles/' . htmlspecialchars($article_image) : '../assets/images/fallback_news.png') . '" 
                                alt="Article Image" 
                                title="' . htmlspecialchars($article_title) . '" />
                         </td>

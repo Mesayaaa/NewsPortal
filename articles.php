@@ -195,6 +195,10 @@
       ?>
 
     <div class="text-center py-2">
+      <!-- Pagination Info -->
+      <div class="pagination-info">
+        <p>Menampilkan halaman <strong><?php echo $page; ?></strong> dari <strong><?php echo $total_page; ?></strong> (Total <?php echo $total_articles; ?> artikel)</p>
+      </div>
       <!-- Pagination Block -->
       <div class="pagination">
         <?php
@@ -208,32 +212,66 @@
             $cat_id = 'id='.$_GET['id'].'&';
           }
 
-          // If two or more page exists
+          // First page link
           if($page > 1){
-            
-            // Previous page link added 
-            echo '<a href="articles.php?'.$cat_id.'page='.($page - 1).'">&laquo;</a>';
+            echo '<a href="articles.php?'.$cat_id.'page=1" title="Halaman Pertama"><i class="fas fa-angle-double-left"></i></a>';
+          } else {
+            echo '<a class="disabled" title="Halaman Pertama"><i class="fas fa-angle-double-left"></i></a>';
           }
           
-          for($i = 1; $i <= $total_page; $i++) {
-            
+          // Previous page link
+          if($page > 1){
+            echo '<a href="articles.php?'.$cat_id.'page='.($page - 1).'" title="Halaman Sebelumnya"><i class="fas fa-angle-left"></i></a>';
+          } else {
+            echo '<a class="disabled" title="Halaman Sebelumnya"><i class="fas fa-angle-left"></i></a>';
+          }
+          
+          // Calculate range of page numbers to display
+          $range = 2; // Number of pages to show before and after current page
+          $start_page = max(1, $page - $range);
+          $end_page = min($total_page, $page + $range);
+          
+          // Add ellipsis if needed at the beginning
+          if($start_page > 1) {
+            echo '<a href="articles.php?'.$cat_id.'page=1">1</a>';
+            if($start_page > 2) {
+              echo '<span class="pagination-ellipsis">...</span>';
+            }
+          }
+          
+          // Page numbers
+          for($i = $start_page; $i <= $end_page; $i++) {
             // Active variable to determine if the page link is current page
             $active = "";
            
             // If the page is active page
             if($i == $page) {
-
               // Updated active to active class name to show the active page link
               $active = "page-active";
             }
             echo '<a href="articles.php?'.$cat_id.'page='.$i.'" class="'.$active.'">'.$i.'</a>';
           }
+          
+          // Add ellipsis if needed at the end
+          if($end_page < $total_page) {
+            if($end_page < $total_page - 1) {
+              echo '<span class="pagination-ellipsis">...</span>';
+            }
+            echo '<a href="articles.php?'.$cat_id.'page='.$total_page.'">'.$total_page.'</a>';
+          }
 
-          // If the current page is not the last page
+          // Next page link
           if($total_page > $page){
-
-            // Next page link added
-            echo '<a href="articles.php?'.$cat_id.'page='.($page + 1).'">&raquo;</a>';
+            echo '<a href="articles.php?'.$cat_id.'page='.($page + 1).'" title="Halaman Berikutnya"><i class="fas fa-angle-right"></i></a>';
+          } else {
+            echo '<a class="disabled" title="Halaman Berikutnya"><i class="fas fa-angle-right"></i></a>';
+          }
+          
+          // Last page link
+          if($page < $total_page){
+            echo '<a href="articles.php?'.$cat_id.'page='.$total_page.'" title="Halaman Terakhir"><i class="fas fa-angle-double-right"></i></a>';
+          } else {
+            echo '<a class="disabled" title="Halaman Terakhir"><i class="fas fa-angle-double-right"></i></a>';
           }
         }
       ?>

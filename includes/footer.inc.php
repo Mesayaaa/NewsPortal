@@ -4,7 +4,7 @@
     <div class="footer-content">
       <div class="footer-section about">
         <div class="footer-logo">
-          <a href="./index.php"><img src="./assets/images/logo_light.png" alt="WinniCode Logo" /></a>
+          <a href="./index.php"><img src="./assets/images/logo_winni_code.png" alt="WinniCode Logo" /></a>
         </div>
         <p class="footer-description">
           Your trusted source for global news and current affairs. We bring you comprehensive coverage from esteemed
