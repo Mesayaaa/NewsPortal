@@ -421,42 +421,73 @@ require('./includes/nav.inc.php');
         // Calculated no of pages based on limit and no of articles
         $total_page = ceil($total_articles / $limit);
 
+
         echo "</div>";
         ?>
 
-        <div class="text-center py-2">
-          <!-- Pagination Block -->
-          <div class="pagination">
+
+        <!-- Enhanced Pagination Block -->
+        <div class="search-pagination-wrapper">
+          <div class="search-pagination">
             <?php
+            // Function to build clean pagination URL
+            function buildPaginationUrl($page_num) {
+              global $cat_id, $name, $from_date, $to_date, $trending;
+              $params = array();
+              if ($cat_id != "") $params['category_select'] = $cat_id;
+              if ($name != "") $params['name'] = $name;
+              if ($from_date != "") $params['from_date'] = $from_date;
+              if ($to_date != "") $params['to_date'] = $to_date;
+              if ($trending != "") $params['trending'] = $trending;
+              $params['page'] = $page_num;
+              return 'search.php?' . http_build_query($params);
+            }
 
-            // If two or more page exists
+            // Previous page link
             if ($page > 1) {
-
-              // Previous page link added 
-              echo '<a href="search.php?page=' . ($page - 1) . '&category_select=' . $cat_id . '&name=' . $name . '&from_date=' . $from_date . '&to_date=' . $to_date . '&trending=' . $trending . '">&laquo;</a>';
+              echo '<a href="' . buildPaginationUrl($page - 1) . '" class="pagination-btn prev-btn" title="Previous Page">';
+              echo '<i class="fas fa-chevron-left"></i>';
+              echo '<span class="d-none d-sm-inline">Previous</span>';
+              echo '</a>';
             }
 
-            for ($i = 1; $i <= $total_page; $i++) {
+            // Page numbers with smart truncation
+            $start_page = max(1, $page - 2);
+            $end_page = min($total_page, $page + 2);
 
-              // Active variable to determine if the page link is current page
-              $active = "";
-
-              // If the page is active page
-              if ($i == $page) {
-
-                // Updated active to active class name to show the active page link
-                $active = "page-active";
+            // Show first page if not in range
+            if ($start_page > 1) {
+              echo '<a href="' . buildPaginationUrl(1) . '" class="pagination-number">1</a>';
+              if ($start_page > 2) {
+                echo '<span class="pagination-ellipsis">...</span>';
               }
-
-              echo '<a href="search.php?page=' . $i . '&category_select=' . $cat_id . '&name=' . $name . '&from_date=' . $from_date . '&to_date=' . $to_date . '&trending=' . $trending . '" class="' . $active . '">' . $i . '</a>';
             }
 
-            // If the current page is not the last page
+            // Show page numbers in range
+            for ($i = $start_page; $i <= $end_page; $i++) {
+              $active_class = ($i == $page) ? 'active' : '';
+              echo '<a href="' . buildPaginationUrl($i) . '" class="pagination-number ' . $active_class . '">' . $i . '</a>';
+            }
+
+            // Show last page if not in range
+            if ($end_page < $total_page) {
+              if ($end_page < $total_page - 1) {
+                echo '<span class="pagination-ellipsis">...</span>';
+              }
+              echo '<a href="' . buildPaginationUrl($total_page) . '" class="pagination-number">' . $total_page . '</a>';
+            }
+
+            // Next page link
             if ($total_page > $page) {
-
-              // Next page link added
-              echo '<a href="search.php?page=' . ($page + 1) . '&category_select=' . $cat_id . '&name=' . $name . '&from_date=' . $from_date . '&to_date=' . $to_date . '&trending=' . $trending . '">&raquo;</a>';
+              echo '<a href="' . buildPaginationUrl($page + 1) . '" class="pagination-btn next-btn" title="Next Page">';
+              echo '<span class="d-none d-sm-inline">Next</span>';
+              echo '<i class="fas fa-chevron-right"></i>';
+              echo '</a>';
             }
+            ?>
+          </div>
+        </div>
+      <?php
       }
       ?>
         </div>
