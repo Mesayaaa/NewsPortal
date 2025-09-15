@@ -125,9 +125,18 @@ require('./includes/nav.inc.php');
                   <button type="submit" name="search" class="btn btn-search me-3">
                     <i class="fas fa-search me-2"></i>Search Articles
                   </button>
-                  <a href="./search.php" class="btn btn-clear">
-                    <i class="fas fa-times me-2"></i>Clear Filters
-                  </a>
+                  <?php
+                  // Check if any filters are active
+                  $hasActiveFilters = !empty($_GET['name']) || !empty($_GET['category_select']) || 
+                                    !empty($_GET['from_date']) || !empty($_GET['to_date']) || 
+                                    !empty($_GET['trending']);
+                  
+                  if ($hasActiveFilters) {
+                    echo '<a href="./search.php" class="btn btn-clear">
+                            <i class="fas fa-times me-2"></i>Clear Filters
+                          </a>';
+                  }
+                  ?>
                 </div>
               </div>
             </div>
