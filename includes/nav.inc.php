@@ -142,6 +142,7 @@ if (strpos($uri, "news.php") != false) {
 
   <!-- NAVBAR DROPDOWN SCRIPT -->
   <script src="./assets/js/navbar-dropdown.js"></script>
+
 </head>
 
 <body>
@@ -170,6 +171,7 @@ if (strpos($uri, "news.php") != false) {
         echo 'class="current"' ?>>Categories</a></li>
         <li><a href="./bookmarks.php" <?php if ($bookmark)
         echo 'class="current"' ?>>Bookmarks</a></li>
+
         <?php
       if (isset($_SESSION['USER_NAME'])) {
       } else {

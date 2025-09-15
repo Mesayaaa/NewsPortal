@@ -94,6 +94,7 @@ if ($row > 0) {
     ?>
     <!--  Article Page Container  -->
     <section class="article">
+      <div class="reading-progress" id="readingProgress"></div>
       <div class="container">
         <div class="page-container">
           <!-- Container that stores the article -->
@@ -126,6 +127,7 @@ if ($row > 0) {
                   </div>
                 </div>
               </div>
+
             </header>
 
             <!-- Article Image -->
@@ -164,6 +166,11 @@ if ($row > 0) {
                         <span>Download PDF</span>
                       </a>';
                 ?>
+                <!-- Focus Mode -->
+                <button class="btn btn-share" id="focusToggle" type="button" title="Toggle Focus Mode">
+                  <i class="fas fa-eye-slash"></i>
+                  <span>Focus Mode</span>
+                </button>
                 <!-- TTS Controls -->
                 <div class="tts-controls" aria-label="Read aloud controls">
                   <button class="btn btn-tts" id="ttsToggle" type="button" title="Listen / Pause">

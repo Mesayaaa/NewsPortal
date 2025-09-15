@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initSidebarDrag();
     // Initialize Read-Aloud (TTS)
     initArticleTTS();
+    // Initialize Reading Intel and Focus Mode
+    initFocusMode();
+    // Removed: initReadingIntel and initFollowCategory per cleanup
+    initReadingProgress();
 });
 
 // Smooth scrolling for internal links
@@ -25,6 +29,26 @@ function initSmoothScrolling() {
             }
         });
     });
+}
+
+// ==========================
+// Reading Progress
+// ==========================
+function initReadingProgress() {
+    const bar = document.getElementById('readingProgress');
+    const article = document.querySelector('.article');
+    if (!bar || !article) return;
+
+    function onScroll() {
+        const rect = article.getBoundingClientRect();
+        const total = article.scrollHeight - window.innerHeight;
+        const scrolled = Math.min(Math.max(window.scrollY - (article.offsetTop || 0), 0), total);
+        const pct = total > 0 ? (scrolled / total) * 100 : 0;
+        bar.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
 }
 
 // Enhanced back to top functionality
@@ -348,7 +372,13 @@ function initArticleTTS() {
     }
 
     populateVoices();
-    window.speechSynthesis.onvoiceschanged = populateVoices;
+    window.speechSynthesis.onvoiceschanged = function() {
+        const prev = voiceSelect.value;
+        populateVoices();
+        if ([...voiceSelect.options].some(o => o.value === prev)) {
+            voiceSelect.value = prev;
+        }
+    };
 
     function speakSentence(index) {
         if (index < 0 || index >= sentences.length) {
@@ -419,6 +449,20 @@ function initArticleTTS() {
         }
     });
 
+    // Live apply dropdown changes
+    voiceSelect.addEventListener('change', function(){
+        if (isPlaying) {
+            window.speechSynthesis.cancel();
+            speakSentence(currentIndex);
+        }
+    });
+    rateSelect.addEventListener('change', function(){
+        if (isPlaying) {
+            window.speechSynthesis.cancel();
+            speakSentence(currentIndex);
+        }
+    });
+
     // Click to jump to a sentence
     contentContainer.addEventListener('click', function(e) {
         const span = e.target.closest('.tts-sentence');
@@ -442,3 +486,40 @@ function initArticleTTS() {
             .replace(/'/g, '&#039;');
     }
 }
+
+// ==========================
+// Focus Mode
+// ==========================
+function initFocusMode() {
+    const btn = document.getElementById('focusToggle');
+    const pageContainer = document.querySelector('.page-container');
+    if (!btn || !pageContainer) return;
+
+    // initialize state
+    btn.setAttribute('aria-pressed', 'false');
+
+    btn.addEventListener('click', function() {
+        document.body.classList.toggle('focus-mode');
+        const isOn = document.body.classList.contains('focus-mode');
+        showToast(isOn ? 'Focus Mode On' : 'Focus Mode Off', 'info');
+
+        // reflect state on button (icon, label, aria)
+        btn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+        const icon = btn.querySelector('i');
+        const label = btn.querySelector('span');
+        if (icon) {
+            icon.className = isOn ? 'fas fa-eye' : 'fas fa-eye-slash';
+        }
+        if (label) {
+            label.textContent = isOn ? 'Exit Focus' : 'Focus Mode';
+        }
+    });
+    // Keyboard shortcut: F toggles focus
+    document.addEventListener('keydown', function(e){
+        if (e.key && e.key.toLowerCase() === 'f' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            btn.click();
+        }
+    });
+}
+
+// Removed follow category feature per cleanup

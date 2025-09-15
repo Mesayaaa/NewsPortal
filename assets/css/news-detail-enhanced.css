@@ -5,6 +5,8 @@
   border-bottom: 2px solid var(--light-color);
 }
 
+/* removed TL;DR and ERT styles */
+
 .article-heading {
   font-family: var(--ff-robo);
   font-size: 2.5rem;
@@ -92,6 +94,18 @@
   padding: 2rem 0;
 }
 
+/* Reading progress bar */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-color), var(--hover-color));
+  z-index: 2000;
+  transition: width 0.1s ease;
+}
+
 .content-body {
   font-family: var(--ff-nunito);
   font-size: 1.1rem;
@@ -100,6 +114,29 @@
   text-align: justify;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+/* Focus Mode */
+body.focus-mode .navbar,
+body.focus-mode .enhanced-sidebar-card,
+body.focus-mode .sidebar-footer,
+body.focus-mode .nav-links,
+body.focus-mode .footer,
+body.focus-mode .topNavBtn {
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+body.focus-mode .article-header,
+body.focus-mode .article-content,
+body.focus-mode .article-actions {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.focus-mode {
+  background: #fafafa;
 }
 
 .content-body p {
@@ -161,9 +198,19 @@
   color: white;
 }
 
+.btn-download:hover{
+  background: linear-gradient(135deg, #27ae60, #229954);
+  color: black;
+}
+
 .btn-share {
   background: linear-gradient(135deg, #9b59b6, #8e44ad);
   color: white;
+}
+
+.btn-bookmark:hover{
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: black;
 }
 
 .action-buttons .btn:hover {
@@ -180,6 +227,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .btn-tts {
@@ -203,6 +251,7 @@
   border-radius: 8px;
   border: 2px solid #e9ecef;
   background: #fff;
+  max-width: 220px;
 }
 
 /* Active sentence highlight */
@@ -465,6 +514,9 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .tts-controls { gap: 6px; }
+  .btn-tts { width: 100%; justify-content: center; }
+  .tts-select { flex: 1 1 140px; max-width: none; }
   .article-heading {
     font-size: 2rem;
     padding: 0 1rem;
@@ -475,6 +527,8 @@
     gap: 1rem;
     padding: 1rem;
   }
+
+  .reading-intel { padding: 0 0.5rem; }
   
   .meta-left {
     flex-direction: column;
@@ -573,10 +627,41 @@
 }
 
 @media (max-width: 480px) {
+  .tts-select { width: 100%; }
+  .article-image { height: auto; max-height: 50vh; }
   .article-heading {
     font-size: 1.6rem;
     padding: 0 0.5rem;
   }
+  /* Reduce top spacing for action bar on mobile */
+  .article-actions { padding: 0.5rem; margin: 0.5rem 0; }
+  .action-buttons { margin-top: 0.25rem; }
+  /* Icon-only compact action buttons for mobile */
+  .action-buttons {
+    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 0.5rem;
+  }
+  .action-buttons .btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+  }
+  .action-buttons .btn span { display: none; }
+  .action-buttons .btn i { font-size: 18px; }
+
+  /* TTS listen button icon-only */
+  .btn-tts { width: 44px; height: 44px; border-radius: 50%; padding: 0; justify-content: center; }
+  .btn-tts span { display: none; }
+  .btn-tts i { font-size: 18px; }
+  /* Keep Read-Along controls in a single row on mobile */
+  .tts-controls { width: 100%; margin-top: 0.25rem; justify-content: flex-start; gap: 6px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tts-select { width: auto; max-width: none; min-width: 96px; padding: 6px 8px; font-size: 0.9rem; }
   
   .content-body p:first-child::first-letter {
     initial-letter: 2;
