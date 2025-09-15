@@ -75,7 +75,7 @@ if (isset($_POST['signup-submit'])) {
         <!-- Registration form container -->
         <div class="register-form-wrapper">
             <div class="form-title">
-                <h4>User Registration</h4>
+                <h4>Reader Registration</h4>
                 <p>Join our news platform to bookmark articles and stay updated!</p>
             </div>
             <div class="signup-form-container">

@@ -79,7 +79,7 @@ if (isset($_POST['login-submit'])) {
     <!-- Login form container -->
     <div class="login-only-wrapper">
       <div class="form-title">
-        <h4>User Login</h4>
+        <h4>Reader Login</h4>
         <p>Welcome back! Please sign in to your account.</p>
       </div>
       <div class="login-form-container">
