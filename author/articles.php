@@ -142,6 +142,24 @@ require('./includes/nav.inc.php');
     border-radius: 8px !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
   }
+
+  /* Pagination style agar lebar sama seperti public */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(199, 39, 39, 0.1);
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
 </style>
 
 <script>

@@ -122,13 +122,6 @@ if (strpos($uri, "/change-password.php") != false) {
                 Categories
               </a>
             </li>
-            <li <?php if ($pass)
-            echo 'class="active"' ?>>
-              <a href="./change-password.php">
-                <i class="glyphicon glyphicon-cog"></i>
-                Settings
-              </a>
-            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

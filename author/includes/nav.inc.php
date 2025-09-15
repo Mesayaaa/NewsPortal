@@ -106,8 +106,17 @@ if (strpos($uri, "/change-name.php") != false) {
             echo 'class="active"' ?>><a href="./change-name.php">Change Name</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a><?php echo $author_name ?></a></li>
-          <li><a href="./logout.php">Logout</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="glyphicon glyphicon-user"></i>
+              <?php echo $author_name ?>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="./logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
