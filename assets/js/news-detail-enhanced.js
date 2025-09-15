@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initBackToTop();
     // Sidebar drag functionality
     initSidebarDrag();
+    // Initialize Read-Aloud (TTS)
+    initArticleTTS();
 });
 
 // Smooth scrolling for internal links
@@ -282,4 +284,161 @@ function initSidebarDrag() {
             content.classList.remove('dragging');
         }
     });
+}
+
+// ==========================
+// Read-Aloud (TTS) Feature
+// ==========================
+function initArticleTTS() {
+    if (!('speechSynthesis' in window)) {
+        return; // TTS not supported
+    }
+
+    const contentContainer = document.querySelector('.article-content .content-body');
+    const toggleBtn = document.getElementById('ttsToggle');
+    const icon = document.getElementById('ttsIcon');
+    const voiceSelect = document.getElementById('ttsVoice');
+    const rateSelect = document.getElementById('ttsRate');
+
+    if (!contentContainer || !toggleBtn || !voiceSelect || !rateSelect) {
+        return;
+    }
+
+    // Prepare sentences by splitting on punctuation and wrapping spans
+    const originalHtml = contentContainer.innerHTML;
+    const textNodes = Array.from(contentContainer.childNodes);
+    let sentences = [];
+
+    // Convert to plain text preserving line breaks already inserted via nl2br
+    const plain = contentContainer.innerText.trim();
+    sentences = plain
+        .split(/([.!?])\s+/)
+        .reduce((acc, part, idx, arr) => {
+            if (idx % 2 === 0) {
+                const nextPunct = arr[idx + 1] || '';
+                const sentence = (part + nextPunct).trim();
+                if (sentence.length > 0) acc.push(sentence);
+            }
+            return acc;
+        }, []);
+
+    // Render sentences as spans for highlighting
+    const htmlSentences = sentences.map((s, i) => `<span class="tts-sentence" data-index="${i}">${escapeHtml(s)}</span>`).join(' ');
+    contentContainer.setAttribute('data-tts-rendered', '1');
+    contentContainer.innerHTML = htmlSentences;
+
+    // Speech state
+    let currentIndex = 0;
+    let isPlaying = false;
+    let voices = [];
+
+    function populateVoices() {
+        voices = window.speechSynthesis.getVoices();
+        voiceSelect.innerHTML = '';
+        voices.forEach((v, i) => {
+            const opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = `${v.name} (${v.lang})${v.default ? ' - default' : ''}`;
+            voiceSelect.appendChild(opt);
+        });
+        // Prefer Indonesian or English
+        const preferred = voices.findIndex(v => /^id/i.test(v.lang))
+            ?? voices.findIndex(v => /^en/i.test(v.lang));
+        if (preferred >= 0) voiceSelect.value = preferred;
+    }
+
+    populateVoices();
+    window.speechSynthesis.onvoiceschanged = populateVoices;
+
+    function speakSentence(index) {
+        if (index < 0 || index >= sentences.length) {
+            stopTTS();
+            return;
+        }
+        highlight(index);
+        const utter = new SpeechSynthesisUtterance(sentences[index]);
+        const rate = parseFloat(rateSelect.value || '1');
+        utter.rate = rate;
+        const v = voices[parseInt(voiceSelect.value, 10)];
+        if (v) utter.voice = v;
+
+        utter.onend = () => {
+            if (!isPlaying) return;
+            currentIndex += 1;
+            if (currentIndex < sentences.length) {
+                speakSentence(currentIndex);
+            } else {
+                stopTTS();
+            }
+        };
+
+        window.speechSynthesis.speak(utter);
+    }
+
+    function highlight(index) {
+        document.querySelectorAll('.tts-sentence').forEach(el => el.classList.remove('tts-active'));
+        const active = contentContainer.querySelector(`.tts-sentence[data-index="${index}"]`);
+        if (active) {
+            active.classList.add('tts-active');
+            active.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    function playTTS() {
+        if (isPlaying) return;
+        isPlaying = true;
+        icon.classList.remove('fa-play');
+        icon.classList.add('fa-pause');
+        speakSentence(currentIndex);
+        showToast('Reading started', 'success');
+    }
+
+    function pauseTTS() {
+        isPlaying = false;
+        window.speechSynthesis.cancel();
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        showToast('Paused', 'info');
+    }
+
+    function stopTTS() {
+        isPlaying = false;
+        window.speechSynthesis.cancel();
+        icon.classList.remove('fa-pause');
+        icon.classList.add('fa-play');
+        currentIndex = 0;
+        document.querySelectorAll('.tts-sentence').forEach(el => el.classList.remove('tts-active'));
+    }
+
+    // Toggle play/pause
+    toggleBtn.addEventListener('click', function() {
+        if (!isPlaying) {
+            playTTS();
+        } else {
+            pauseTTS();
+        }
+    });
+
+    // Click to jump to a sentence
+    contentContainer.addEventListener('click', function(e) {
+        const span = e.target.closest('.tts-sentence');
+        if (!span) return;
+        currentIndex = parseInt(span.getAttribute('data-index'), 10) || 0;
+        if (isPlaying) {
+            window.speechSynthesis.cancel();
+            speakSentence(currentIndex);
+        } else {
+            highlight(currentIndex);
+        }
+    });
+
+    // Helpers
+    function escapeHtml(str) {
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
 }

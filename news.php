@@ -164,6 +164,20 @@ if ($row > 0) {
                         <span>Download PDF</span>
                       </a>';
                 ?>
+                <!-- TTS Controls -->
+                <div class="tts-controls" aria-label="Read aloud controls">
+                  <button class="btn btn-tts" id="ttsToggle" type="button" title="Listen / Pause">
+                    <i class="fas fa-play" id="ttsIcon"></i>
+                    <span>Listen</span>
+                  </button>
+                  <select id="ttsVoice" class="tts-select" title="Voice"></select>
+                  <select id="ttsRate" class="tts-select" title="Speed">
+                    <option value="0.8">0.8x</option>
+                    <option value="1" selected>1.0x</option>
+                    <option value="1.25">1.25x</option>
+                    <option value="1.5">1.5x</option>
+                  </select>
+                </div>
               </div>
             </div>
 

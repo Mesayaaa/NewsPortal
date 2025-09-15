@@ -175,6 +175,44 @@
   transform: translateY(-1px);
 }
 
+/* TTS Controls */
+.tts-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-tts {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--primary-color), var(--active-color));
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: var(--ff-nunito);
+  font-weight: 600;
+}
+
+.btn-tts:hover { filter: brightness(1.05); }
+
+.tts-select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 2px solid #e9ecef;
+  background: #fff;
+}
+
+/* Active sentence highlight */
+.tts-sentence { transition: background-color 0.2s ease; }
+.tts-active {
+  background: #fff3cd;
+  outline: 2px solid rgba(199,39,39,0.15);
+  border-radius: 6px;
+}
+
 
 .nav-links {
   display: flex;
