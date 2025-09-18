@@ -18,6 +18,11 @@ $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);
 $article_img = $row['article_image'];
 
+
+// Delete all bookmarks related to this article
+$delete_bookmarks = "DELETE FROM bookmark WHERE article_id = {$article_id}";
+mysqli_query($con, $delete_bookmarks);
+
 unlink("../assets/images/articles/{$article_img}");
 
 $delete_sql = " DELETE FROM article 

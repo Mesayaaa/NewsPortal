@@ -25,6 +25,8 @@ if ($row_check['total'] > 0) {
         if ($article_img && file_exists("../assets/images/articles/{$article_img}")) {
             unlink("../assets/images/articles/{$article_img}");
         }
+        // Delete all bookmarks related to this article
+        mysqli_query($con, "DELETE FROM bookmark WHERE article_id = {$article_id}");
         // Delete article
         mysqli_query($con, "DELETE FROM article WHERE article_id = {$article_id}");
     }
