@@ -36,7 +36,7 @@ $no_of_categories = $cat_data['no_of_categories'];
       Categories
       <span class="badge"><?php echo $no_of_categories ?></span>
     </a>
-    
+
     <a href="./add-category.php" class="list-group-item">
       <span class="glyphicon glyphicon-plus"></span>
       Add Category
@@ -45,7 +45,7 @@ $no_of_categories = $cat_data['no_of_categories'];
       <span class="glyphicon glyphicon-plus-sign"></span>
       Add Article
     </a>
-    
+
     <a href="./change-password.php" class="list-group-item">
       <span class="glyphicon glyphicon-cog"></span>
       Settings

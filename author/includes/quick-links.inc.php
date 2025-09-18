@@ -1,4 +1,3 @@
-
 <?php
 $art_sql = "SELECT COUNT(article_id) AS no_of_articles FROM article WHERE author_id = {$author_id}";
 $art_result = mysqli_query($con, $art_sql);
@@ -20,7 +19,7 @@ $no_of_articles = $art_data['no_of_articles'];
       Articles
       <span class="badge"><?php echo $no_of_articles ?></span>
     </a>
-    
+
     <a href="./change-password.php" class="list-group-item">
       <span class="glyphicon glyphicon-cog"></span>
       Change Password
@@ -29,7 +28,7 @@ $no_of_articles = $art_data['no_of_articles'];
       <span class="glyphicon glyphicon-user"></span>
       Change Name
     </a>
-    
+
     <a href="./logout.php" class="list-group-item">
       <span class="glyphicon glyphicon-log-out"></span>
       Logout
