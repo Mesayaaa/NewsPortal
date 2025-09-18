@@ -175,8 +175,8 @@ function createNoArticlesCard()
         <div class="no-articles-icon">
           <i class="far fa-bookmark"></i>
         </div>
-        <h3 class="no-articles-title">No Bookmarks Yet!</h3>
-        <p class="no-articles-text">Start exploring and bookmark articles you want to read later.</p>
+        <h3 class="no-articles-title">No Articles Yet!</h3>
+        <p class="no-articles-text">Start exploring articles you want to read later.</p>
         <div class="no-articles-actions">
           <a href="./index.php" class="btn btn-primary-custom">
             <i class="fas fa-home me-2"></i>Browse Articles
