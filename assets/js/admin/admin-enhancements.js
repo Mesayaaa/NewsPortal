@@ -4,29 +4,6 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // Add loading states to buttons
-    function addLoadingState() {
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(button => {
-            if (button.type === 'submit' || button.classList.contains('btn-primary')) {
-                button.addEventListener('click', function(e) {
-                    if (!button.classList.contains('loading')) {
-                        button.classList.add('loading');
-                        const originalText = button.innerHTML;
-                        button.innerHTML = '<i class="glyphicon glyphicon-refresh glyphicon-spin"></i> Processing...';
-                        
-                        // Reset after 3 seconds (form submission should handle this)
-                        setTimeout(() => {
-                            button.classList.remove('loading');
-                            button.innerHTML = originalText;
-                        }, 3000);
-                    }
-                });
-            }
-        });
-    }
-
     // Add smooth animations to cards
     function addCardAnimations() {
         const observer = new IntersectionObserver((entries) => {
@@ -80,11 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         cancelButtonColor: '#6c757d',
                         confirmButtonText: 'Yes, delete it!',
                         cancelButtonText: 'Cancel',
-                        customClass: {
-                            popup: 'modern-swal',
-                            confirmButton: 'btn btn-danger',
-                            cancelButton: 'btn btn-secondary'
-                        }
                     }).then((result) => {
                         if (result.isConfirmed) {
                             if (this.tagName === 'A') {
@@ -186,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize all enhancements
-    addLoadingState();
     addCardAnimations();
     enhanceTableInteractions();
     addConfirmationDialogs();

@@ -68,10 +68,15 @@ require('./includes/nav.inc.php');
                         <td>
                           <div class="tag ' . $category_color . '">' . $category_name . '</div>
                         </td>
-                        <td>
-                          <a class="btn btn-primary" href="./edit-category.php?id=' . $category_id . '">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </a>
+                        <td style="vertical-align: middle; text-align: center;">
+                          <div style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                            <a class="btn btn-primary" href="./edit-category.php?id=' . $category_id . '">
+                              <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="btn btn-danger" href="./delete-category.php?id=' . $category_id . '">
+                              <span class="glyphicon glyphicon-trash"></span>
+                            </a>
+                          </div>
                         </td>
                       </tr>
                     ';

@@ -92,6 +92,16 @@ body {
   margin-right: 8px;
   font-size: 16px;
   transition: all 0.3s ease;
+
+.btn span, .btn i, .btn svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 1.3em;
+}
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -102,6 +112,15 @@ body {
   transform: translateY(-1px);
 }
 
+  .btn span, .btn i, .btn svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-size: 1.3em;
+  }
 .navbar-default .navbar-nav > li > a:hover i {
   transform: scale(1.1);
   color: var(--primary-color);
@@ -1065,14 +1084,9 @@ input[type="file"]:hover {
   font-family: var(--ff-nunito);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
-  box-shadow: 0 4px 15px rgba(199, 39, 39, 0.3);
-}
-
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(199, 39, 39, 0.4);
+  box-shadow: 0 8px 25px rgba(51, 122, 183);
 }
 
 .btn-success {
@@ -1101,6 +1115,7 @@ input[type="file"]:hover {
   background: linear-gradient(135deg, #dc3545, #e74c3c);
   box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
 }
+
 
 .btn-danger:hover {
   transform: translateY(-2px);
