@@ -42,11 +42,6 @@ if(loginForm && loginEmail && loginPassword) {
         showValidationErrors(loginMessages, 'Login Validation Error');
       }
     }
-    else {
-      if (typeof showValidationSuccess !== 'undefined') {
-        showValidationSuccess('Login form is valid!');
-      }
-    }
   });
 }
 
@@ -91,11 +86,6 @@ if(signupForm && signupName && signupEmail && signupPassword && signupConfirmPas
       // Use SweetAlert2 for validation error display
       if (typeof showValidationErrors !== 'undefined') {
         showValidationErrors(signupMessages, 'Registration Validation Error');
-      }
-    }
-    else {
-      if (typeof showValidationSuccess !== 'undefined') {
-        showValidationSuccess('Registration form is valid!');
       }
     }
   });

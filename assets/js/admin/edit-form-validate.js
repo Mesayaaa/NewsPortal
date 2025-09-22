@@ -28,10 +28,6 @@ editForm.addEventListener("submit", function (e) {
     if (typeof showValidationErrors !== 'undefined') {
       showValidationErrors(errorMessages, 'Article Edit Validation Error');
     }
-  } else {
-    if (typeof showValidationSuccess !== 'undefined') {
-      showValidationSuccess('Article edit form is valid!');
-    }
   }
 });
 

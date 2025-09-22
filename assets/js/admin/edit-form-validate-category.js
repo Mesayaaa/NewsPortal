@@ -43,9 +43,5 @@ editForm.addEventListener("submit", function (e) {
     if (typeof showValidationErrors !== 'undefined') {
       showValidationErrors(errorMessages, 'Category Edit Validation Error');
     }
-  } else {
-    if (typeof showValidationSuccess !== 'undefined') {
-      showValidationSuccess('Category edit form is valid!');
-    }
   }
 });

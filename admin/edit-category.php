@@ -65,7 +65,8 @@ if (isset($_POST['submit'])) {
       alert("Category updated", "success", "Success");
       redirect('./categories.php');
     } else {
-      echo "Failed to upload Data";
+      alert("Failed to update category. Please try again later", "error", "Error");
+      redirect('./categories.php');
     }
   }
 }

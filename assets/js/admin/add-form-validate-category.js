@@ -47,9 +47,5 @@ addForm.addEventListener("submit", function (e) {
     if (typeof showValidationErrors !== 'undefined') {
       showValidationErrors(errorMessages, 'Category Form Validation Error');
     }
-  } else {
-    if (typeof showValidationSuccess !== 'undefined') {
-      showValidationSuccess('Category form is valid!');
-    }
   }
 });

@@ -62,10 +62,12 @@ if (isset($_POST['login-submit'])) {
 
       // If the password fails to match
       else {
-
-        // Redirected to login page along with a message
-        alert("Wrong Password", "error", "Login Failed");
-        redirect('./login.php');
+        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+        echo "<script>
+          Swal.fire({icon: 'error', title: 'Login Gagal', text: 'Password salah!'}).then(() => {
+            window.location.href = 'login.php';
+          });
+        </script>";
       }
     }
   }
@@ -73,9 +75,13 @@ if (isset($_POST['login-submit'])) {
   // If the email is not registered 
   else {
 
-    // Redirected to login page along with a message
-    alert("This Email is not registered for Admin", "error", "Login Failed");
-    redirect('./login.php');
+    // Email tidak ditemukan
+    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+    echo "<script>
+      Swal.fire({icon: 'error', title: 'Login Gagal', text: 'Email tidak ditemukan!'}).then(() => {
+        window.location.href = 'login.php';
+      });
+    </script>";
   }
 }
 

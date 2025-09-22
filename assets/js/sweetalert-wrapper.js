@@ -266,7 +266,6 @@ document.addEventListener('DOMContentLoaded', function() {
                        message.toLowerCase().includes('not registered')) {
                 showError('Error!', message);
             } else if (message.toLowerCase().includes('please') || 
-                       message.toLowerCase().includes('login') ||
                        message.toLowerCase().includes('try again')) {
                 showWarning('Warning!', message);
             } else {

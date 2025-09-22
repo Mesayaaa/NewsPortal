@@ -42,9 +42,5 @@ changeNameForm.addEventListener("submit", function (e) {
     if (typeof showValidationErrors !== 'undefined') {
       showValidationErrors(errorMessages, 'Name Change Validation Error');
     }
-  } else {
-    if (typeof showValidationSuccess !== 'undefined') {
-      showValidationSuccess('Name change form is valid!');
-    }
   }
 });

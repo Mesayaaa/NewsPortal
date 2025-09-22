@@ -36,7 +36,8 @@ if (isset($_POST['submit'])) {
     alert("Category Added !", "success", "Success");
     redirect('./categories.php');
   } else {
-    echo "Failed to upload Data";
+    alert("Failed to add category. Please try again later", "error", "Error");
+    redirect('./add-category.php');
   }
 }
 ?>

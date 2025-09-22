@@ -49,9 +49,5 @@ addForm.addEventListener("submit", function (e) {
     if (typeof showValidationErrors !== 'undefined') {
       showValidationErrors(errorMessages, 'Article Validation Error');
     }
-  } else {
-    if (typeof showValidationSuccess !== 'undefined') {
-      showValidationSuccess('Article form is valid!');
-    }
   }
 });

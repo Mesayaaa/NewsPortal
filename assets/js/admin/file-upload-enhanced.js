@@ -244,7 +244,7 @@ class EnhancedFileUpload {
         if (typeof showValidationErrors !== 'undefined') {
             showValidationErrors([message], 'File Upload Error');
         } else {
-            alert(message);
+            showError('File Upload Error', message);
         }
     }
 

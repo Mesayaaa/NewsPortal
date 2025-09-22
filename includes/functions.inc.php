@@ -36,7 +36,6 @@ function alert($message, $type = 'info', $title = null)
       $title = $title ?: 'Error!';
     } elseif (
       strpos($message_lower, 'please') !== false ||
-      strpos($message_lower, 'login') !== false ||
       strpos($message_lower, 'try again') !== false
     ) {
       $type = 'warning';

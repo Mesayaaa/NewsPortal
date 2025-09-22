@@ -71,7 +71,8 @@ if (isset($_POST['submit'])) {
       alert("Article updated " . $author_name . " !", "success", "Success");
       redirect('./articles.php');
     } else {
-      echo "Failed to upload Data";
+      alert("Failed to update article. Please try again later", "error", "Error");
+      redirect('./articles.php');
     }
   }
 }

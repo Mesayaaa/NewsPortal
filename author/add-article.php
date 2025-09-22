@@ -38,7 +38,8 @@ if (isset($_POST['submit'])) {
     alert("Article posted. Please wait for Admin to activate it.", "success", "Article Posted");
     redirect('./articles.php');
   } else {
-    echo "Failed to upload Data";
+    alert("Failed to add article. Please try again later", "error", "Error");
+    redirect('./add-article.php');
   }
 }
 ?>

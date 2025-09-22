@@ -73,7 +73,6 @@ if (isset($_POST['submit'])) {
 
           // Print Error along with an error
           alert("Sorry. Try again later !", "error", "Error");
-          echo "Error: " . mysqli_error($con);
         }
 
         // If Query ran successfully
@@ -114,7 +113,6 @@ if (isset($_POST['submit'])) {
 
           // Print Error along with an error
           alert("Sorry. Try again later !", "error", "Error");
-          echo "Error: " . mysqli_error($con);
         }
         // If Query ran successfully
         else {

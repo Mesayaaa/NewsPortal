@@ -84,8 +84,9 @@ if (isset($_POST['signup-submit'])) {
             // If the Query failed
             else {
 
-                // Print the error
-                echo "Error: " . mysqli_error($con);
+                // Show error message
+                alert("Registration failed. Please try again later", "error", "Registration Failed");
+                redirect('./author-register.php');
             }
         }
 
@@ -120,8 +121,9 @@ if (isset($_POST['signup-submit'])) {
             // If the Query failed
             else {
 
-                // Print the error
-                echo "Error: " . mysqli_error($con);
+                // Show error message
+                alert("Registration failed. Please try again later", "error", "Registration Failed");
+                redirect('./author-register.php');
             }
         }
     }

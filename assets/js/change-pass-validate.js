@@ -37,9 +37,5 @@ changePassForm.addEventListener('submit', function (e) {
     if (typeof showValidationErrors !== 'undefined') {
       showValidationErrors(errorMessages, 'Password Change Validation Error');
     }
-  } else {
-    if (typeof showValidationSuccess !== 'undefined') {
-      showValidationSuccess('Password change form is valid!');
-    }
   }
 });
