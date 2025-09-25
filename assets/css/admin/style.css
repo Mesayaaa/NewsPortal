@@ -13,6 +13,15 @@ body {
   font-family: var(--ff-nunito);
   line-height: 1.6;
   color: var(--dark-color);
+  overflow-x: hidden !important;
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow for main admin container */
+#main, .container, .container-fluid {
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .btn-box {

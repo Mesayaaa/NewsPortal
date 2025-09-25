@@ -25,39 +25,60 @@ require('./includes/nav.inc.php');
             <h3 class="panel-title">Overview</h3>
           </div>
           <div class="panel-body" style="padding: 2.5rem;">
-            <div class="col-md-4">
-              <div class="dash-box">
-                <div class="dash-icon" style="color: var(--primary-color);">
-                  <span class="glyphicon glyphicon-pencil"></span>
-                </div>
-                <h2><?php echo $no_of_articles; ?></h2>
-                <h4>Articles</h4>
-                <div class="dash-footer">
-                  <a href="./articles.php" class="btn btn-sm btn-primary">View All</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="dash-box">
-                <div class="dash-icon" style="color: var(--secondary-color);">
-                  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                </div>
-                <h2><?php echo $no_of_categories; ?></h2>
-                <h4>Categories</h4>
-                <div class="dash-footer">
-                  <a href="./categories.php" class="btn btn-sm btn-warning">View All</a>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="dash-box">
+                  <div class="dash-icon" style="color: var(--primary-color);">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </div>
+                  <h2><?php echo $no_of_articles; ?></h2>
+                  <h4>Articles</h4>
+                  <div class="dash-footer">
+                    <a href="./articles.php" class="btn btn-sm btn-primary">View All</a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="dash-box">
-                <div class="dash-icon" style="color: var(--tag-green-color);">
-                  <span class="glyphicon glyphicon-user"></span>
+              <div class="col-md-3">
+                <div class="dash-box">
+                  <div class="dash-icon" style="color: var(--secondary-color);">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                  </div>
+                  <h2><?php echo $no_of_categories; ?></h2>
+                  <h4>Categories</h4>
+                  <div class="dash-footer">
+                    <a href="./categories.php" class="btn btn-sm btn-warning">View All</a>
+                  </div>
                 </div>
-                <h2><?php echo $no_of_users; ?></h2>
-                <h4>Users</h4>
-                <div class="dash-footer">
-                  <span class="text-muted">Registered Users</span>
+              </div>
+              <div class="col-md-3">
+                <div class="dash-box">
+                  <div class="dash-icon" style="color: var(--tag-green-color);">
+                    <span class="glyphicon glyphicon-user"></span>
+                  </div>
+                  <h2><?php echo $no_of_users; ?></h2>
+                  <h4>Users</h4>
+                  <div class="dash-footer">
+                    <a href="./users.php" class="btn btn-sm btn-success">View All</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="dash-box">
+                  <div class="dash-icon" style="color: var(--tag-blue-color);">
+                    <span class="glyphicon glyphicon-briefcase"></span>
+                  </div>
+                  <h2>
+                    <?php
+                    $author_sql = "SELECT COUNT(author_id) AS no_of_authors FROM author";
+                    $author_result = mysqli_query($con, $author_sql);
+                    $author_data = mysqli_fetch_assoc($author_result);
+                    echo $author_data['no_of_authors'];
+                    ?>
+                  </h2>
+                  <h4>Authors</h4>
+                  <div class="dash-footer">
+                    <a href="./authors.php" class="btn btn-sm btn-info">View All</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -65,13 +86,15 @@ require('./includes/nav.inc.php');
         </div>
       </div>
     </div>
+  </div>
+  </div>
 
 
-    <!-- Latest Articles -->
-    <div class="row">
-      <?php
+  <!-- Latest Articles -->
+  <div class="row">
+    <?php
 
-      $sql = "SELECT article.article_title, 
+    $sql = "SELECT article.article_title, 
                 article.article_date, 
                 article.article_image, 
                 category.category_name,
@@ -81,35 +104,35 @@ require('./includes/nav.inc.php');
                 AND article.author_id  = author.author_id
                 ORDER BY article_date DESC
                 LIMIT 4";
-      $result = mysqli_query($con, $sql);
-      $row = mysqli_num_rows($result);
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_num_rows($result);
 
-      ?>
-      <div class="col-md-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">Latest Articles</h4>
-          </div>
-          <div class="panel-body">
-            <table class="table table-striped article-list table-hover">
-              <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Image</th>
-                <th>Author Name</th>
-                <th>Published On</th>
-              </tr>
-              <?php
-              if ($row > 0) {
-                while ($data = mysqli_fetch_assoc($result)) {
-                  $category_name = $data['category_name'];
-                  $author_name = $data['author_name'];
-                  $article_title = $data['article_title'];
-                  $article_image = $data['article_image'];
-                  $article_date = $data['article_date'];
-                  $article_date = date("d M y", strtotime($article_date));
+    ?>
+    <div class="col-md-10" style="float: none; margin: 0 auto;">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Latest Articles</h4>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped article-list table-hover">
+            <tr>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Image</th>
+              <th>Author Name</th>
+              <th>Published On</th>
+            </tr>
+            <?php
+            if ($row > 0) {
+              while ($data = mysqli_fetch_assoc($result)) {
+                $category_name = $data['category_name'];
+                $author_name = $data['author_name'];
+                $article_title = $data['article_title'];
+                $article_image = $data['article_image'];
+                $article_date = $data['article_date'];
+                $article_date = date("d M y", strtotime($article_date));
 
-                  echo '
+                echo '
                       <tr>
                         <td>
                           ' . $article_title . '
@@ -128,29 +151,29 @@ require('./includes/nav.inc.php');
                         </td>
                       </tr>
                     ';
-                }
-                echo '
+              }
+              echo '
                     <tr>
                       <td colspan="5" align="center" style="padding-top: 2rem;">
                         <a href="./articles.php" class="btn btn-danger ">View All</a>
                       </td>
                     </tr>
                   ';
-              } else {
-                echo '
+            } else {
+              echo '
                     <td colspan="4" align="center" style="padding-top: 28px; color: var(--active-color);">
                       <h4>
                         You need to start writing ' . $_SESSION['AUTHOR_NAME'] . ' !
                       </h4>
                     </td>
                   ';
-              }
-              ?>
-            </table>
-          </div>
+            }
+            ?>
+          </table>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
