@@ -132,11 +132,13 @@ if (strpos($uri, "/change-name.php") != false) {
         <div class="col-md-10">
           <h1><?php echo $page_title ?></h1>
         </div>
-        <div class="col-md-2 btn-box">
-          <a href="./add-article.php" class="btn btn-warning" type="button">
-            Write New Article
-          </a>
-        </div>
+        <?php if ($home) { ?>
+          <div class="col-md-2">
+            <a href="./add-article.php" class="btn btn-warning" type="button">
+              Write New Article
+            </a>
+          </div>
+        <?php } ?>
       </div>
     </div>
   </header>
