@@ -2,6 +2,17 @@
 
 // Fetching all the Navbar Data
 require('./includes/nav.inc.php');
+
+// Function to build clean pagination URL
+function buildPaginationUrl($page_num) {
+  global $category_id;
+  $params = array();
+  if (isset($_GET['id']) && $_GET['id'] != '') {
+    $params['id'] = $_GET['id'];
+  }
+  $params['page'] = $page_num;
+  return 'articles.php?' . http_build_query($params);
+}
 ?>
 
 
@@ -198,89 +209,62 @@ require('./includes/nav.inc.php');
 
       // Returns the number of rows from the result retrieved => total no of articles
       $total_articles = mysqli_num_rows($paginationResult);
-
       // Calculated no of pages based on limit and no of articles
       $total_page = ceil($total_articles / $limit);
       ?>
-
       <div class="text-center py-2">
         <!-- Pagination Block -->
-        <div class="pagination">
-          <?php
-          // Declared string variable for the URL
-          $cat_id = "";
-
-          // If we get category_id from the URL
-          if (isset($_GET['id']) && $_GET['id'] != '' && $_GET['id'] != null) {
-
-            // Updated the URL query string
-            $cat_id = 'id=' . $_GET['id'] . '&';
-          }
-
-          // First page link
-          if ($page > 1) {
-            echo '<a href="articles.php?' . $cat_id . 'page=1" title="Halaman Pertama"><i class="fas fa-angle-double-left"></i></a>';
-          } else {
-            echo '<a class="disabled" title="Halaman Pertama"><i class="fas fa-angle-double-left"></i></a>';
-          }
-
-          // Previous page link
-          if ($page > 1) {
-            echo '<a href="articles.php?' . $cat_id . 'page=' . ($page - 1) . '" title="Halaman Sebelumnya"><i class="fas fa-angle-left"></i></a>';
-          } else {
-            echo '<a class="disabled" title="Halaman Sebelumnya"><i class="fas fa-angle-left"></i></a>';
-          }
-
-          // Calculate range of page numbers to display
-          $range = 2; // Number of pages to show before and after current page
-          $start_page = max(1, $page - $range);
-          $end_page = min($total_page, $page + $range);
-
-          // Add ellipsis if needed at the beginning
-          if ($start_page > 1) {
-            echo '<a href="articles.php?' . $cat_id . 'page=1">1</a>';
-            if ($start_page > 2) {
-              echo '<span class="pagination-ellipsis">...</span>';
+        <div class="search-pagination-wrapper">
+          <div class="search-pagination">
+            <?php
+            // Previous page link
+            if ($page > 1) {
+              echo '<a href="' . buildPaginationUrl($page - 1) . '" class="pagination-btn prev-btn" title="Previous Page">';
+              echo '<i class="fas fa-chevron-left"></i>';
+              echo '<span class="d-none d-sm-inline">Previous</span>';
+              echo '</a>';
             }
-          }
 
-          // Page numbers
-          for ($i = $start_page; $i <= $end_page; $i++) {
-            // Active variable to determine if the page link is current page
-            $active = "";
+            // Page numbers with smart truncation
+            $start_page = max(1, $page - 2);
+            $end_page = min($total_page, $page + 2);
 
-            // If the page is active page
-            if ($i == $page) {
-              // Updated active to active class name to show the active page link
-              $active = "page-active";
+            // Show first page if not in range
+            if ($start_page > 1) {
+              echo '<a href="' . buildPaginationUrl(1) . '" class="pagination-number">1</a>';
+              if ($start_page > 2) {
+                echo '<span class="pagination-ellipsis">...</span>';
+              }
             }
-            echo '<a href="articles.php?' . $cat_id . 'page=' . $i . '" class="' . $active . '">' . $i . '</a>';
-          }
 
-          // Add ellipsis if needed at the end
-          if ($end_page < $total_page) {
-            if ($end_page < $total_page - 1) {
-              echo '<span class="pagination-ellipsis">...</span>';
+            // Show page numbers in range
+            for ($i = $start_page; $i <= $end_page; $i++) {
+              $active_class = ($i == $page) ? 'active' : '';
+              echo '<a href="' . buildPaginationUrl($i) . '" class="pagination-number ' . $active_class . '">' . $i . '</a>';
             }
-            echo '<a href="articles.php?' . $cat_id . 'page=' . $total_page . '">' . $total_page . '</a>';
-          }
 
-          // Next page link
-          if ($total_page > $page) {
-            echo '<a href="articles.php?' . $cat_id . 'page=' . ($page + 1) . '" title="Halaman Berikutnya"><i class="fas fa-angle-right"></i></a>';
-          } else {
-            echo '<a class="disabled" title="Halaman Berikutnya"><i class="fas fa-angle-right"></i></a>';
-          }
+            // Show last page if not in range
+            if ($end_page < $total_page) {
+              if ($end_page < $total_page - 1) {
+                echo '<span class="pagination-ellipsis">...</span>';
+              }
+              echo '<a href="' . buildPaginationUrl($total_page) . '" class="pagination-number">' . $total_page . '</a>';
+            }
 
-          // Last page link
-          if ($page < $total_page) {
-            echo '<a href="articles.php?' . $cat_id . 'page=' . $total_page . '" title="Halaman Terakhir"><i class="fas fa-angle-double-right"></i></a>';
-          } else {
-            echo '<a class="disabled" title="Halaman Terakhir"><i class="fas fa-angle-double-right"></i></a>';
-          }
+            // Next page link
+            if ($total_page > $page) {
+              echo '<a href="' . buildPaginationUrl($page + 1) . '" class="pagination-btn next-btn" title="Next Page">';
+              echo '<span class="d-none d-sm-inline">Next</span>';
+              echo '<i class="fas fa-chevron-right"></i>';
+              echo '</a>';
+            }
+            ?>
+          </div>
+        </div>
+      </div>
+      <?php
     }
     ?>
-      </div>
     </div>
   </div>
 </section>
