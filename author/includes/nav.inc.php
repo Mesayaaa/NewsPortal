@@ -97,13 +97,17 @@ if (strpos($uri, "/change-name.php") != false) {
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li <?php if ($home)
-            echo 'class="active"' ?>><a href="./index.php">Dashboard</a></li>
+            echo 'class="active"' ?>><a href="./index.php"><i class="glyphicon glyphicon-home"></i>
+                Dashboard</a></li>
             <li <?php if ($article)
-            echo 'class="active"' ?>><a href="./articles.php">Articles</a></li>
+            echo 'class="active"' ?>><a href="./articles.php"><i
+                  class="glyphicon glyphicon-pencil"></i> Articles</a></li>
             <li <?php if ($pass)
-            echo 'class="active"' ?>><a href="./change-password.php">Change Password</a></li>
+            echo 'class="active"' ?>><a href="./change-password.php"><i
+                  class="glyphicon glyphicon-cog"></i> Change Password</a></li>
             <li <?php if ($name)
-            echo 'class="active"' ?>><a href="./change-name.php">Change Name</a></li>
+            echo 'class="active"' ?>><a href="./change-name.php"><i
+                  class="glyphicon glyphicon-user"></i> Change Name</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
