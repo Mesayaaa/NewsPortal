@@ -308,7 +308,7 @@ require('./includes/nav.inc.php');
                           <i class="glyphicon glyphicon-edit" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
                           <h4>No Articles Yet!</h4>
                           <p>Start writing your first article, ' . htmlspecialchars($_SESSION['AUTHOR_NAME']) . '!</p>
-                          <a href="./add-article.php" class="btn btn-primary">
+                          <a href="./add-article.php" class="btn btn-danger">
                             <span class="glyphicon glyphicon-plus"></span> Write New Article
                           </a>
                         </div>
