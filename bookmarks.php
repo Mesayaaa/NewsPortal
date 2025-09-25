@@ -155,42 +155,64 @@ if (!isset($_SESSION['USER_LOGGED_IN'])) {
       ?>
 
       <div class="text-center py-2">
-        <!-- Pagination Block -->
-        <div class="pagination">
-          <?php
-          // If two or more page exists
-          if ($page > 1) {
-
-            // Previous page link added 
-            echo '<a href="bookmarks.php?page=' . ($page - 1) . '">&laquo;</a>';
-          }
-
-          for ($i = 1; $i <= $total_page; $i++) {
-
-            // Active variable to determine if the page link is current page
-            $active = "";
-
-            // If the page is active page
-            if ($i == $page) {
-
-              // Updated active to active class name to show the active page link
-              $active = "page-active";
+        <!-- Enhanced Pagination Block -->
+        <div class="search-pagination-wrapper">
+          <div class="search-pagination">
+            <?php
+            // Function to build clean pagination URL
+            function buildPaginationUrl($page_num)
+            {
+              $params = array('page' => $page_num);
+              return 'bookmarks.php?' . http_build_query($params);
             }
 
-            echo '<a href="bookmarks.php?page=' . $i . '" class="' . $active . '">' . $i . '</a>';
-          }
+            // Previous page link
+            if ($page > 1) {
+              echo '<a href="' . buildPaginationUrl($page - 1) . '" class="pagination-btn prev-btn" title="Previous Page">';
+              echo '<i class="fas fa-chevron-left"></i>';
+              echo '<span class="d-none d-sm-inline">Previous</span>';
+              echo '</a>';
+            }
 
-          // If the current page is not the last page
-          if ($total_page > $page) {
+            // Page numbers with smart truncation
+            $start_page = max(1, $page - 2);
+            $end_page = min($total_page, $page + 2);
 
-            // Next page link added
-            echo '<a href="bookmarks.php?page=' . ($page + 1) . '">&raquo;</a>';
-          }
+            // Show first page if not in range
+            if ($start_page > 1) {
+              echo '<a href="' . buildPaginationUrl(1) . '" class="pagination-number">1</a>';
+              if ($start_page > 2) {
+                echo '<span class="pagination-ellipsis">...</span>';
+              }
+            }
+
+            // Show page numbers in range
+            for ($i = $start_page; $i <= $end_page; $i++) {
+              $active_class = ($i == $page) ? 'active' : '';
+              echo '<a href="' . buildPaginationUrl($i) . '" class="pagination-number ' . $active_class . '">' . $i . '</a>';
+            }
+
+            // Show last page if not in range
+            if ($end_page < $total_page) {
+              if ($end_page < $total_page - 1) {
+                echo '<span class="pagination-ellipsis">...</span>';
+              }
+              echo '<a href="' . buildPaginationUrl($total_page) . '" class="pagination-number">' . $total_page . '</a>';
+            }
+
+            // Next page link
+            if ($total_page > $page) {
+              echo '<a href="' . buildPaginationUrl($page + 1) . '" class="pagination-btn next-btn" title="Next Page">';
+              echo '<span class="d-none d-sm-inline">Next</span>';
+              echo '<i class="fas fa-chevron-right"></i>';
+              echo '</a>';
+            }
     }
     ?>
-
+        </div>
       </div>
     </div>
+  </div>
 </section>
 
 
