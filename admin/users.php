@@ -7,7 +7,7 @@ require('./includes/nav.inc.php');
     <div class="container">
         <ol class="breadcrumb">
             <li><a href="./index.php">Dashboard</a></li>
-            <li class="active">Users & Authors</li>
+            <li class="active">Users</li>
         </ol>
     </div>
 </section>
@@ -25,7 +25,7 @@ require('./includes/nav.inc.php');
                             <input type="text" name="search" class="form-control"
                                 placeholder="Search users by name or email"
                                 value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-danger">Search</button>
                         </form>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover article-list">

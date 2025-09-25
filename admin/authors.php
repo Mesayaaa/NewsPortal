@@ -25,7 +25,7 @@ require('./includes/nav.inc.php');
                             <input type="text" name="search" class="form-control"
                                 placeholder="Search authors by name or email"
                                 value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-danger">Search</button>
                         </form>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover article-list">

@@ -1095,6 +1095,7 @@ input[type="file"]:hover {
   font-size: 1rem;
   transition: all 0.3s ease;
   font-family: var(--ff-nunito);
+  border-color: #dc3545 !important;
 }
 
 .form-control:focus {
