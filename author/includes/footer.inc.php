@@ -1,5 +1,5 @@
 <footer id="footer">
-  <p>All Rights Reserved by &copy; WinniCode 2021</p>
+  <p>All Rights Reserved by &copy; WinniCode 2025</p>
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

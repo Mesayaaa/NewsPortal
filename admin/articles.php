@@ -339,18 +339,20 @@ require('./includes/nav.inc.php');
             </table>
           </div>
         </div>
-        <div class="text-center">
-          <ul class="pagination pg-red">
-            <?php
-            $paginationQuery = "SELECT * FROM article";
-            $paginationResult = mysqli_query($con, $paginationQuery);
-            if (mysqli_num_rows($paginationResult) > 0) {
-              $total_articles = mysqli_num_rows($paginationResult);
-              $total_page = ceil($total_articles / $limit);
+        <?php
+        $paginationQuery = "SELECT * FROM article";
+        $paginationResult = mysqli_query($con, $paginationQuery);
+        if (mysqli_num_rows($paginationResult) > 0) {
+          $total_articles = mysqli_num_rows($paginationResult);
+          $total_page = ceil($total_articles / $limit);
 
-              if ($page > $total_page) {
-                redirect('./articles.php');
-              }
+          if ($page > $total_page) {
+            redirect('./articles.php');
+          }
+          ?>
+          <div class="text-center">
+            <ul class="pagination pg-red">
+              <?php
               if ($page > 1) {
                 echo '
                     <li class="page-item">
@@ -374,10 +376,14 @@ require('./includes/nav.inc.php');
                       </a>
                     </li>';
               }
-            }
-            ?>
-          </ul>
-        </div>
+              ?>
+            </ul>
+          </div>
+          <?php
+        } else {
+          echo '<div class="text-center" style="padding: 30px; color: var(--active-color);"><div><i class="glyphicon glyphicon-file-alt" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i><h4>No Articles Found!</h4><p>Authors need to start writing articles.</p></div></div>';
+        }
+        ?>
       </div>
     </div>
   </div>

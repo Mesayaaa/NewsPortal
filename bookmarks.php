@@ -9,8 +9,15 @@ if (!isset($_SESSION['USER_LOGGED_IN'])) {
   alert("Please Login to See Your Bookmarks", "warning", "Access Denied");
   redirect('./user-login.php');
 }
-?>
 
+// Function to build pagination URL with current parameters
+function buildPaginationUrl($page) {
+  $params = $_GET;
+  $params['page'] = $page;
+  return 'bookmarks.php?' . http_build_query($params);
+}
+
+?>
 
 <!-- Article List Container -->
 <section class="py-1 category-list">
@@ -121,8 +128,6 @@ if (!isset($_SESSION['USER_LOGGED_IN'])) {
           );
         }
       } else {
-        echo "</div>";
-
         // Calling user defined function to create a card that says no articles present
         createNoArticlesCard();
       }
@@ -150,21 +155,14 @@ if (!isset($_SESSION['USER_LOGGED_IN'])) {
 
       // Calculated no of pages based on limit and no of bookmarked articles
       $total_page = ceil($total_articles / $limit);
-
-      echo "</div>";
       ?>
+
 
       <div class="text-center py-2">
         <!-- Enhanced Pagination Block -->
         <div class="search-pagination-wrapper">
           <div class="search-pagination">
             <?php
-            // Function to build clean pagination URL
-            function buildPaginationUrl($page_num)
-            {
-              $params = array('page' => $page_num);
-              return 'bookmarks.php?' . http_build_query($params);
-            }
 
             // Previous page link
             if ($page > 1) {
@@ -207,14 +205,15 @@ if (!isset($_SESSION['USER_LOGGED_IN'])) {
               echo '<i class="fas fa-chevron-right"></i>';
               echo '</a>';
             }
-    }
-    ?>
+            ?>
+          </div>
         </div>
       </div>
-    </div>
+      <?php
+    }
+    ?>
   </div>
 </section>
-
 
 <?php
 

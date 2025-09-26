@@ -87,24 +87,25 @@ require('./includes/nav.inc.php');
                       <h4>
                         You need to create a Category !
                       </h4>
-                    </td>
                   ';
             }
             ?>
           </table>
         </div>
-        <div class="text-center">
-          <ul class="pagination pg-red">
-            <?php
-            $paginationQuery = "SELECT * FROM category";
-            $paginationResult = mysqli_query($con, $paginationQuery);
-            if (mysqli_num_rows($paginationResult) > 0) {
-              $total_categories = mysqli_num_rows($paginationResult);
-              $total_page = ceil($total_categories / $limit);
+        <?php
+        $paginationQuery = "SELECT * FROM category";
+        $paginationResult = mysqli_query($con, $paginationQuery);
+        if (mysqli_num_rows($paginationResult) > 0) {
+          $total_categories = mysqli_num_rows($paginationResult);
+          $total_page = ceil($total_categories / $limit);
 
-              if ($page > $total_page) {
-                redirect('./categories.php');
-              }
+          if ($page > $total_page) {
+            redirect('./categories.php');
+          }
+          ?>
+          <div class="text-center">
+            <ul class="pagination pg-red">
+              <?php
               if ($page > 1) {
                 echo '
                     <li class="page-item">
@@ -128,10 +129,14 @@ require('./includes/nav.inc.php');
                       </a>
                     </li>';
               }
-            }
-            ?>
-          </ul>
-        </div>
+              ?>
+            </ul>
+          </div>
+          <?php
+        } else {
+          echo '<div class="text-center" style="padding-top: 28px; color: var(--active-color);"><h4>You need to create a Category !</h4></div>';
+        }
+        ?>
       </div>
     </div>
   </div>

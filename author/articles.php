@@ -321,18 +321,20 @@ require('./includes/nav.inc.php');
             </table>
           </div>
         </div>
-        <div class="text-center">
-          <ul class="pagination pg-red">
-            <?php
-            $paginationQuery = "SELECT * FROM article WHERE author_id = $author_id ";
-            $paginationResult = mysqli_query($con, $paginationQuery);
-            if (mysqli_num_rows($paginationResult) > 0) {
-              $total_articles = mysqli_num_rows($paginationResult);
-              $total_page = ceil($total_articles / $limit);
+        <?php
+        $paginationQuery = "SELECT * FROM article WHERE author_id = $author_id ";
+        $paginationResult = mysqli_query($con, $paginationQuery);
+        if (mysqli_num_rows($paginationResult) > 0) {
+          $total_articles = mysqli_num_rows($paginationResult);
+          $total_page = ceil($total_articles / $limit);
 
-              if ($page > $total_page) {
-                redirect('./articles.php');
-              }
+          if ($page > $total_page) {
+            redirect('./articles.php');
+          }
+          ?>
+          <div class="text-center">
+            <ul class="pagination pg-red">
+              <?php
               if ($page > 1) {
                 echo '
                     <li class="page-item">
@@ -356,10 +358,12 @@ require('./includes/nav.inc.php');
                       </a>
                     </li>';
               }
-            }
-            ?>
-          </ul>
-        </div>
+              ?>
+            </ul>
+          </div>
+          <?php
+        }
+        ?>
       </div>
     </div>
   </div>
