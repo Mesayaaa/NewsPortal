@@ -105,9 +105,15 @@ if (isset($_POST['login-submit'])) {
 <body>
   <header id="header">
     <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center">WinniCode <small>Admin Login</small></h1>
+      <div class="row" style="display: flex; align-items: center; min-height: 80px;">
+        <div style="display: flex; align-items: center;">
+          <a href="/index.php" class="back-nav">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"
+              style="margin-right:8px; font-size:1.3em; padding-bottom:6px"></span>
+            Home
+          </a>
+          <h1 class="login-title" style="margin:0 0 0 18px; color:#fff;">Admin Login
+          </h1>
         </div>
       </div>
     </div>

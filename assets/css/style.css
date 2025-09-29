@@ -25,9 +25,9 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   font-family: var(--ff-nunito);
-  position: sticky;
+  position: relative;
   z-index: 12;
-  top: 0;
+  /* top: 0; */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -36,6 +36,8 @@
   align-items: center;
   padding: 0;
   will-change: transform, box-shadow; /* Optimize for smooth scrolling */
+  height: 100px;
+  min-height: 100px;
 }
 
 /* Remove all underlines from navbar - FORCE OVERRIDE */
@@ -101,9 +103,12 @@
 }
 
 .navbar .logo {
-  padding: 15px 60px;
+  padding: 0 60px;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .navbar .logo:hover {
@@ -124,7 +129,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  height: 70px;
+  height: 100%;
 }
 
 .navbar ul li,
@@ -143,10 +148,12 @@
   font-size: var(--ts-md);
   font-weight: 500;
   padding: 10px 16px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
   gap: 8px;
 }
 
