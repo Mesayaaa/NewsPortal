@@ -103,12 +103,17 @@
 }
 
 .navbar .logo {
-  padding: 0 60px;
+  padding: 60px;
+  padding-top: 40px;
   transition: all 0.3s ease;
   flex-shrink: 0;
   height: 100%;
   display: flex;
   align-items: center;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
 }
 
 .navbar .logo:hover {
