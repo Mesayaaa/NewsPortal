@@ -110,7 +110,7 @@ if (isset($_POST['submit'])) {
         <!-- Website Overview -->
         <div class="panel panel-default">
           <div class="panel-heading main-color-bg">
-            <h3 class="panel-title">Add Category</h3>
+            <h3 class="panel-title">Edit Category</h3>
           </div>
           <div class="panel-body">
             <form method="post" id="edit_form" enctype="multipart/form-data">
