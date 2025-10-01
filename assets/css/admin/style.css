@@ -759,6 +759,361 @@ table th:last-child {
   background: white;
 }
 
+/* HORIZONTAL SCROLL INDICATORS FOR TABLES */
+.scroll-indicator-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Scroll hint text */
+.scroll-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: var(--ts-sml);
+  color: var(--primary-color);
+  font-weight: 600;
+  animation: pulseGlow 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-hint::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.scroll-hint .icon {
+  font-size: var(--ts-md);
+  animation: bounceHorizontal 1.5s ease-in-out infinite;
+}
+
+.scroll-hint.show {
+  display: flex;
+}
+
+/* Enhanced Right Shadow Indicator - DISABLED */
+.scroll-shadow-right {
+  display: none !important;
+}
+
+/* Shadow animations - DISABLED */
+.scroll-shadow-right.show {
+  display: none !important;
+}
+
+/* Enhanced Left Shadow Indicator - DISABLED */
+.scroll-shadow-left {
+  display: none !important;
+}
+
+/* Left shadow animations - DISABLED */
+.scroll-shadow-left.show {
+  display: none !important;
+}
+
+/* Modern Arrow Indicators */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--hover-color) 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 44px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+  z-index: 15;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 15px rgba(199, 39, 39, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.scroll-arrow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-arrow:hover {
+  background: linear-gradient(135deg, var(--hover-color) 0%, #d32f2f 100%);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 
+    0 6px 20px rgba(199, 39, 39, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: arrowPulse 0.6s ease-out;
+}
+
+.scroll-arrow:hover::before {
+  opacity: 1;
+}
+
+/* Active state moved to consolidated section below */
+
+.scroll-arrow.show {
+  opacity: 0.9;
+  animation: slideIn 0.5s ease-out;
+}
+
+.scroll-arrow-right {
+  right: 12px;
+}
+
+.scroll-arrow-left {
+  left: 12px;
+}
+
+/* Perfect centering for arrow characters */
+.scroll-arrow-right,
+.scroll-arrow-left {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0;
+}
+
+/* Specific positioning adjustments for triangle arrows */
+.scroll-arrow-right {
+  /* Right arrow slight adjustment */
+  padding-left: 1px;
+}
+
+.scroll-arrow-left {
+  /* Left arrow slight adjustment */
+  padding-right: 1px;
+}
+
+/* Mobile Table Scroll Enhancement - Arrows hidden, touch-friendly scrolling */
+@media (max-width: 1024px) {
+  .table-container {
+    /* Enhanced touch scrolling */
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  /* Subtle visual hint that table is scrollable */
+  .table-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(to left, rgba(248, 249, 250, 0.6), transparent);
+    pointer-events: none;
+    opacity: 0.8;
+  }
+}
+
+/* Legacy mobile styles - kept for compatibility */
+@media (max-width: 768px) {
+  .scroll-shadow-right,
+  .scroll-shadow-left {
+    width: 25px;
+  }
+  
+  .scroll-shadow-right::after,
+  .scroll-shadow-left::after {
+    width: 2px;
+    height: 16px;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .scroll-arrow {
+    opacity: 0.95;
+    box-shadow: 
+      0 6px 18px rgba(199, 39, 39, 0.35),
+      0 3px 10px rgba(0, 0, 0, 0.18);
+  }
+  
+  .scroll-arrow.show {
+    opacity: 1;
+    animation: touchPulse 2s ease-in-out infinite;
+  }
+  
+  .scroll-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: 
+      0 2px 8px rgba(199, 39, 39, 0.4),
+      0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Additional touch animation */
+@keyframes touchPulse {
+  0%, 100% {
+    box-shadow: 
+      0 6px 18px rgba(199, 39, 39, 0.35),
+      0 3px 10px rgba(0, 0, 0, 0.18);
+  }
+  50% {
+    box-shadow: 
+      0 8px 22px rgba(199, 39, 39, 0.45),
+      0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .scroll-shadow-right,
+  .scroll-shadow-left {
+    background: linear-gradient(
+      to left, 
+      rgba(0, 0, 0, 0.3) 0%,
+      transparent 100%
+    );
+  }
+  
+  .scroll-arrow {
+    border: 3px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Click Feedback Effects */
+.scroll-arrow.clicked {
+    animation: touchPulse 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 25px rgba(199, 39, 39, 0.4),
+        0 0 20px rgba(199, 39, 39, 0.3),
+        inset 0 2px 6px rgba(255, 255, 255, 0.15);
+}
+
+/* Consolidated Active State - Fixed positioning */
+.scroll-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: 
+        0 4px 12px rgba(199, 39, 39, 0.3),
+        0 0 10px rgba(199, 39, 39, 0.2),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.1s;
+}
+
+/* Hide scroll arrows on mobile and tablet - User requested */
+@media (max-width: 1024px) {
+    .scroll-arrow {
+        display: none !important;
+    }
+}
+
+/* Desktop-only scroll arrows */
+@media (min-width: 1025px) {
+    .scroll-arrow {
+        display: flex !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-arrow,
+  .scroll-shadow-right,
+  .scroll-shadow-left {
+    animation: none !important;
+    transition-duration: 0.1s;
+  }
+  
+  .scroll-arrow:hover {
+    transform: translateY(-50%) scale(1.05);
+  }
+  
+  .scroll-arrow.clicked {
+    animation: none !important;
+    transform: translateY(-50%) scale(1.05);
+  }
+}
+
+/* Enhanced Animations - DISABLED */
+@keyframes pulseRight {
+  0%, 100% { opacity: 0; }
+}
+
+@keyframes pulseLeft {
+  0%, 100% { opacity: 0; }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+}
+
+@keyframes arrowPulse {
+  0% {
+    box-shadow: 
+      0 4px 15px rgba(199, 39, 39, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  50% {
+    box-shadow: 
+      0 8px 25px rgba(199, 39, 39, 0.5),
+      0 4px 15px rgba(0, 0, 0, 0.25);
+  }
+  100% {
+    box-shadow: 
+      0 6px 20px rgba(199, 39, 39, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.05);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes bounceHorizontal {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
 /* Generic table styling for any table in admin panel */
 .panel-body table,
 #main table,
@@ -2177,4 +2532,28 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* First-time user hint pulse animation */
+@keyframes pulseHint {
+  0%, 100% { 
+    transform: translateY(-50%) scale(1);
+    box-shadow: 0 4px 15px rgba(199, 39, 39, 0.3);
+  }
+  25% { 
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 6px 20px rgba(199, 39, 39, 0.4);
+  }
+  50% { 
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 8px 25px rgba(199, 39, 39, 0.5);
+  }
+  75% { 
+    transform: translateY(-50%) scale(1.08);
+    box-shadow: 0 6px 20px rgba(199, 39, 39, 0.4);
+  }
+}
+
+.scroll-arrow.pulse-hint {
+  animation: pulseHint 1.2s ease-in-out 3;
 }

@@ -440,6 +440,9 @@ require('./includes/nav.inc.php');
   </div>
 </section>
 
+<!-- Table Scroll Indicator Script -->
+<script src="../assets/js/table-scroll-indicator.js"></script>
+
 <?php
 require('./includes/footer.inc.php')
   ?>
