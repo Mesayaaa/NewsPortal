@@ -111,7 +111,7 @@
   font-weight: 600;
   color: #495057;
   margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  font-size: var(--ts-sml);
   display: flex;
   align-items: center;
 }

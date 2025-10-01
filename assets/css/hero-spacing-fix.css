@@ -1,0 +1,31 @@
+/* Emergency spacing fix for hero section overlap */
+header.img-slider {
+  margin-bottom: 6rem !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+section.py-1.category-list,
+.category-list {
+  margin-top: 6rem !important;
+  padding-top: 4rem !important;
+  position: relative !important;
+  z-index: 2 !important;
+  background: var(--light-color) !important;
+}
+
+/* Ensure Articles heading has proper top margin */
+.category-list h2.headings {
+  margin-top: 2rem !important;
+  padding-top: 1rem !important;
+}
+
+/* Make sure there's no negative margins anywhere */
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}

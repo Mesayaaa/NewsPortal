@@ -1,0 +1,135 @@
+/* Desktop-specific card positioning improvements */
+/* Target screen sizes 992px and above (desktop) */
+@media (min-width: 992px) {
+  
+  /* Move card tags (badges) higher up on desktop */
+  .card .card-tags {
+    margin-top: -8px !important;
+    margin-bottom: 1rem !important;
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Adjust card content positioning for desktop */
+  .card .card-content {
+    padding-top: 1rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  /* Move card title higher */
+  .card .card-title {
+    margin-top: -4px !important;
+    margin-bottom: 8px !important;
+  }
+  
+  /* Adjust card description positioning */
+  .card .card-data {
+    margin-bottom: 1.2rem !important;
+  }
+  
+  /* Fine-tune tag positioning relative to card image */
+  .card .tag {
+    margin-top: -18px !important;
+    margin-bottom: 0 !important;
+    position: relative;
+    z-index: 15;
+  }
+  
+  /* Ensure tags don't overlap with image */
+  .card .card-img {
+    margin-bottom: 8px !important;
+  }
+  
+  /* Optimize spacing for better visual hierarchy */
+  .card:hover .card-tags {
+    transform: translateY(-2px);
+  }
+  
+  /* Additional refinements for desktop layout */
+  .card .card-content h3.card-title {
+    line-height: 1.3 !important;
+  }
+  
+  /* Desktop-specific hover effects for better UX */
+  .card:hover .card-content {
+    transform: translateY(-2px);
+  }
+}
+
+/* Hero Section Desktop Improvements */
+@media (min-width: 992px) {
+  
+  /* Move hero section badges higher up on desktop */
+  .img-slider .slide .info .tag {
+    margin-top: -10px !important;
+    margin-bottom: 8px !important;
+    transform: translateY(-8px) !important;
+  }
+  
+  /* Adjust hero section info positioning */
+  .img-slider .slide .info {
+    top: 2.5rem !important; /* Move entire info section higher */
+    padding-top: 0.5rem !important;
+  }
+  
+  /* Move hero section title higher to follow badges */
+  .img-slider .slide .info h1 {
+    margin-top: -5px !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Adjust hero section description positioning */
+  .img-slider .slide .info p {
+    margin-top: 0.5rem !important;
+  }
+  
+  /* Enhance tag appearance in hero section */
+  .img-slider .slide .info .tag {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    margin-right: 8px !important;
+    transform: translateY(-12px) !important;
+  }
+}
+
+/* Extra large desktop screens (1200px+) */
+@media (min-width: 1200px) {
+  
+  /* Further refinements for large desktop displays */
+  .card .card-tags {
+    margin-top: -12px !important;
+    gap: 10px !important;
+  }
+  
+  .card .card-content {
+    padding-top: 0.8rem !important;
+  }
+  
+  .card .card-title {
+    margin-top: -6px !important;
+  }
+  
+  /* Optimize tag positioning for larger screens */
+  .card .tag {
+    margin-top: -22px !important;
+    padding: 8px 16px !important;
+    font-size: calc(var(--ts-vs) + 2px) !important;
+  }
+  
+  /* Enhanced hero section positioning for large desktop */
+  .img-slider .slide .info {
+    top: 2rem !important;
+  }
+  
+  .img-slider .slide .info .tag {
+    transform: translateY(-15px) !important;
+    margin-bottom: 10px !important;
+  }
+  
+  .img-slider .slide .info h1 {
+    margin-top: -8px !important;
+  }
+}

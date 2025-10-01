@@ -123,6 +123,10 @@ if (strpos($uri, "news.php") != false) {
 
   <!-- SEARCH PAGE CSS -->
   <link rel="stylesheet" href="./assets/css/search.css" />
+  <link rel="stylesheet" href="./assets/css/hero-spacing-fix.css" />
+
+  <!-- DESKTOP CARD POSITIONING CSS -->
+  <link rel="stylesheet" href="./assets/css/desktop-card-positioning.css" />
 
   <!-- FAVICON LINK -->
   <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />

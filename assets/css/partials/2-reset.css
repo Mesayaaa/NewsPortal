@@ -12,7 +12,8 @@ html {
 
 body {
   font-family: "Lato", sans-serif;
-  line-height: 1.5;
+  font-size: var(--ts-md); /* Base font size for better accessibility */
+  line-height: var(--lh-normal); /* Improved line height for readability */
   background: var(--light-color);
   overflow-x: hidden;
   /* Enhanced responsive text handling */

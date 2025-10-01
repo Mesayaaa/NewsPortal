@@ -240,7 +240,7 @@
 
 .btn-card span {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 1rem;
+  font-size: var(--ts-md);
 }
 
 .btn-card:hover span {
@@ -681,7 +681,7 @@ a.btn-card.btn:hover span,
   text-decoration: none;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: var(--ts-sml);
   transition: all 0.3s ease;
   border: 2px solid #e9ecef;
   cursor: pointer;

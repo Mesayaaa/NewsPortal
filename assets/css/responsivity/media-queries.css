@@ -26,17 +26,77 @@
   }
 }
 
-/* BUTTTONS SMALL SCREEN */
+/* ENHANCED TYPOGRAPHY RESPONSIVE DESIGN */
+
+/* Mobile devices - slightly smaller fonts but still accessible */
 @media (max-width: 620px) {
+  :root {
+    --ts-vs: 0.7rem;      /* Slightly smaller for mobile */
+    --ts-sml: 0.9rem;     /* Maintain readability */
+    --ts-md: 1.1rem;      /* Good mobile reading size */
+    --ts-lg: 1.3rem;      /* Mobile-friendly large text */
+    --hs-vs: 1.4rem;      /* Mobile heading sizes */
+    --hs-sml: 2rem;       
+    --hs-md: 2.4rem;      
+    --hs-lg: 3rem;        
+  }
+  
   .btn {
+    font-size: var(--ts-md);
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .tag {
     font-size: var(--ts-sml);
+    padding: 0.4rem 0.8rem;
+  }
+  
+  /* Enhanced mobile paragraph spacing */
+  p {
+    line-height: var(--lh-loose);
+    margin-bottom: var(--space-md);
+  }
+  
+  /* Mobile heading adjustments */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: var(--lh-normal);
   }
 }
 
-/* TAGS SMALL SCREEN */
-@media (max-width: 620px) {
-  .tag {
-    font-size: var(--ts-vs);
+/* Tablet portrait - balanced font sizes */
+@media (min-width: 621px) and (max-width: 768px) {
+  :root {
+    --ts-vs: 0.72rem;
+    --ts-sml: 0.95rem;
+    --ts-md: 1.2rem;
+    --ts-lg: 1.4rem;
+    --hs-vs: 1.5rem;
+    --hs-sml: 2.1rem;
+    --hs-md: 2.6rem;
+    --hs-lg: 3.2rem;
+  }
+}
+
+/* Large screens - maximize readability */
+@media (min-width: 1400px) {
+  :root {
+    --ts-vs: 0.8rem;      /* Larger base for big screens */
+    --ts-sml: 1.1rem;     /* Enhanced readability */
+    --ts-md: 1.35rem;     /* Comfortable reading */
+    --ts-lg: 1.6rem;      /* Large text for emphasis */
+    --hs-vs: 1.7rem;      /* Heading hierarchy */
+    --hs-sml: 2.4rem;     
+    --hs-md: 2.9rem;      
+    --hs-lg: 3.8rem;      /* Hero headings */
+  }
+  
+  /* Enhanced large screen spacing */
+  .container {
+    max-width: 1320px;
+  }
+  
+  p {
+    max-width: 75ch; /* Optimal reading line length */
   }
 }
 
@@ -85,9 +145,10 @@
   }
   
   .navbar .nav-menu li a {
-    padding: 15px;
+    padding: var(--space-md);
     display: block;
-    font-size: 18px;
+    font-size: var(--ts-lg);
+    line-height: var(--lh-normal);
   }
   
   /* Hide user greeting on mobile */
@@ -206,6 +267,7 @@
 @media (max-width: 820px) {
   .img-slider {
     height: 375px;
+    margin-bottom: var(--space-md); /* Reduce bottom margin on tablets */
   }
   .img-slider .slide .info {
     top: 15px;
@@ -243,6 +305,7 @@
 @media (max-width: 620px) {
   .img-slider {
     height: 320px;
+    margin-bottom: var(--space-sm); /* Smaller margin on mobile */
   }
   .img-slider .slide .info {
     top: 8px;
@@ -280,6 +343,7 @@
 @media (max-width: 420px) {
   .img-slider {
     height: 300px;
+    margin-bottom: var(--space-sm); /* Consistent spacing on phones */
   }
   .img-slider .slide .info {
     top: 10px;

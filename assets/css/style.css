@@ -10,9 +10,9 @@
   background-color: var(--primary-color);
   color: white;
   cursor: pointer;
-  padding: 15px;
+  padding: 18px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: var(--ts-md);
   transition: all 0.3s ease-in-out;
 }
 
@@ -194,7 +194,7 @@
 
 .navbar .dropdown-toggle i {
   margin-left: 8px;
-  font-size: 0.8rem;
+  font-size: var(--ts-sml);
   transition: transform 0.3s ease;
 }
 
@@ -237,7 +237,7 @@
   margin-left: 40px;
 }
 #search-icon {
-  font-size: 1rem;
+  font-size: var(--ts-md);
   color: var(--dark-color);
   transition: all 0.2s ease;
 }
@@ -282,6 +282,7 @@
   width: 100%;
   height: 450px;
   background: #1d212b;
+  margin-bottom: 4rem; /* Explicit large spacing after hero section */
 }
 
 .img-slider .slide {
@@ -355,6 +356,30 @@
 .img-slider .navigation .slide-nav-btn.active {
   background: var(--active-color);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Ensure proper spacing after hero section */
+header.img-slider {
+  margin-bottom: 5rem !important; /* Force very large bottom margin on header */
+  display: block;
+  position: relative;
+}
+
+/* Articles section specific spacing */
+section.py-1.category-list {
+  margin-top: 5rem !important; /* Force very large top margin */
+  padding-top: 3rem !important; /* Additional padding for extra space */
+  position: relative;
+  z-index: 1;
+  clear: both;
+}
+
+.img-slider + section,
+.img-slider + .category-list {
+  margin-top: 5rem !important; /* Force large spacing after hero */
+  clear: both;
+  position: relative;
+  z-index: 1;
 }
 
 /* CARD LIST MOBILE*/
@@ -467,7 +492,7 @@
   background: rgba(255, 255, 255, 0.05);
   border-radius: 50%;
   color: #cccccc;
-  font-size: 1.1rem;
+  font-size: var(--ts-md);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -520,7 +545,7 @@
 
 .footer-title i {
   color: var(--primary-color);
-  font-size: 1rem;
+  font-size: var(--ts-md);
 }
 
 .footer-links {
@@ -551,8 +576,8 @@
 }
 
 .footer-links a i {
-  font-size: 0.85rem;
-  width: 16px;
+  font-size: var(--ts-sml);
+  width: 18px;
   color: #666;
   transition: color 0.3s ease;
 }
@@ -750,7 +775,7 @@
 
 .filters label {
   font-family: var(--ff-nunito);
-  font-size: 0.95rem;
+  font-size: var(--ts-sml);
   padding-right: 10px;
   width: 80px;
   text-align: center;
@@ -775,7 +800,7 @@
   font-family: "Font Awesome 5 Free";
   content: "\f00c";
   font-weight: 900;
-  font-size: 12px;
+  font-size: 14px;
   display: none;
   color: white;
 }
@@ -873,8 +898,8 @@ form button {
 }
 
 .article .article-content {
-  font-size: 1rem;
-  padding: 15px 5px;
+  font-size: var(--ts-md);
+  padding: 18px 6px;
   font-family: var(--ff-nunito);
   /* Enhanced word-breaking for responsive layout */
   word-wrap: break-word;
@@ -899,8 +924,8 @@ form button {
 
 .article .article-content p:first-child::first-letter {
   float: left;
-  font-size: 4rem;
-  line-height: 3rem;
+  font-size: 4.5rem;
+  line-height: 3.5rem;
   color: var(--black-color);
   letter-spacing: 10px;
   text-transform: uppercase;
@@ -958,7 +983,7 @@ form button {
 .aside-card-title {
   color: var(--black-color);
   font-family: var(--ff-robo);
-  font-size: 0.8rem;
+  font-size: var(--ts-sml);
   transition: all 200ms ease-in-out;
 }
 
@@ -967,7 +992,7 @@ form button {
   padding-top: 10px;
   color: var(--black-color);
   font-family: var(--ff-robo);
-  font-size: 0.8rem;
+  font-size: var(--ts-sml);
   display: none;
 }
 
@@ -1018,7 +1043,7 @@ form button {
   padding-left: 15px;
   border-radius: 5px;
   border: 1px solid lightgrey;
-  font-size: 17px;
+  font-size: var(--ts-lg);
 }
 
 .input-field input:focus,
@@ -1041,10 +1066,10 @@ form button {
 }
 
 .input-field button {
-  padding: 10px;
-  margin-top: 10px;
+  padding: 12px;
+  margin-top: 12px;
   width: 100%;
-  font-size: 17px;
+  font-size: var(--ts-lg);
   font-weight: 400;
   color: var(--light-color);
   background-color: var(--primary-color);

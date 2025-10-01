@@ -10,7 +10,7 @@ body.login-page #header .container {
   text-decoration: none;
   color: var(--primary-color);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: var(--ts-md);
   z-index: 10;
   background: rgba(255,255,255,0.85);
   padding: 4px 14px 4px 8px;
@@ -24,18 +24,18 @@ body.login-page #header .container {
   text-decoration: none;
 }
 .back-nav .glyphicon {
-  font-size: 1.5rem;
+  font-size: var(--ts-lg);
   margin-right: 6px;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 @media (max-width: 600px) {
   .back-nav {
-    font-size: 1rem;
+    font-size: var(--ts-sml);
     padding: 4px 10px 4px 6px;
   }
   .back-nav .glyphicon {
-    font-size: 1.2rem;
+    font-size: var(--ts-md);
     margin-right: 4px;
   }
 }
@@ -91,12 +91,12 @@ body {
   padding-top: 25px !important;
   padding-bottom: 25px !important;
   height: 70px !important;
-  font-size: 15px;
+  font-size: var(--ts-md);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-brand {
-  font-size: 26px !important;
+  font-size: var(--hs-vs) !important;
   font-weight: 800;
   color: var(--primary-color) !important;
   font-family: var(--ff-monts);
@@ -106,7 +106,7 @@ body {
 
 .navbar-brand i {
   margin-right: 12px;
-  font-size: 24px;
+  font-size: var(--ts-lg);
   color: var(--secondary-color);
 }
 
@@ -434,13 +434,13 @@ body {
 .dash-footer .btn {
   border-radius: 20px;
   padding: 8px 20px;
-  font-size: 0.9rem;
+  font-size: var(--ts-sml);
   font-weight: 600;
 }
 
 .text-muted {
   color: #6c757d !important;
-  font-size: 0.9rem;
+  font-size: var(--ts-sml);
 }
 
 /* Modern Login Form */

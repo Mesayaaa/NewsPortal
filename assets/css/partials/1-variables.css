@@ -17,14 +17,14 @@
   --active-color: #b90615;
 
   /* FONT SIZE VARIABLES */
-  --ts-vs: 0.56rem;
-  --ts-sml: 0.8rem;
-  --ts-md: 1.1rem;
-  --ts-lg: 1.25rem;
-  --hs-vs: 1.3rem;
-  --hs-sml: 2rem;
-  --hs-md: 2.5rem;
-  --hs-lg: 3rem;
+  --ts-vs: 0.75rem;    /* Increased from 0.56rem for better readability */
+  --ts-sml: 1rem;      /* Increased from 0.8rem for accessibility */
+  --ts-md: 1.25rem;    /* Increased from 1.1rem for comfortable reading */
+  --ts-lg: 1.5rem;     /* Increased from 1.25rem for better hierarchy */
+  --hs-vs: 1.6rem;     /* Increased from 1.3rem for small headings */
+  --hs-sml: 2.25rem;   /* Increased from 2rem for better prominence */
+  --hs-md: 2.75rem;    /* Increased from 2.5rem for main headings */
+  --hs-lg: 3.5rem;     /* Increased from 3rem for hero headings */
 
   /* FONT FAMILY VARIABLES */
 
@@ -35,4 +35,17 @@
 
   /* BORDER RADIUS */
   --border-radius: 5px;
+  
+  /* SPACING VARIABLES for improved accessibility */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  
+  /* LINE HEIGHT VARIABLES for improved readability */
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+  --lh-loose: 1.8;
 }
