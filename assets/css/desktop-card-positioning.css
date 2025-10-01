@@ -63,7 +63,7 @@
   
   /* Move hero section badges higher up on desktop */
   .img-slider .slide .info .tag {
-    margin-top: -10px !important;
+    margin-top: -8px !important;
     margin-bottom: 8px !important;
     transform: translateY(-8px) !important;
   }
@@ -76,7 +76,7 @@
   
   /* Move hero section title higher to follow badges */
   .img-slider .slide .info h1 {
-    margin-top: -5px !important;
+    margin-top: -10px !important;
     padding-top: 0 !important;
   }
   
@@ -125,11 +125,15 @@
   }
   
   .img-slider .slide .info .tag {
-    transform: translateY(-15px) !important;
+    transform: translateY(-10px) !important;
     margin-bottom: 10px !important;
-  }
+    -webkit-transform: translateY(-10px) !important;
+    -moz-transform: translateY(-10px) !important;
+    -ms-transform: translateY(-10px) !important;
+    -o-transform: translateY(-10px) !important;
+}
   
   .img-slider .slide .info h1 {
-    margin-top: -8px !important;
+    margin-top: -10px !important;
   }
 }
