@@ -2,6 +2,7 @@
 /* Target screen sizes 992px and above (desktop) */
 @media (min-width: 992px) {
   
+  /* CARD STYLING */
   /* Move card tags (badges) higher up on desktop */
   .card .card-tags {
     margin-top: -8px !important;
@@ -56,16 +57,15 @@
   .card:hover .card-content {
     transform: translateY(-2px);
   }
-}
-
-/* Hero Section Desktop Improvements */
-@media (min-width: 992px) {
   
+  /* HERO SECTION STYLING */
   /* Move hero section badges higher up on desktop */
   .img-slider .slide .info .tag {
-    margin-top: -8px !important;
-    margin-bottom: 8px !important;
     transform: translateY(-8px) !important;
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    margin-right: 8px !important;
   }
   
   /* Adjust hero section info positioning */
@@ -83,15 +83,6 @@
   /* Adjust hero section description positioning */
   .img-slider .slide .info p {
     margin-top: 0.5rem !important;
-  }
-  
-  /* Enhance tag appearance in hero section */
-  .img-slider .slide .info .tag {
-    position: relative;
-    z-index: 10;
-    display: inline-block;
-    margin-right: 8px !important;
-    transform: translateY(-12px) !important;
   }
 }
 
@@ -125,15 +116,11 @@
   }
   
   .img-slider .slide .info .tag {
-    transform: translateY(-10px) !important;
+    transform: translateY(-15px) !important;
     margin-bottom: 10px !important;
-    -webkit-transform: translateY(-10px) !important;
-    -moz-transform: translateY(-10px) !important;
-    -ms-transform: translateY(-10px) !important;
-    -o-transform: translateY(-10px) !important;
-}
+  }
   
   .img-slider .slide .info h1 {
-    margin-top: -10px !important;
+    margin-top: -8px !important;
   }
 }

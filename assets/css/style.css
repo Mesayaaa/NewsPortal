@@ -358,28 +358,21 @@
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Ensure proper spacing after hero section */
+/* Hero Section Spacing Fix - Consolidated */
 header.img-slider {
-  margin-bottom: 5rem !important; /* Force very large bottom margin on header */
+  position: relative !important;
+  z-index: 1 !important;
   display: block;
-  position: relative;
 }
 
-/* Articles section specific spacing */
-section.py-1.category-list {
-  margin-top: 5rem !important; /* Force very large top margin */
-  padding-top: 3rem !important; /* Additional padding for extra space */
-  position: relative;
-  z-index: 1;
-  clear: both;
-}
 
+/* Adjacent section spacing */
 .img-slider + section,
 .img-slider + .category-list {
-  margin-top: 5rem !important; /* Force large spacing after hero */
+  margin-top: 6rem !important;
   clear: both;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* CARD LIST MOBILE*/
