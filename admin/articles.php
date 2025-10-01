@@ -10,11 +10,11 @@ require('./includes/nav.inc.php');
   }
 
   .article-table {
-    min-width: 1000px;
-    /* Reduced from 1200px */
+    min-width: 1200px;
+    /* Increased back for better text visibility */
     margin-bottom: 0;
-    table-layout: fixed;
-    /* Fixed layout for better control */
+    table-layout: auto;
+    /* Auto layout for flexible column sizing */
     width: 100%;
   }
 
@@ -26,20 +26,21 @@ require('./includes/nav.inc.php');
   }
 
   .article-table .title-col {
-    width: 20%;
-    /* Fixed percentage width */
-    max-width: 160px;
-    min-width: 120px;
+    width: 22%;
+    /* Increased width for better readability */
+    max-width: 200px;
+    min-width: 150px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    line-height: 1.4;
   }
 
   .article-table .content-col {
-    width: 25%;
-    /* Fixed percentage width */
-    max-width: 180px;
-    min-width: 140px;
+    width: 28%;
+    /* Increased width for content */
+    max-width: 250px;
+    min-width: 180px;
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -100,7 +101,7 @@ require('./includes/nav.inc.php');
   .article-table .actions-col .btn {
     margin: 1px;
     padding: 4px 8px;
-    font-size: 11px;
+    /* Font size controlled by global CSS for consistency */
   }
 
   /* Header sticky for actions */
@@ -112,56 +113,156 @@ require('./includes/nav.inc.php');
     z-index: 11;
   }
 
-  /* Mobile responsive adjustments */
+  /* Tablet responsive adjustments */
   @media (max-width: 768px) {
     .table-responsive-custom {
       border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
     .article-table {
       min-width: 800px;
-      /* Further reduced for mobile */
     }
 
     .article-table th,
     .article-table td {
-      padding: 6px !important;
-      font-size: 12px;
+      padding: 8px 6px !important;
+      /* Font size controlled by global CSS for consistency */
     }
 
     .article-table .title-col {
+      max-width: 180px;
+      min-width: 140px;
+    }
+
+    .article-table .content-col {
+      max-width: 220px;
+      min-width: 180px;
+    }
+
+    .article-table .image-col img {
+      width: 40px;
+      height: 30px;
+    }
+
+    .article-table .actions-col {
+      min-width: 120px;
+    }
+
+    .article-table .actions-col .btn {
+      padding: 4px 8px;
+      margin: 1px;
+      min-width: 28px;
+      /* Font size controlled by global CSS for consistency */
+    }
+  }
+
+  /* Mobile responsive adjustments */
+  @media (max-width: 480px) {
+    .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .table-responsive-custom {
+      margin: 0 -10px;
+      border-radius: 0;
+    }
+
+    .article-table {
+      min-width: 700px;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 6px 4px !important;
+      /* Font size controlled by global CSS for consistency */
+    }
+
+    .article-table .title-col {
+      max-width: 100px;
+      min-width: 80px;
+    }
+
+    .article-table .content-col {
       max-width: 120px;
       min-width: 100px;
     }
 
-    .article-table .content-col {
-      max-width: 140px;
-      min-width: 120px;
-    }
-
     .article-table .image-col img {
-      width: 35px;
-      height: 25px;
+      width: 30px;
+      height: 22px;
     }
 
     .article-table .actions-col {
-      min-width: 110px;
+      min-width: 100px;
     }
 
     .article-table .actions-col .btn {
       padding: 3px 6px;
-      font-size: 10px;
       margin: 0.5px;
+      min-width: 24px;
+      /* Font size controlled by global CSS for consistency */
+    }
+
+    .panel-body {
+      padding: 10px;
+    }
+
+    .btn-box {
+      margin-bottom: 15px;
+    }
+
+    .btn-box .btn {
+      width: 100%;
+      margin-bottom: 10px;
     }
   }
 
-  /* Text truncation with tooltip */
+  /* Enhanced text display with expand functionality */
   .text-truncate-custom {
     display: block;
-    max-height: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-height: none;
+    /* Remove height restriction */
+    overflow: visible;
+    /* Allow full text to show */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
     position: relative;
+  }
+
+  /* For very long content, add line clamping as fallback */
+  .text-truncate-long {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Show max 3 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    max-height: calc(1.4em * 3);
+    /* 3 lines max */
+  }
+
+  /* Expandable text functionality */
+  .text-expandable {
+    position: relative;
+  }
+
+  .text-expand-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .text-expand-btn:hover {
+    background: var(--hover-color);
   }
 
   /* Highlight actions column */
@@ -183,6 +284,22 @@ require('./includes/nav.inc.php');
         document.location = url;
       }
     });
+  }
+
+  // Text expand/collapse functionality
+  function toggleText(element) {
+    const textDiv = element.previousElementSibling;
+    const isExpanded = textDiv.classList.contains('text-truncate-custom');
+
+    if (isExpanded) {
+      textDiv.classList.remove('text-truncate-custom');
+      textDiv.classList.add('text-truncate-long');
+      element.textContent = 'Show More';
+    } else {
+      textDiv.classList.remove('text-truncate-long');
+      textDiv.classList.add('text-truncate-custom');
+      element.textContent = 'Show Less';
+    }
   }
 </script>
 

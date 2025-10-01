@@ -10,8 +10,10 @@ require('./includes/nav.inc.php');
   }
 
   .article-table {
-    min-width: 1000px;
+    min-width: 1200px;
     margin-bottom: 0;
+    table-layout: auto;
+    /* Auto layout for flexible sizing */
   }
 
   .article-table th,
@@ -77,46 +79,115 @@ require('./includes/nav.inc.php');
     padding: 4px 8px;
   }
 
-  /* Mobile responsive adjustments */
+  /* Tablet responsive adjustments */
   @media (max-width: 768px) {
     .table-responsive-custom {
       border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
     .article-table th,
     .article-table td {
-      padding: 6px !important;
-      font-size: 12px;
+      padding: 8px 6px !important;
+      /* Font size controlled by global CSS for consistency */
     }
 
     .article-table .title-col {
-      max-width: 150px;
-      min-width: 120px;
+      max-width: 160px;
+      min-width: 140px;
     }
 
     .article-table .content-col {
-      max-width: 180px;
-      min-width: 150px;
+      max-width: 200px;
+      min-width: 170px;
     }
 
     .article-table .image-col img {
-      width: 50px;
-      height: 35px;
+      width: 45px;
+      height: 32px;
+    }
+
+    .article-table .actions-col .btn {
+      padding: 4px 8px;
+      margin: 1px;
+      /* Font size controlled by global CSS for consistency */
+    }
+  }
+
+  /* Mobile responsive adjustments */
+  @media (max-width: 480px) {
+    .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .table-responsive-custom {
+      margin: 0 -10px;
+      border-radius: 0;
+    }
+
+    .article-table th,
+    .article-table td {
+      padding: 6px 4px !important;
+      /* Font size controlled by global CSS for consistency */
+    }
+
+    .article-table .title-col {
+      max-width: 120px;
+      min-width: 100px;
+    }
+
+    .article-table .content-col {
+      max-width: 140px;
+      min-width: 120px;
+    }
+
+    .article-table .image-col img {
+      width: 35px;
+      height: 25px;
     }
 
     .article-table .actions-col .btn {
       padding: 3px 6px;
-      font-size: 11px;
+      margin: 0.5px;
+      /* Font size controlled by global CSS for consistency */
+    }
+
+    .panel-body {
+      padding: 10px;
+    }
+
+    .btn-box {
+      margin-bottom: 15px;
+    }
+
+    .btn-box .btn {
+      width: 100%;
+      margin-bottom: 10px;
     }
   }
 
-  /* Text truncation with tooltip */
+  /* Enhanced text display with full visibility */
   .text-truncate-custom {
     display: block;
-    max-height: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-height: none;
+    /* Remove height restriction */
+    overflow: visible;
+    /* Allow full text to show */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
     position: relative;
+  }
+
+  /* For very long content, add line clamping as fallback */
+  .text-truncate-long {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    max-height: calc(1.4em * 3);
   }
 
   /* Clean panel header styling to match admin */

@@ -43,6 +43,12 @@ body.login-page #header .container {
    MODERN ADMIN PANEL STYLES
    =============================== */
 
+/* SMOOTH SCROLL BEHAVIOR FOR ADMIN STICKY NAVBAR */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* Account for admin navbar height */
+}
+
 ::selection {
   background: var(--primary-color);
   color: #fff;
@@ -440,7 +446,7 @@ body {
 
 .text-muted {
   color: #6c757d !important;
-  font-size: var(--ts-sml);
+  font-size: var(--ts-md);
 }
 
 /* Modern Login Form */
@@ -650,7 +656,7 @@ body.login-page #footer { display: none; }
   font-weight: 700;
   border: none;
   padding: 20px 15px;
-  font-size: 0.95rem;
+  font-size: var(--ts-md);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -720,7 +726,7 @@ table th {
   padding: 18px 15px !important;
   border: none !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
-  font-size: 0.9rem !important;
+  font-size: var(--ts-md) !important; /* Konsisten dengan public pages */
   position: relative;
 }
 
@@ -782,7 +788,7 @@ table th:last-child {
   padding: 16px 12px !important;
   border: none !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
-  font-size: 0.85rem !important;
+  font-size: var(--ts-sml) !important; /* Konsisten dengan public pages */
 }
 
 /* Table body styling for consistency */
@@ -793,6 +799,7 @@ table th:last-child {
   border-bottom: 1px solid #f1f3f4;
   vertical-align: middle;
   color: var(--dark-color);
+  font-size: var(--ts-md); /* Konsisten dengan public pages */
 }
 
 /* Modern Pagination */
@@ -822,6 +829,7 @@ table th:last-child {
   cursor: pointer;
   padding: 12px 18px;
   font-weight: 500;
+  font-size: var(--ts-md);
   transition: all 0.3s ease;
   background: white;
 }
@@ -955,7 +963,7 @@ input[type="file"]:hover {
 
 .file-upload-hint {
   font-family: var(--ff-nunito);
-  font-size: 0.9rem;
+  font-size: var(--ts-md);
   color: #6c757d;
   margin: 0;
 }
@@ -1007,12 +1015,12 @@ input[type="file"]:hover {
 .file-info-label {
   font-weight: 600;
   color: var(--dark-color);
-  font-size: 0.9rem;
+  font-size: var(--ts-md);
 }
 
 .file-info-value {
   color: #6c757d;
-  font-size: 0.9rem;
+  font-size: var(--ts-md);
 }
 
 .file-remove-btn {
@@ -1021,7 +1029,7 @@ input[type="file"]:hover {
   border: none;
   border-radius: 20px;
   padding: 5px 12px;
-  font-size: 0.8rem;
+  font-size: var(--ts-sml);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -1084,7 +1092,7 @@ input[type="file"]:hover {
 
 .progress-text {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: var(--ts-md);
   color: var(--dark-color);
   font-weight: 600;
 }
@@ -1109,7 +1117,7 @@ input[type="file"]:hover {
   }
   
   .file-upload-hint {
-    font-size: 0.8rem;
+    font-size: var(--ts-sml);
   }
   
   .file-info-row {
@@ -1150,16 +1158,219 @@ input[type="file"]:hover {
   border-radius: 12px;
   border: 2px solid #e1e5e9;
   padding: 15px 20px;
-  font-size: 1rem;
+  font-size: var(--ts-md) !important;
   transition: all 0.3s ease;
   font-family: var(--ff-nunito);
-  border-color: #dc3545 !important;
+  background: #fff;
+  color: var(--dark-color);
 }
 
 .form-control:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 4px rgba(199, 39, 39, 0.1);
   outline: none;
+}
+
+/* Enhanced Select Dropdown Styling */
+select.form-control {
+  font-size: var(--ts-md) !important;
+  min-height: 50px;
+  padding: 12px 40px 12px 20px;
+  background: white;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  min-width: 200px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="%23666" d="M6 9L1.5 4.5h9z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+select.form-control option {
+  font-size: var(--ts-md);
+  padding: 12px 16px;
+  background: white;
+  color: var(--dark-color);
+  border: none;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+select.form-control:hover {
+  border-color: var(--hover-color);
+}
+
+/* Textarea specific styling */
+textarea.form-control {
+  font-size: var(--ts-md) !important;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Input specific styling */
+input.form-control {
+  font-size: var(--ts-md) !important;
+}
+
+/* Label styling for consistency */
+.form-group label {
+  font-size: var(--ts-lg) !important;
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 8px;
+  display: block;
+  font-family: var(--ff-nunito);
+}
+
+/* Global Table Text Handling - Prevent Truncation */
+.table td, .table th {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  vertical-align: top !important;
+  padding: 12px 8px !important;
+  line-height: 1.4 !important;
+}
+
+/* Consistent table styling for ALL admin tables */
+.article-list td, .article-list th,
+.article-table td, .article-table td,
+.table td, .table th {
+  font-size: var(--ts-md) !important; /* Consistent medium size for all tables */
+  padding: 14px 10px !important;
+}
+
+/* Ensure table cells expand to show full content */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive .table {
+  margin-bottom: 0;
+  min-width: 100%;
+}
+
+/* Image in tables */
+.table td img {
+  max-width: 60px;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* Tag styling in tables */
+.table .tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: var(--ts-vs);
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  min-width: 60px;
+}
+
+/* Responsive Form Styling */
+@media (max-width: 768px) {
+  .form-group label {
+    font-size: var(--ts-md) !important;
+  }
+  
+  .form-control {
+    font-size: var(--ts-sml) !important;
+    padding: 12px 15px;
+  }
+  
+  select.form-control {
+    padding: 12px 35px 12px 15px;
+    background-position: right 12px center;
+  }
+  
+  textarea.form-control {
+    min-height: 100px;
+  }
+  
+  /* Table responsive adjustments - Consistent font size */
+  .article-list td, .article-list th,
+  .article-table td, .article-table th,
+  .table td, .table th {
+    padding: 8px 6px !important;
+    font-size: var(--ts-sml) !important; /* Smaller but readable on mobile */
+  }
+  
+  .table td img {
+    max-width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-size: var(--ts-sml) !important;
+    margin-bottom: 6px;
+  }
+  
+  .form-control {
+    font-size: var(--ts-sml) !important;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+  
+  select.form-control {
+    padding: 10px 30px 10px 12px;
+    background-position: right 8px center;
+    background-size: 10px;
+  }
+  
+  textarea.form-control {
+    min-height: 80px;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: var(--ts-md) !important;
+    margin-bottom: 10px;
+  }
+  
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .btn-group .btn {
+    width: 100%;
+    border-radius: 8px !important;
+    margin-bottom: 8px;
+  }
+  
+  /* Mobile table adjustments - Consistent font size for all tables */
+  .table-responsive-custom {
+    margin: 0 -15px;
+    border-radius: 0;
+  }
+  
+  .article-list, .article-table, .table {
+    font-size: var(--ts-vs) !important;
+  }
+  
+  .article-list td, .article-list th,
+  .article-table td, .article-table th,
+  .table td, .table th {
+    padding: 8px 4px !important;
+    font-size: var(--ts-vs) !important; /* Consistent smallest size on mobile */
+  }
 }
 
 .image_preview {
@@ -1264,7 +1475,7 @@ input[type="file"]:hover {
 
 .btn-sm {
   padding: 8px 16px;
-  font-size: 0.9rem;
+  font-size: var(--ts-md);
 }
 
 /* Modern Sidebar */
@@ -1320,7 +1531,7 @@ input[type="file"]:hover {
   color: white;
   border-radius: 20px;
   padding: 4px 10px;
-  font-size: 0.8rem;
+  font-size: var(--ts-sml);
   font-weight: 600;
 }
 
@@ -1385,7 +1596,7 @@ input[type="file"]:hover {
 
 .navbar-nav .dropdown-menu li a i {
   margin-right: 12px;
-  font-size: 16px;
+  font-size: var(--ts-md);
   width: 18px;
   text-align: center;
   transition: all 0.3s ease;
@@ -1437,7 +1648,6 @@ input[type="file"]:hover {
 /* Ensure navbar has proper z-index hierarchy */
 .navbar {
   z-index: 1050 !important; /* Increased z-index */
-  position: relative;
   overflow: visible !important; /* Ensure dropdown is not clipped */
 }
 
@@ -1588,7 +1798,7 @@ body {
 .status-badge {
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: var(--ts-sml);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1704,6 +1914,21 @@ body {
   .navbar-default .navbar-toggle {
     margin-top: 12px;
     margin-bottom: 12px;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    background: rgba(199, 39, 39, 0.1);
+  }
+  
+  .navbar-default .navbar-toggle .icon-bar {
+    background-color: var(--primary-color);
+    height: 3px;
+    border-radius: 2px;
+  }
+  
+  .navbar-default .navbar-toggle:hover,
+  .navbar-default .navbar-toggle:focus {
+    background: rgba(199, 39, 39, 0.2);
+    border-color: var(--hover-color);
   }
 
   .navbar-collapse {
@@ -1764,10 +1989,24 @@ body {
   .dash-box {
     margin-bottom: 15px;
     padding: 20px 15px;
+    text-align: center;
   }
   
   .dash-box h2 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+  }
+  
+  .dash-box h4 {
+    font-size: var(--ts-md);
+  }
+  
+  .dash-icon .glyphicon {
+    font-size: 2rem;
+  }
+  
+  .dash-footer .btn {
+    font-size: var(--ts-sml);
+    padding: 8px 16px;
   }
   
   #header h1 {
@@ -1782,7 +2021,7 @@ body {
   
   .article-table,
   .article-list {
-    font-size: 0.9rem;
+    font-size: var(--ts-md);
   }
   
   .article-table td img,
@@ -1808,6 +2047,14 @@ body {
   .list-group-item {
     padding: 12px 15px;
   }
+  
+  .col-md-3 {
+    margin-bottom: 20px;
+  }
+  
+  .list-group {
+    margin-bottom: 0;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1828,19 +2075,44 @@ body {
     font-size: 1.8rem;
   }
   
+  .dash-box {
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+  
   .dash-box h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   
   .dash-box h4 {
-    font-size: 1rem;
+    font-size: var(--ts-md);
   }
   
   .dash-icon .glyphicon {
-    font-size: 2.5rem;
-    width: 60px;
-    height: 60px;
-    line-height: 20px;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    line-height: 10px;
+  }
+  
+  /* Mobile sidebar to be full width */
+  .col-md-3 {
+    margin-bottom: 20px;
+  }
+  
+  .list-group-item {
+    padding: 14px 16px;
+    font-size: var(--ts-sml);
+  }
+  
+  .list-group-item .glyphicon {
+    font-size: var(--ts-md);
+    margin-right: 12px;
+  }
+  
+  .list-group-item .badge {
+    font-size: var(--ts-vs);
+    padding: 4px 8px;
   }
 }
 

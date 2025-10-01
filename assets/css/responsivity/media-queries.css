@@ -100,12 +100,17 @@
   }
 }
 
-/* NAVBAR RESPONSIVE - SIMPLE */
+/* NAVBAR RESPONSIVE - MAINTAIN STICKY BEHAVIOR */
 @media (max-width: 768px) {
   .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: -webkit-sticky !important; /* Safari compatibility */
+    position: sticky !important; /* Maintain sticky positioning on mobile */
+    top: 0 !important;
+    z-index: 9999 !important;
+    width: 100%;
   }
   
   .navbar .logo {
@@ -205,10 +210,15 @@
 
 }
 
-/* TABLET SPECIFIC ADJUSTMENTS */
+/* TABLET SPECIFIC ADJUSTMENTS - MAINTAIN STICKY */
 @media (max-width: 992px) and (min-width: 769px) {
   .navbar {
     justify-content: space-between;
+    position: -webkit-sticky !important; /* Safari compatibility */
+    position: sticky !important; /* Maintain sticky positioning on tablet */
+    top: 0 !important;
+    z-index: 9999 !important;
+    width: 100%;
   }
   
   .navbar .logo {
