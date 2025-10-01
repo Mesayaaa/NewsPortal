@@ -232,6 +232,31 @@
   visibility: visible;
   transform: translateY(0);
 }
+
+/* Dropdown menu items styling */
+.navbar .dropdown-menu li {
+  list-style: none;
+  margin: 0;
+}
+
+.navbar .dropdown-menu li a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--dark-color);
+  text-decoration: none;
+  font-size: var(--ts-md);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.navbar .dropdown-menu li a:hover {
+  background: rgba(199, 39, 39, 0.08);
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
 .fa-plus {
   font-size: var(--ts-md);
   margin-left: 40px;
