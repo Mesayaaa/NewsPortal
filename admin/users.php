@@ -2,6 +2,13 @@
 require('./includes/nav.inc.php');
 ?>
 
+<script>
+    // Add specific class for users page styling
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('users-page');
+    });
+</script>
+
 <!-- BREADCRUMB -->
 <section id="breadcrumb">
     <div class="container">

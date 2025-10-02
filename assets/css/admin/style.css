@@ -1889,10 +1889,16 @@ input.form-control {
 .list-group-item .badge {
   background: var(--secondary-color);
   color: white;
-  border-radius: 20px;
-  padding: 4px 10px;
-  font-size: var(--ts-lg); /* Updated for visual matching */
+  border-radius: 50%; /* Make it perfectly round */
+  padding: 6px 8px; /* Smaller, more balanced padding */
+  font-size: var(--ts-md); /* Smaller font size (1.25rem) */
   font-weight: 600;
+  min-width: 28px; /* Ensure perfect circle for single digits */
+  height: 28px; /* Fixed height for perfect circle */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 /* Footer */
@@ -2471,8 +2477,10 @@ body {
   }
   
   .list-group-item .badge {
-    font-size: var(--ts-vs);
-    padding: 4px 8px;
+    font-size: var(--ts-sml); /* Smaller font size for mobile */
+    padding: 4px 6px;
+    min-width: 24px; /* Smaller circle for mobile */
+    height: 24px;
   }
 }
 
@@ -2648,8 +2656,10 @@ table th, .table th,
     font-size: var(--hs-sml) !important; /* 2.25rem - medium size for sidebar */
 }
 
-/* Tag/Badge consistency */
-.badge, .label, .tag,
+/* Tag/Badge consistency - Exclude sidebar badges */
+.badge:not(.list-group-item .badge), 
+.label, 
+.tag,
 .table .tag,
 .table .badge {
     font-size: var(--ts-lg) !important; /* 1.5rem - match category and text size */
@@ -2815,4 +2825,71 @@ table tbody tr td,
 .article-table td *,
 table td * {
     font-size: inherit !important; /* Inherit the table cell font-size */
+}
+
+/* SPECIFIC STYLING FOR USERS AND AUTHORS TABLES */
+/* Fix ID column width to be more reasonable */
+body[class*="users"] .article-list th:first-child,
+body[class*="users"] .article-list td:first-child,
+body[class*="authors"] .article-list th:first-child,
+body[class*="authors"] .article-list td:first-child {
+    width: 80px !important; /* Fixed narrow width for ID column */
+    max-width: 80px !important;
+    min-width: 80px !important;
+    text-align: center !important;
+}
+
+/* Alternative approach using page-specific classes */
+.users-page .article-list th:first-child,
+.users-page .article-list td:first-child,
+.authors-page .article-list th:first-child,
+.authors-page .article-list td:first-child {
+    width: 80px !important;
+    max-width: 80px !important;
+    min-width: 80px !important;
+    text-align: center !important;
+}
+
+/* Ensure name and email columns take remaining space efficiently */
+.users-page .article-list th:nth-child(2),
+.users-page .article-list td:nth-child(2),
+.authors-page .article-list th:nth-child(2),
+.authors-page .article-list td:nth-child(2) {
+    width: 35% !important; /* Name column */
+    min-width: 150px !important;
+}
+
+.users-page .article-list th:nth-child(3),
+.users-page .article-list td:nth-child(3),
+.authors-page .article-list th:nth-child(3),
+.authors-page .article-list td:nth-child(3) {
+    width: auto !important; /* Email column takes remaining space */
+    min-width: 200px !important;
+}
+
+/* Responsive adjustments for users/authors tables */
+@media (max-width: 768px) {
+    .users-page .article-list th:first-child,
+    .users-page .article-list td:first-child,
+    .authors-page .article-list th:first-child,
+    .authors-page .article-list td:first-child {
+        width: 60px !important;
+        max-width: 60px !important;
+        min-width: 60px !important;
+        font-size: var(--ts-sml) !important;
+    }
+    
+    .users-page .article-list th:nth-child(2),
+    .users-page .article-list td:nth-child(2),
+    .authors-page .article-list th:nth-child(2),
+    .authors-page .article-list td:nth-child(2) {
+        min-width: 120px !important;
+    }
+    
+    .users-page .article-list th:nth-child(3),
+    .users-page .article-list td:nth-child(3),
+    .authors-page .article-list th:nth-child(3),
+    .authors-page .article-list td:nth-child(3) {
+        min-width: 150px !important;
+    }
 }

@@ -2,6 +2,13 @@
 require('./includes/nav.inc.php');
 ?>
 
+<script>
+    // Add specific class for authors page styling
+    document.addEventListener('DOMContentLoaded', function () {
+        document.body.classList.add('authors-page');
+    });
+</script>
+
 <!-- BREADCRUMB -->
 <section id="breadcrumb">
     <div class="container">
