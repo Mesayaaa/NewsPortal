@@ -39,13 +39,18 @@
       $article_date = $data['article_date'];
       $article_trend = $data['article_trend'];
 
-      // Limit article title length for hero section display to prevent long titles
-      $article_title = strlen($article_title) > 60 ? substr($article_title, 0, 60) . '...' : $article_title;
+      // Limit article title to maximum words for hero section display
+      $title_words = explode(' ', $article_title);
+      if (count($title_words) > 13) {
+        $article_title = implode(' ', array_slice($title_words, 0, 13)) . '...';
+      }
 
-      // Updating the description with a substring containing at most length of 200 characters
-      $article_desc = substr($article_desc, 0, 200) . '...';
+      // Limit article description to maximum words for hero section display
+      $desc_words = explode(' ', $article_desc);
+      if (count($desc_words) > 40) {
+        $article_desc = implode(' ', array_slice($desc_words, 0, 40)) . '...';
+      }
 
-      // New variable to determine if the article is NEW
       $new = false;
 
       // Fetching present timestamp

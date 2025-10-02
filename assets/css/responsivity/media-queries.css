@@ -267,9 +267,10 @@
 /* IMAGE SLIDER DESKTOP DOWN*/
 @media (max-width: 1220px) {
   .img-slider .slide .info {
-    top: 45px;
-    left: 25px;
-    width: 80vw;
+    top: 2rem; /* Consistent with main CSS */
+    left: 1.5rem;
+    width: 75%; /* Maintain 3/4 width ratio */
+    max-width: calc(75% - 1.5rem); /* 3/4 width with padding consideration */
   }
 }
 
@@ -280,9 +281,10 @@
     margin-bottom: var(--space-md); /* Reduce bottom margin on tablets */
   }
   .img-slider .slide .info {
-    top: 15px;
-    left: 15px;
-    width: 90vw;
+    top: 1rem; /* Reduced spacing for tablet */
+    left: 1rem;
+    width: 75%; /* Maintain 3/4 width ratio on tablet */
+    max-width: calc(75% - 1rem); /* 3/4 width with padding consideration */
   }
   .img-slider .slide img {
     object-fit: cover;
@@ -295,6 +297,8 @@
     overflow-wrap: break-word;
     hyphens: auto;
     line-height: 1.2;
+    margin-top: 0; /* Removed margin-top completely for tighter spacing */
+    padding-top: 0; /* Remove padding */
   }
 
   .img-slider .slide .info p {
@@ -318,9 +322,10 @@
     margin-bottom: var(--space-sm); /* Smaller margin on mobile */
   }
   .img-slider .slide .info {
-    top: 8px;
-    left: 8px;
-    width: 90vw;
+    top: 0.5rem; /* Reduced spacing for mobile */
+    left: 0.5rem;
+    width: 75%; /* Maintain 3/4 width ratio on tablet portrait */
+    max-width: calc(75% - 0.5rem); /* 3/4 width with padding consideration */
   }
   .img-slider .slide img {
     object-fit: cover;
@@ -333,6 +338,8 @@
     overflow-wrap: break-word;
     hyphens: auto;
     line-height: 1.2;
+    margin-top: 0; /* Removed margin-top completely for tighter spacing */
+    padding-top: 0; /* Remove padding */
   }
 
   .img-slider .slide .info p {
@@ -356,9 +363,10 @@
     margin-bottom: var(--space-sm); /* Consistent spacing on phones */
   }
   .img-slider .slide .info {
-    top: 10px;
-    left: 10px;
-    width: 90vw;
+    top: 0.5rem; /* Consistent with other mobile breakpoints */
+    left: 0.5rem;
+    width: 75%; /* Maintain 3/4 width ratio on mobile */
+    max-width: calc(75% - 0.5rem); /* 3/4 width with padding consideration */
     padding: 0.5rem 1rem;
   }
   .img-slider .slide img {
@@ -372,6 +380,8 @@
     overflow-wrap: break-word;
     hyphens: auto;
     line-height: 1.2;
+    margin-top: 0; /* Removed margin-top completely for tighter spacing */
+    padding-top: 0; /* Remove padding */
   }
 
   .img-slider .slide .info p {

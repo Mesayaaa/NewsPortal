@@ -61,12 +61,17 @@
   /* HERO SECTION STYLING */
   /* Move hero section badges higher up on desktop */
   .img-slider .slide .info .tag {
-    transform: translateY(-8px) !important;
+    transform: translateY(0) !important;
     position: relative;
     z-index: 10;
     display: inline-block;
     margin-right: 8px !important;
-  }
+    margin-bottom: 0.05rem !important;
+    -webkit-transform: translateY(0) !important;
+    -moz-transform: translateY(0) !important;
+    -ms-transform: translateY(0) !important;
+    -o-transform: translateY(0) !important;
+}
   
   /* Adjust hero section info positioning */
   .img-slider .slide .info {
@@ -76,8 +81,9 @@
   
   /* Move hero section title higher to follow badges */
   .img-slider .slide .info h1 {
-    margin-top: -10px !important;
+    margin-top: 0 !important; /* Removed negative margin for cleaner spacing */
     padding-top: 0 !important;
+    line-height: 1.1 !important; /* Tighter line height */
   }
   
   /* Adjust hero section description positioning */
@@ -116,11 +122,25 @@
   }
   
   .img-slider .slide .info .tag {
-    transform: translateY(-15px) !important;
-    margin-bottom: 10px !important;
+    transform: translateY(0) !important; /* Remove vertical transform */
+    margin-bottom: 0.05rem !important; /* Very tight spacing */
   }
   
   .img-slider .slide .info h1 {
-    margin-top: -8px !important;
+    margin-top: 0 !important; /* Removed margin-top completely for tighter spacing */
+    padding-top: 0 !important; /* Ensure no padding */
+    line-height: 1.1 !important; /* Tighter line height */
+  }
+
+  /* FORCE TIGHT SPACING - OVERRIDE ALL OTHER STYLES */
+  .img-slider .slide .info .tag:last-of-type {
+    margin-bottom: 0 !important;
+  }
+  
+  .img-slider .slide .info > .tag + h1,
+  .img-slider .slide .info > h1 {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0.3rem !important;
   }
 }

@@ -350,25 +350,48 @@ body {
   border-radius: var(--border-radius);
 }
 
+/* Dark overlay for better text readability */
+.img-slider .slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+  z-index: 2;
+  border-radius: var(--border-radius);
+}
+
 .img-slider .slide .info {
   position: absolute;
-  top: 3rem;
-  left: 3rem;
-  width: 50vw;
+  top: 2rem; /* Reduced from 3rem to bring content higher */
+  left: 2rem; /* Reduced from 3rem for better positioning */
+  width: 75%; /* Set to exactly 3/4 (75%) of the background image width */
+  max-width: calc(75% - 2rem); /* Ensure content stays within 3/4 bounds with padding consideration */
   color: var(--light-color);
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem; /* Reduced padding to save space */
+  z-index: 3; /* Above the overlay for better text visibility */
+}
+
+/* Reduce spacing for tags in hero slider */
+.img-slider .slide .info .tag {
+  margin-bottom: 0.1rem; /* Reduced from 0.2rem to make it closer to title */
+  margin-right: 0.5rem;
 }
 
 .img-slider .slide .info h1 {
-  padding-top: 5px;
+  padding-top: 0; /* Removed padding to reduce spacing */
   font-size: var(--hs-md);
   font-family: var(--ff-monts);
+  font-weight: bold; /* Make news titles bold */
   /* Enhanced title display - no truncation */
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
   line-height: 1.2;
   margin-bottom: 0.5rem;
+  margin-top: 0; /* Removed margin-top completely for tighter spacing */
 }
 
 .img-slider .slide .info p {
