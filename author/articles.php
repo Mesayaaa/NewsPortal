@@ -100,7 +100,7 @@ require('./includes/nav.inc.php');
     z-index: 15 !important;
     opacity: 0 !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    box-shadow: 
+    box-shadow:
       0 4px 15px rgba(199, 39, 39, 0.3),
       0 2px 8px rgba(0, 0, 0, 0.15) !important;
     border: 2px solid rgba(255, 255, 255, 0.2) !important;
@@ -121,7 +121,7 @@ require('./includes/nav.inc.php');
   .scroll-arrow:hover {
     background: linear-gradient(135deg, var(--hover-color) 0%, #d32f2f 100%) !important;
     transform: translateY(-50%) scale(1.15) !important;
-    box-shadow: 
+    box-shadow:
       0 6px 20px rgba(199, 39, 39, 0.4),
       0 4px 12px rgba(0, 0, 0, 0.2) !important;
     animation: arrowPulse 0.6s ease-out !important;
@@ -148,17 +148,26 @@ require('./includes/nav.inc.php');
 
   /* Keyframe animations to match admin */
   @keyframes arrowPulse {
-    0% { transform: translateY(-50%) scale(1.15); }
-    50% { transform: translateY(-50%) scale(1.25); }
-    100% { transform: translateY(-50%) scale(1.15); }
+    0% {
+      transform: translateY(-50%) scale(1.15);
+    }
+
+    50% {
+      transform: translateY(-50%) scale(1.25);
+    }
+
+    100% {
+      transform: translateY(-50%) scale(1.15);
+    }
   }
 
   @keyframes slideIn {
-    0% { 
+    0% {
       opacity: 0;
       transform: translateY(-50%) translateX(10px);
     }
-    100% { 
+
+    100% {
       opacity: 0.9;
       transform: translateY(-50%) translateX(0);
     }
