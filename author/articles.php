@@ -79,6 +79,91 @@ require('./includes/nav.inc.php');
     padding: 4px 8px;
   }
 
+  /* HORIZONTAL SCROLL BUTTON ANIMATIONS - Match Admin Style */
+  .scroll-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 44px !important;
+    height: 44px !important;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--hover-color) 100%) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: var(--ts-lg) !important;
+    font-weight: normal !important;
+    line-height: 44px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    cursor: pointer !important;
+    z-index: 15 !important;
+    opacity: 0 !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 
+      0 4px 15px rgba(199, 39, 39, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    text-align: center !important;
+  }
+
+  .scroll-arrow::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: -2px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  .scroll-arrow:hover {
+    background: linear-gradient(135deg, var(--hover-color) 0%, #d32f2f 100%) !important;
+    transform: translateY(-50%) scale(1.15) !important;
+    box-shadow: 
+      0 6px 20px rgba(199, 39, 39, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    animation: arrowPulse 0.6s ease-out !important;
+  }
+
+  .scroll-arrow:hover::before {
+    opacity: 1 !important;
+  }
+
+  .scroll-arrow.show {
+    opacity: 0.9 !important;
+    animation: slideIn 0.5s ease-out !important;
+  }
+
+  .scroll-arrow-right {
+    right: 12px !important;
+    padding-left: 1px !important;
+  }
+
+  .scroll-arrow-left {
+    left: 12px !important;
+    padding-right: 1px !important;
+  }
+
+  /* Keyframe animations to match admin */
+  @keyframes arrowPulse {
+    0% { transform: translateY(-50%) scale(1.15); }
+    50% { transform: translateY(-50%) scale(1.25); }
+    100% { transform: translateY(-50%) scale(1.15); }
+  }
+
+  @keyframes slideIn {
+    0% { 
+      opacity: 0;
+      transform: translateY(-50%) translateX(10px);
+    }
+    100% { 
+      opacity: 0.9;
+      transform: translateY(-50%) translateX(0);
+    }
+  }
+
   /* Tablet responsive adjustments */
   @media (max-width: 768px) {
     .table-responsive-custom {
@@ -376,7 +461,7 @@ require('./includes/nav.inc.php');
                     <tr>
                       <td colspan="7" class="text-center" style="padding: 30px; color: var(--active-color);">
                         <div>
-                          <i class="glyphicon glyphicon-edit" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
+                          <i class="glyphicon glyphicon-edit empty-state-icon"></i>
                           <h4>No Articles Yet!</h4>
                           <p>Start writing your first article, ' . htmlspecialchars($_SESSION['AUTHOR_NAME']) . '!</p>
                           <a href="./add-article.php" class="btn btn-danger">

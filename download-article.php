@@ -86,12 +86,12 @@ if ($row > 0) {
         } 
         p {
           text-align: justify;
-          font-size: 1rem;
+          font-size: 1rem; /* Keep standard 1rem for PDF readability */
           padding: 15px 5px;
           margin: 0.5rem 0;
         }
         h1 {
-          font-size: 2.5rem;
+          font-size: 2.5rem; /* Keep standard 2.5rem for PDF title */
           font-weight: 600;
           color: #333333;
           letter-spacing: -2px;

@@ -255,7 +255,8 @@ require('./includes/nav.inc.php');
     border: none;
     padding: 2px 6px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: var(--ts-vs);
+    /* Konsisten dengan public (0.75rem ≈ 12px, close to 10px) */
     cursor: pointer;
     margin-top: 4px;
     display: inline-block;
@@ -443,7 +444,7 @@ require('./includes/nav.inc.php');
                     <tr>
                       <td colspan="7" class="text-center" style="padding: 30px; color: var(--active-color);">
                         <div>
-                          <i class="glyphicon glyphicon-file-alt" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
+                          <i class="glyphicon glyphicon-file-alt empty-state-icon"></i>
                           <h4>No Articles Found!</h4>
                           <p>Authors need to start writing articles.</p>
                         </div>
@@ -498,7 +499,7 @@ require('./includes/nav.inc.php');
           </div>
           <?php
         } else {
-          echo '<div class="text-center" style="padding: 30px; color: var(--active-color);"><div><i class="glyphicon glyphicon-file-alt" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i><h4>No Articles Found!</h4><p>Authors need to start writing articles.</p></div></div>';
+          echo '<div class="text-center" style="padding: 30px; color: var(--active-color);"><div><i class="glyphicon glyphicon-file-alt empty-state-icon"></i><h4>No Articles Found!</h4><p>Authors need to start writing articles.</p></div></div>';
         }
         ?>
       </div>
