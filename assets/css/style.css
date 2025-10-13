@@ -1181,21 +1181,21 @@ form button {
 
 .register-form-wrapper .form-title {
   text-align: center;
-  padding: 1rem 0 2rem 0;
+  padding: 1rem 0 1rem 0;
   width: 100%;
 }
 
 .register-form-wrapper .form-title h4 {
   font-family: var(--ff-robo);
-  font-size: var(--hs-med);
-  font-weight: 600;
+  font-size: var(--hs-sml);
+  font-weight: 500;
   color: var(--dark-color);
   margin-bottom: 0.5rem;
 }
 
 .register-form-wrapper .form-title p {
   font-family: var(--ff-robo);
-  font-size: var(--hs-sml);
+  font-size: var(--ts-md);
   color: var(--grey-color);
   margin: 0;
 }
@@ -1238,8 +1238,23 @@ form button {
 
 .login-only-wrapper .form-title {
   text-align: center;
-  padding: 1rem 0 2rem 0;
+  padding: 1rem 0 1rem 0;
   width: 100%;
+}
+
+.login-only-wrapper .form-title h4 {
+  font-family: var(--ff-robo);
+  font-size: var(--hs-sml);
+  font-weight: 500;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.login-only-wrapper .form-title p {
+  font-family: var(--ff-robo);
+  font-size: var(--ts-md);
+  color: var(--grey-color);
+  margin: 0;
 }
 
 /* FOOTER ANIMATIONS */

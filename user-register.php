@@ -99,7 +99,7 @@ if (isset($_POST['signup-submit'])) {
                             placeholder=" Confirm Password" autocomplete="off" required>
                     </div>
                     <div class="input-field">
-                        <button type="submit" name="signup-submit">Create Account</button>
+                        <button type="submit" name="signup-submit">Register</button>
                     </div>
                 </form>
             </div>
