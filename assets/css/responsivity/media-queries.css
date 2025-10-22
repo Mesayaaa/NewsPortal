@@ -280,29 +280,61 @@
     height: 375px;
     margin-bottom: var(--space-md); /* Reduce bottom margin on tablets */
   }
+  .img-slider .slide .slide-image-wrapper {
+    height: 375px;
+  }
   .img-slider .slide .info {
     top: 1rem; /* Reduced spacing for tablet */
     left: 1rem;
     width: 75%; /* Maintain 3/4 width ratio on tablet */
     max-width: calc(75% - 1rem); /* 3/4 width with padding consideration */
+    padding: 0.8rem 1.2rem;
+    max-height: calc(100% - 70px); /* Keep button above pagination */
   }
   .img-slider .slide img {
     object-fit: cover;
     height: 375px;
   }
+  .img-slider .slide .info .tag {
+    margin-bottom: 0.2rem;
+    margin-right: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    font-size: var(--ts-sml);
+  }
   .img-slider .slide .info h1 {
     font-size: var(--hs-sml);
-    /* Enhanced responsive title display */
+    /* Enhanced responsive title display with line limit */
     word-wrap: break-word;
     overflow-wrap: break-word;
+    word-break: break-word;
     hyphens: auto;
-    line-height: 1.2;
-    margin-top: 0; /* Removed margin-top completely for tighter spacing */
-    padding-top: 0; /* Remove padding */
+    line-height: 1.3;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0.4rem;
+    /* Limit to 2 lines on tablet */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 6rem; /* 2 lines * 1.3 line-height * 2.25rem (--hs-sml) = 5.85rem */
+    /* Prevent layout breaking */
+    width: 100%;
+    max-width: 100%;
   }
 
   .img-slider .slide .info p {
     font-size: var(--ts-md);
+    line-height: 1.5;
+    margin: 0.4rem 0 0.6rem 0;
+    /* Limit to 2 lines on tablet to keep button visible */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4rem; /* 2 lines * 1.5 line-height * 1.25rem (--ts-md) = 3.75rem */
   }
   .img-slider .navigation {
     bottom: 25px;
@@ -321,29 +353,61 @@
     height: 320px;
     margin-bottom: var(--space-sm); /* Smaller margin on mobile */
   }
+  .img-slider .slide .slide-image-wrapper {
+    height: 320px;
+  }
   .img-slider .slide .info {
     top: 0.5rem; /* Reduced spacing for mobile */
     left: 0.5rem;
     width: 75%; /* Maintain 3/4 width ratio on tablet portrait */
     max-width: calc(75% - 0.5rem); /* 3/4 width with padding consideration */
+    padding: 0.6rem 1rem;
+    max-height: calc(100% - 60px); /* Keep button above pagination */
   }
   .img-slider .slide img {
     object-fit: cover;
     height: 320px;
   }
+  .img-slider .slide .info .tag {
+    margin-bottom: 0.2rem;
+    margin-right: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+  }
   .img-slider .slide .info h1 {
     font-size: var(--ts-lg);
-    /* Enhanced responsive title display for tablet */
+    /* Enhanced responsive title display for tablet portrait */
     word-wrap: break-word;
     overflow-wrap: break-word;
+    word-break: break-word;
     hyphens: auto;
-    line-height: 1.2;
-    margin-top: 0; /* Removed margin-top completely for tighter spacing */
-    padding-top: 0; /* Remove padding */
+    line-height: 1.3;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0.3rem;
+    /* Limit to 2 lines on tablet portrait */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4rem; /* 2 lines * 1.3 line-height * 1.5rem (--ts-lg) = 3.9rem */
+    /* Prevent layout breaking */
+    width: 100%;
+    max-width: 100%;
   }
 
   .img-slider .slide .info p {
     font-size: var(--ts-sml);
+    line-height: 1.5;
+    margin: 0.3rem 0 0.5rem 0;
+    /* Limit to 2 lines on tablet portrait to keep button visible */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3.5rem; /* 2 lines * 1.5 line-height * 1rem (--ts-sml) = 3rem */
   }
   .img-slider .navigation {
     bottom: 15px;
@@ -362,31 +426,68 @@
     height: 300px;
     margin-bottom: var(--space-sm); /* Consistent spacing on phones */
   }
+  .img-slider .slide .slide-image-wrapper {
+    height: 300px;
+  }
   .img-slider .slide .info {
-    top: 0.5rem; /* Consistent with other mobile breakpoints */
+    top: 0.4rem; /* Consistent with other mobile breakpoints */
     left: 0.5rem;
     width: 75%; /* Maintain 3/4 width ratio on mobile */
     max-width: calc(75% - 0.5rem); /* 3/4 width with padding consideration */
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.8rem;
+    max-height: calc(100% - 50px); /* Keep button above pagination */
   }
   .img-slider .slide img {
     object-fit: cover;
     height: 300px;
   }
+  .img-slider .slide .info .tag {
+    margin-bottom: 0.15rem;
+    margin-right: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+  }
   .img-slider .slide .info h1 {
-    font-size: var(--ts-lg);
+    font-size: var(--ts-md);
     /* Enhanced responsive title display for mobile */
     word-wrap: break-word;
     overflow-wrap: break-word;
+    word-break: break-word;
     hyphens: auto;
-    line-height: 1.2;
-    margin-top: 0; /* Removed margin-top completely for tighter spacing */
-    padding-top: 0; /* Remove padding */
+    line-height: 1.3;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0.3rem;
+    /* Limit to 2 lines on phone */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3.5rem; /* 2 lines * 1.3 line-height * 1.25rem (--ts-md) = 3.25rem */
+    /* Prevent layout breaking */
+    width: 100%;
+    max-width: 100%;
   }
 
   .img-slider .slide .info p {
     font-size: var(--ts-sml);
+    line-height: 1.4;
+    margin: 0.2rem 0 0.4rem 0;
+    /* Limit to 2 lines on phone for very compact display */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3rem; /* 2 lines * 1.4 line-height * 1rem (--ts-sml) = 2.8rem */
   }
+  
+  .img-slider .slide .info .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: var(--ts-sml);
+  }
+  
   .img-slider .navigation {
     bottom: 10px;
   }

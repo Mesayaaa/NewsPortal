@@ -39,18 +39,9 @@
       $article_date = $data['article_date'];
       $article_trend = $data['article_trend'];
 
-      // Limit article title to maximum words for hero section display
-      $title_words = explode(' ', $article_title);
-      if (count($title_words) > 13) {
-        $article_title = implode(' ', array_slice($title_words, 0, 13)) . '...';
-      }
-
-      // Limit article description to maximum words for hero section display
-      $desc_words = explode(' ', $article_desc);
-      if (count($desc_words) > 40) {
-        $article_desc = implode(' ', array_slice($desc_words, 0, 40)) . '...';
-      }
-
+      // CSS handles text truncation responsively for different screen sizes
+      // No need to truncate here
+  
       $new = false;
 
       // Fetching present timestamp

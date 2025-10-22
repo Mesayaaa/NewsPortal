@@ -194,9 +194,10 @@ function createSlider($active, $img, $color, $category, $title, $content, $id, $
 {
   echo '
     <div class="slide ' . $active . '">
-      <img src="' . (!empty($img) ? './assets/images/articles/' . $img : './assets/images/fallback_news.png') . '"/>
-      <div class="info">
-        <div class=" tag ' . $color . '">' . $category . '</div>';
+      <div class="slide-image-wrapper">
+        <img src="' . (!empty($img) ? './assets/images/articles/' . $img : './assets/images/fallback_news.png') . '"/>
+        <div class="info">
+          <div class=" tag ' . $color . '">' . $category . '</div>';
   if ($new) {
     echo '  <div class="tag tag-new">NEW</div>';
   }
@@ -205,11 +206,12 @@ function createSlider($active, $img, $color, $category, $title, $content, $id, $
   }
   echo
     '
-        <h1>' . $title . '</h1>
-        <p>
-          ' . $content . '
-        </p>
-        <a href="news.php?id=' . $id . '" class="btn btn-primary">Read More</a>
+          <h1>' . $title . '</h1>
+          <p>
+            ' . $content . '
+          </p>
+          <a href="news.php?id=' . $id . '" class="btn btn-primary">Read More</a>
+        </div>
       </div>
     </div>';
 }

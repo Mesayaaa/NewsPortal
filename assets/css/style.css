@@ -341,17 +341,26 @@ body {
   transition-property: clip-path;
 }
 
+/* New wrapper to contain both image and content */
+.img-slider .slide .slide-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
 .img-slider .slide img {
   z-index: 1;
   object-fit: cover;
-  width: inherit;
+  width: 100%;
+  height: 100%;
   filter: brightness(0.5);
-  height: 450px;
   border-radius: var(--border-radius);
 }
 
 /* Dark overlay for better text readability */
-.img-slider .slide::before {
+.img-slider .slide .slide-image-wrapper::before {
   content: '';
   position: absolute;
   top: 0;
@@ -372,12 +381,22 @@ body {
   color: var(--light-color);
   padding: 1rem 1.5rem; /* Reduced padding to save space */
   z-index: 3; /* Above the overlay for better text visibility */
+  /* Prevent content overflow and breaking layout */
+  box-sizing: border-box;
+  /* Ensure button stays above pagination dots (bottom: 30px + spacing) */
+  max-height: calc(100% - 80px); /* Leave space for pagination at bottom */
 }
 
 /* Reduce spacing for tags in hero slider */
 .img-slider .slide .info .tag {
   margin-bottom: 0.1rem; /* Reduced from 0.2rem to make it closer to title */
   margin-right: 0.5rem;
+  /* Prevent tags from breaking layout */
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .img-slider .slide .info h1 {
@@ -385,20 +404,55 @@ body {
   font-size: var(--hs-md);
   font-family: var(--ff-monts);
   font-weight: bold; /* Make news titles bold */
-  /* Enhanced title display - no truncation */
+  /* Enhanced title display with line limit */
   word-wrap: break-word;
   overflow-wrap: break-word;
+  word-break: break-word;
   hyphens: auto;
-  line-height: 1.2;
+  line-height: 1.3;
   margin-bottom: 0.5rem;
-  margin-top: 0; /* Removed margin-top completely for tighter spacing */
+  margin-top: 0;
+  /* Limit to 3 lines with ellipsis */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 11rem; /* 3 lines * 1.3 line-height * 2.75rem (--hs-md) = 10.725rem, rounded up */
+  /* Prevent layout breaking */
+  width: 100%;
+  max-width: 100%;
 }
 
 .img-slider .slide .info p {
-  margin: 1rem 0;
+  margin: 0.5rem 0 0.8rem 0;
   font-size: var(--ts-md);
   font-weight: 300;
   font-family: var(--ff-nunito);
+  line-height: 1.6;
+  /* Limit to 3 lines with ellipsis on desktop to keep button visible */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 6.5rem; /* 3 lines * 1.6 line-height * 1.25rem (--ts-md) = 6rem + buffer */
+  /* Prevent layout breaking */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Button styling in hero slider */
+.img-slider .slide .info .btn {
+  display: inline-block;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0.5rem; /* Space from paragraph */
 }
 
 .img-slider .navigation {
