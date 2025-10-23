@@ -72,6 +72,10 @@ if (strpos($uri, "/change-name.php") != false) {
   <link href="../assets/css/admin/style.css" rel="stylesheet" />
   <link href="../assets/css/partials/1-variables.css" rel="stylesheet" />
 
+  <!-- QUILL.JS RICH TEXT EDITOR -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+  <link href="../assets/css/quill-custom.css" rel="stylesheet" />
+
   <!-- SWEETALERT2 CSS & JS -->
   <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>

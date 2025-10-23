@@ -25,8 +25,10 @@ if (isset($_POST['submit'])) {
   $article_cat_id = $_POST['category_id'];
   $article_old_img = $_POST['article_old_img'];
 
-  $article_title = str_replace('"', '\"', $article_title);
-  $article_desc = str_replace('"', '\"', $article_desc);
+  // Use proper mysqli escaping for safety (preserves HTML formatting from Quill)
+  $article_title = mysqli_real_escape_string($con, $article_title);
+  $article_desc = mysqli_real_escape_string($con, $article_desc);
+  $article_cat_id = mysqli_real_escape_string($con, $article_cat_id);
 
   if (empty($_FILES['article_img']['name'])) {
     $basename = $article_old_img;
@@ -162,8 +164,11 @@ if (isset($_POST['submit'])) {
               </div>
               <div class="form-group">
                 <label>Article Description</label>
-                <textarea name="article_desc" autocomplete="off" id="article_desc" class="form-control"
-                  placeholder="Article Description" rows="20" min="150" required><?php echo $article_desc; ?></textarea>
+                <!-- Quill Editor Container -->
+                <div id="quill-editor" style="min-height: 400px; background: white;"></div>
+                <!-- Hidden textarea to store the content with existing article data -->
+                <textarea name="article_desc" id="article_desc" style="display: none;"
+                  required><?php echo htmlspecialchars($article_desc); ?></textarea>
               </div>
               <div class="form-group">
                 <label>Article Image</label>
@@ -188,6 +193,7 @@ if (isset($_POST['submit'])) {
     </div>
   </div>
   <script src="../assets/js/admin/edit-form-validate.js"></script>
+  <script src="../assets/js/author/quill-editor-init.js"></script>
 </section>
 
 <?php

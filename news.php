@@ -132,14 +132,15 @@ if ($row > 0) {
 
             <!-- Article Image -->
             <div>
-              <img src="<?php echo !empty($article_image) ? './assets/images/articles/'.$article_image : './assets/images/fallback_news.png'; ?>" class="article-image"
-                alt="<?php echo htmlspecialchars($article_title); ?>" />
+              <img
+                src="<?php echo !empty($article_image) ? './assets/images/articles/' . $article_image : './assets/images/fallback_news.png'; ?>"
+                class="article-image" alt="<?php echo htmlspecialchars($article_title); ?>" />
             </div>
 
             <!-- Article Content -->
             <div class="article-content">
               <div class="content-body">
-                <?php echo nl2br($article_desc); ?>
+                <?php echo $article_desc; ?>
               </div>
             </div>
 

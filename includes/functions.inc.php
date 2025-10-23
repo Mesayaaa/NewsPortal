@@ -192,6 +192,9 @@ function createNoArticlesCard()
 // Function to Create a Slider
 function createSlider($active, $img, $color, $category, $title, $content, $id, $new, $trend)
 {
+  // Strip HTML tags from content for slider preview
+  $content = strip_tags($content);
+
   echo '
     <div class="slide ' . $active . '">
       <div class="slide-image-wrapper">

@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initBackToTop();
     // Sidebar drag functionality
     initSidebarDrag();
-    // Initialize Read-Aloud (TTS)
+    // Initialize Read-Aloud (TTS) - Fixed to not destroy HTML
     initArticleTTS();
-    // Initialize Reading Intel and Focus Mode
+    // Initialize Focus Mode
     initFocusMode();
-    // Removed: initReadingIntel and initFollowCategory per cleanup
+    // Initialize Reading Progress
     initReadingProgress();
 });
 
@@ -313,6 +313,8 @@ function initSidebarDrag() {
 // ==========================
 // Read-Aloud (TTS) Feature
 // ==========================
+// Read-Aloud (Text-to-Speech) - Fixed to preserve HTML formatting
+// ==========================
 function initArticleTTS() {
     if (!('speechSynthesis' in window)) {
         return; // TTS not supported
@@ -328,14 +330,9 @@ function initArticleTTS() {
         return;
     }
 
-    // Prepare sentences by splitting on punctuation and wrapping spans
-    const originalHtml = contentContainer.innerHTML;
-    const textNodes = Array.from(contentContainer.childNodes);
-    let sentences = [];
-
-    // Convert to plain text preserving line breaks already inserted via nl2br
+    // Get text for TTS WITHOUT modifying HTML structure
     const plain = contentContainer.innerText.trim();
-    sentences = plain
+    const sentences = plain
         .split(/([.!?])\s+/)
         .reduce((acc, part, idx, arr) => {
             if (idx % 2 === 0) {
@@ -345,11 +342,6 @@ function initArticleTTS() {
             }
             return acc;
         }, []);
-
-    // Render sentences as spans for highlighting
-    const htmlSentences = sentences.map((s, i) => `<span class="tts-sentence" data-index="${i}">${escapeHtml(s)}</span>`).join(' ');
-    contentContainer.setAttribute('data-tts-rendered', '1');
-    contentContainer.innerHTML = htmlSentences;
 
     // Speech state
     let currentIndex = 0;
@@ -385,7 +377,10 @@ function initArticleTTS() {
             stopTTS();
             return;
         }
-        highlight(index);
+        
+        // Simple visual indicator without modifying HTML
+        contentContainer.style.backgroundColor = '#fff9e6';
+        
         const utter = new SpeechSynthesisUtterance(sentences[index]);
         const rate = parseFloat(rateSelect.value || '1');
         utter.rate = rate;
@@ -393,6 +388,7 @@ function initArticleTTS() {
         if (v) utter.voice = v;
 
         utter.onend = () => {
+            contentContainer.style.backgroundColor = '';
             if (!isPlaying) return;
             currentIndex += 1;
             if (currentIndex < sentences.length) {
@@ -403,15 +399,6 @@ function initArticleTTS() {
         };
 
         window.speechSynthesis.speak(utter);
-    }
-
-    function highlight(index) {
-        document.querySelectorAll('.tts-sentence').forEach(el => el.classList.remove('tts-active'));
-        const active = contentContainer.querySelector(`.tts-sentence[data-index="${index}"]`);
-        if (active) {
-            active.classList.add('tts-active');
-            active.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
     }
 
     function playTTS() {
@@ -437,7 +424,7 @@ function initArticleTTS() {
         icon.classList.remove('fa-pause');
         icon.classList.add('fa-play');
         currentIndex = 0;
-        document.querySelectorAll('.tts-sentence').forEach(el => el.classList.remove('tts-active'));
+        contentContainer.style.backgroundColor = '';
     }
 
     // Toggle play/pause
@@ -462,29 +449,6 @@ function initArticleTTS() {
             speakSentence(currentIndex);
         }
     });
-
-    // Click to jump to a sentence
-    contentContainer.addEventListener('click', function(e) {
-        const span = e.target.closest('.tts-sentence');
-        if (!span) return;
-        currentIndex = parseInt(span.getAttribute('data-index'), 10) || 0;
-        if (isPlaying) {
-            window.speechSynthesis.cancel();
-            speakSentence(currentIndex);
-        } else {
-            highlight(currentIndex);
-        }
-    });
-
-    // Helpers
-    function escapeHtml(str) {
-        return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
-    }
 }
 
 // ==========================

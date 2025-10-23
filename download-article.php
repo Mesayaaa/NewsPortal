@@ -104,9 +104,7 @@ if ($row > 0) {
           <p>By: ' . $author_name . '<br><br>' . date("d M Y", $article_date) . '</p>
         </div>
         <div>
-          <p>
-            ' . nl2br($article_desc) . '
-          </p>
+          ' . $article_desc . '
         </div>
       </article>';
   }

@@ -4,7 +4,8 @@
 require('./includes/nav.inc.php');
 
 // Function to build clean pagination URL
-function buildPaginationUrl($page_num) {
+function buildPaginationUrl($page_num)
+{
   global $category_id;
   $params = array();
   if (isset($_GET['id']) && $_GET['id'] != '') {
@@ -103,7 +104,8 @@ function buildPaginationUrl($page_num) {
           // Updating the title with a substring containing at most length of 55 characters
           $article_title = substr($article_title, 0, 55) . ' . . . . .';
 
-          // Updating the description with a substring containing at most length of 150 characters
+          // Strip HTML tags and extract plain text for excerpt, then truncate to 150 characters
+          $article_desc = strip_tags($article_desc);
           $article_desc = substr($article_desc, 0, 150) . ' . . . . .';
 
           // New variable to determine if the article is NEW
@@ -265,7 +267,7 @@ function buildPaginationUrl($page_num) {
       <?php
     }
     ?>
-    </div>
+  </div>
   </div>
 </section>
 
