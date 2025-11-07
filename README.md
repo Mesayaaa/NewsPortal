@@ -1,14 +1,6 @@
 # 📰 NewsPortal - WinniCode# NewsGrid - News Portal
 
-
-
-Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pembuatan artikel oleh author.## Introduction
-
-
-
-## ✨ Fitur UtamaDeveloped an Online News Portal, that allows various users to easily create, read, bookmark and download news articles. Integrated [mPDF](https://mpdf.github.io/), a PHP library which generates PDF files from UTF-8 encoded HTML. Wrote clean, well documented, reusable code and incorporated the best development practices at my best.
-
-<br>
+Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pembuatan artikel oleh author.
 
 ### 🔐 User Management
 
@@ -20,7 +12,8 @@ Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pe
 
 - Back end: PHP, MySQL
 
-### 📝 Article Management- Library: mPDF Library
+### 📝 Article Management
+- Library: mPDF Library
 
 - **Rich Text Editor (Quill.js 2.0.3)** - Editor modern untuk author dengan fitur:  <br>
 
@@ -42,11 +35,12 @@ Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pe
 
 - **Trending Articles** - Sistem highlight artikel trending
 
-- **Article Activation/Deactivation** - Kontrol publikasi oleh admin#### [View Screenshots](https://github.com/Anish-U/NewsGrid#project-screenshots)
+- **Article Activation/Deactivation** - Kontrol publikasi oleh admin
 
 
 
-### 👥 User Features## Module Description
+### 👥 User Features
+## Module Description
 
 - **Bookmarks** - Simpan artikel favorit
 
@@ -56,14 +50,12 @@ Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pe
 
 - **Reading Progress** - Progress bar saat membaca artikel
 
-- **Focus Mode** - Mode baca fokus tanpa distraksi- [Admin Module](https://github.com/Anish-U/NewsGrid#admin-module)
+- **Focus Mode** - Mode baca fokus tanpa distraksi
+  
+- **Text-to-Speech** - Baca artikel dengan suara (Web Speech API)
 
-- **Text-to-Speech** - Baca artikel dengan suara (Web Speech API)- [Author Module](https://github.com/Anish-U/NewsGrid#author-module)
 
-- [Free User](https://github.com/Anish-U/NewsGrid#user-module)
-
-### 🎨 UI/UX- [Premium User](https://github.com/Anish-U/NewsGrid#premium-user-module)
-
+### 🎨 UI/UX
 - **Responsive Design** - Bootstrap 3.3.7 + Custom CSS
 
 - **Image Slider** - Slider artikel di homepage### Admin Module
@@ -88,7 +80,8 @@ Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pe
 
 
 
-### Frontend### Author Module
+### Frontend
+### Author Module
 
 - **HTML5 & CSS3**
 
@@ -104,7 +97,9 @@ Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pe
 
 ### Libraries
 
-- **Quill.js 2.0.3** - Rich text editor### User Module
+- **Quill.js 2.0.3** - Rich text editor
+
+### User Module
 
 - **SweetAlert2 v11.10.1** - Alert notifications
 
@@ -114,7 +109,8 @@ Portal berita modern dengan fitur Rich Text Editor menggunakan Quill.js untuk pe
 
 - User can search for a particular article based on specific keywords like title of the article or category name, trending.
 
-## 📁 Struktur Project- User can sort articles date wise and view articles posted on particular date of choice or between a span of days.
+## 📁 Struktur Project
+- User can sort articles date wise and view articles posted on particular date of choice or between a span of days.
 
 - User can also look up the trending articles of the week.
 
@@ -184,17 +180,17 @@ NewsPortal/
 
 - MySQL 5.7 or higher#### Categories Page
 
-- XAMPP or similar local server<img src="https://github.com/Anish-U/NewsGrid/blob/master/screenshots/categories.png" width="500">
-
+- XAMPP or similar local server
+  
 - Composer (optional, untuk vendor)
 
 #### Search Page
 
-### Installation Steps<img src="https://github.com/Anish-U/NewsGrid/blob/master/screenshots/search.png" width="500">
+### Installation Steps
 
+1. **Clone/Download Project**
 
-
-1. **Clone/Download Project**#### Login & Signup Page
+#### Login & Signup Page
 
    ```bash<img src="https://github.com/Anish-U/NewsGrid/blob/master/screenshots/login.png" width="500">
 
@@ -204,9 +200,7 @@ NewsPortal/
 
    ```<img src="https://github.com/Anish-U/NewsGrid/blob/master/screenshots/bookmarks.png" width="500">
 
-
-
-2. **Import Database**#### Change Password Page
+3. **Import Database**#### Change Password Page
 
    - Buka phpMyAdmin<img src="https://github.com/Anish-U/NewsGrid/blob/master/screenshots/changePassword.png" width="500">
 
@@ -256,8 +250,8 @@ NewsPortal/
 
 #### Admin Manage Category Page
 
-6. **Access Application**<img src="https://github.com/Anish-U/NewsGrid/blob/master/screenshots/adminPanelCategories.png" width="500">
-
+6. **Access Application**
+   
    - Homepage: `http://localhost:8000/`
 
    - Admin: `http://localhost:8000/admin/`---
@@ -278,7 +272,7 @@ NewsPortal/
 
 ```
 
-### Authoror download the project via GitHub
+### Author or download the project via GitHub
 
 - Register: `http://localhost:8000/author-register.php`
 
@@ -286,7 +280,7 @@ NewsPortal/
 
 
 
-### Userif you cannot find the htdocs folder please follow the below links,
+### User if you cannot find the htdocs folder please follow the below links,
 
 - Register: `http://localhost:8000/user-register.php`
 
@@ -428,27 +422,6 @@ const plain = contentContainer.innerText.trim();
 // Visual feedback tanpa modifikasi HTML
 contentContainer.style.backgroundColor = '#fff9e6';
 ```
-
-## 📝 Development Guidelines
-
-### Adding New Features
-1. ✅ Test dengan berbagai format HTML dari Quill
-2. ✅ Jangan modifikasi `innerHTML` dari `.content-body`
-3. ✅ Gunakan `mysqli_real_escape_string()` untuk input
-4. ✅ Gunakan `!important` di CSS jika perlu override
-
-### Code Standards
-- ✅ Clean, readable code
-- ✅ Comments untuk complex logic
-- ✅ No `console.log` in production
-- ✅ No `var_dump` in production
-- ✅ Consistent indentation (2 spaces)
-
-### Security Best Practices
-- ✅ SQL Injection: `mysqli_real_escape_string()`
-- ✅ XSS: Gunakan `htmlspecialchars()` untuk user input (BUKAN untuk article content)
-- ✅ File Upload: Validate type dan size
-- ✅ Session Management: Proper session handling
 
 ## 🐛 Troubleshooting
 
