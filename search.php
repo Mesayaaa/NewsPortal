@@ -3,10 +3,10 @@
 require('./includes/nav.inc.php');
 ?>
 
-<!-- Enhanced Search Section -->
+<!-- Search Section -->
 <section class="search-hero">
   <div class="container">
-    <!-- Enhanced Search Form -->
+    <!-- Search Form -->
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div class="search-card">
