@@ -94,23 +94,24 @@ require('./includes/nav.inc.php');
             <h4 class="panel-title">Latest Articles</h4>
           </div>
           <div class="panel-body">
-            <table class="table table-striped article-list table-hover">
-              <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Image</th>
-                <th>Published On</th>
-              </tr>
-              <?php
-              if ($row > 0) {
-                while ($data = mysqli_fetch_assoc($result)) {
-                  $category_name = $data['category_name'];
-                  $article_title = $data['article_title'];
-                  $article_image = $data['article_image'];
-                  $article_date = $data['article_date'];
-                  $article_date = date("d M y", strtotime($article_date));
+            <div class="table-responsive">
+              <table class="table table-striped article-list table-hover">
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Image</th>
+                  <th>Published On</th>
+                </tr>
+                <?php
+                if ($row > 0) {
+                  while ($data = mysqli_fetch_assoc($result)) {
+                    $category_name = $data['category_name'];
+                    $article_title = $data['article_title'];
+                    $article_image = $data['article_image'];
+                    $article_date = $data['article_date'];
+                    $article_date = date("d M y", strtotime($article_date));
 
-                  echo '
+                    echo '
                       <tr>
                         <td>
                           ' . $article_title . '
@@ -126,25 +127,26 @@ require('./includes/nav.inc.php');
                         </td>
                       </tr>
                     ';
-                }
-                echo '
+                  }
+                  echo '
                     <tr>
                       <td colspan="4" align="center" style="padding-top: 2rem;">
                         <a href="./articles.php" class="btn btn-danger ">View All</a>
                       </td>
                     </tr>
                   ';
-              } else {
-                echo '
+                } else {
+                  echo '
                     <td colspan="4" align="center" style="padding-top: 28px; color: var(--active-color);">
                       <h4>
                         You need to start writing ' . $_SESSION['AUTHOR_NAME'] . ' !
                       </h4>
                     </td>
                   ';
-              }
-              ?>
-            </table>
+                }
+                ?>
+              </table>
+            </div>
           </div>
         </div>
       </div>

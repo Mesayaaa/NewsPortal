@@ -37,24 +37,25 @@ require('./includes/nav.inc.php');
           <h4 class="panel-title">Categories</h4>
         </div>
         <div class="panel-body">
-          <table class="table table-striped table-hover article-list">
-            <tr>
-              <th style="min-width: 80px; text-align:center">Name</th>
-              <th style="min-width: 100px">Image</th>
-              <th style="min-width: 280px">Description</th>
-              <th style="min-width: 20px">Tag Color</th>
-              <th style="min-width: 20px">Actions</th>
-            </tr>
-            <?php
-            if ($row > 0) {
-              while ($data = mysqli_fetch_assoc($result)) {
-                $category_name = $data['category_name'];
-                $category_id = $data['category_id'];
-                $category_desc = $data['category_description'];
-                $category_image = $data['category_image'];
-                $category_color = $data['category_color'];
+          <div class="table-responsive">
+            <table class="table table-striped table-hover article-list">
+              <tr>
+                <th style="min-width: 80px; text-align:center">Name</th>
+                <th style="min-width: 100px">Image</th>
+                <th style="min-width: 280px">Description</th>
+                <th style="min-width: 20px">Tag Color</th>
+                <th style="min-width: 20px">Actions</th>
+              </tr>
+              <?php
+              if ($row > 0) {
+                while ($data = mysqli_fetch_assoc($result)) {
+                  $category_name = $data['category_name'];
+                  $category_id = $data['category_id'];
+                  $category_desc = $data['category_description'];
+                  $category_image = $data['category_image'];
+                  $category_color = $data['category_color'];
 
-                echo '
+                  echo '
                       <tr>
                         <td style="text-align:center;">
                           ' . $category_name . '
@@ -80,17 +81,18 @@ require('./includes/nav.inc.php');
                         </td>
                       </tr>
                     ';
-              }
-            } else {
-              echo '
+                }
+              } else {
+                echo '
                     <td colspan="5" align="center" style="padding-top: 28px; color: var(--active-color);">
                       <h4>
                         You need to create a Category !
                       </h4>
                   ';
-            }
-            ?>
-          </table>
+              }
+              ?>
+            </table>
+          </div>
         </div>
         <?php
         $paginationQuery = "SELECT * FROM category";

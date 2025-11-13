@@ -117,12 +117,15 @@
   border-radius: 0 12px 12px 0;
   transition: all 0.3s ease;
   box-shadow: none;
+  color: var(--black-color) !important; /* Ensure text is dark colored */
+  background-color: white !important; /* Ensure background is white */
 }
 
 .search-main-input:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 0.2rem rgba(199, 39, 39, 0.15);
   transform: translateY(-1px);
+  color: var(--black-color) !important; /* Keep text dark on focus */
 }
 
 .search-main-input::placeholder {
@@ -152,12 +155,15 @@
   padding: 0.625rem 0.875rem;
   transition: all 0.3s ease;
   font-size: 0.95rem;
+  color: var(--black-color) !important; /* Ensure text is dark colored */
+  background-color: white !important; /* Ensure background is white */
 }
 
 .form-select:focus, .form-control:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 0.2rem rgba(199, 39, 39, 0.15);
   transform: translateY(-1px);
+  color: var(--black-color) !important; /* Keep text dark on focus */
 }
 
 /* Trending Toggle (No Checkbox) */

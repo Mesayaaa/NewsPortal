@@ -144,53 +144,53 @@ if ($row > 0) {
               </div>
             </div>
 
-            <!-- Article Actions -->
-            <div class="article-actions">
-              <div class="action-buttons">
-                <?php
-                // Bookmark button
-                if ($bookmarked) {
-                  echo '<a class="btn btn-bookmark bookmarked" href="remove-bookmark.php?id=' . $article_id . '" title="Remove from bookmarks">
-                          <i class="fas fa-bookmark"></i>
-                          <span>Bookmarked</span>
-                        </a>';
-                } else {
-                  echo '<a class="btn btn-bookmark" href="add-bookmark.php?id=' . $article_id . '" title="Add to bookmarks">
-                          <i class="far fa-bookmark"></i>
-                          <span>Bookmark</span>
-                        </a>';
-                }
+            <!-- Article Navigation and Actions -->
+            <div class="article-navigation-wrapper">
 
-                // Download button
-                echo '<a class="btn btn-download" target="_blank" href="download-article.php?id=' . $article_id . '" title="Download article as PDF">
-                        <i class="fas fa-download"></i>
-                        <span>Download PDF</span>
-                      </a>';
-                ?>
-                <!-- Focus Mode -->
-                <button class="btn btn-share" id="focusToggle" type="button" title="Toggle Focus Mode">
-                  <i class="fas fa-eye-slash"></i>
-                  <span>Focus Mode</span>
-                </button>
-                <!-- TTS Controls -->
-                <div class="tts-controls" aria-label="Read aloud controls">
-                  <button class="btn btn-tts" id="ttsToggle" type="button" title="Listen / Pause">
-                    <i class="fas fa-play" id="ttsIcon"></i>
-                    <span>Listen</span>
+              <!-- Article Actions -->
+              <div class="article-actions">
+                <div class="action-buttons">
+                  <?php
+                  // Bookmark button
+                  if ($bookmarked) {
+                    echo '<a class="btn btn-bookmark bookmarked" href="remove-bookmark.php?id=' . $article_id . '" title="Remove from bookmarks">
+                            <i class="fas fa-bookmark"></i>
+                            <span>Bookmarked</span>
+                          </a>';
+                  } else {
+                    echo '<a class="btn btn-bookmark" href="add-bookmark.php?id=' . $article_id . '" title="Add to bookmarks">
+                            <i class="far fa-bookmark"></i>
+                            <span>Bookmark</span>
+                          </a>';
+                  }
+
+                  // Download button
+                  echo '<a class="btn btn-download" href="download-article.php?id=' . $article_id . '" title="Download article as PDF">
+                          <i class="fas fa-download"></i>
+                          <span>Download PDF</span>
+                        </a>';
+                  ?>
+                  <!-- Focus Mode -->
+                  <button class="btn btn-share" id="focusToggle" type="button" title="Toggle Focus Mode">
+                    <i class="fas fa-eye-slash"></i>
+                    <span>Focus Mode</span>
                   </button>
-                  <select id="ttsVoice" class="tts-select" title="Voice"></select>
-                  <select id="ttsRate" class="tts-select" title="Speed">
-                    <option value="0.8">0.8x</option>
-                    <option value="1" selected>1.0x</option>
-                    <option value="1.25">1.25x</option>
-                    <option value="1.5">1.5x</option>
-                  </select>
+                  <!-- TTS Controls -->
+                  <div class="tts-controls" aria-label="Read aloud controls">
+                    <button class="btn btn-tts" id="ttsToggle" type="button" title="Listen / Pause">
+                      <i class="fas fa-play" id="ttsIcon"></i>
+                      <span>Listen</span>
+                    </button>
+                    <select id="ttsVoice" class="tts-select" title="Voice"></select>
+                    <select id="ttsRate" class="tts-select" title="Speed">
+                      <option value="0.8">0.8x</option>
+                      <option value="1" selected>1.0x</option>
+                      <option value="1.25">1.25x</option>
+                      <option value="1.5">1.5x</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Article Navigation -->
-            <div>
               <?php
               // Get previous article
               $prevQuery = "SELECT article_id, article_title FROM article 
@@ -219,6 +219,8 @@ if ($row > 0) {
                       <span class="nav-title"><?php echo substr($prevArticle['article_title'], 0, 50) . '...'; ?></span>
                     </div>
                   </a>
+                <?php else: ?>
+                  <div class="nav-link-placeholder"></div>
                 <?php endif; ?>
 
                 <?php if (mysqli_num_rows($nextResult) > 0):
@@ -230,6 +232,8 @@ if ($row > 0) {
                     </div>
                     <i class="fas fa-chevron-right"></i>
                   </a>
+                <?php else: ?>
+                  <div class="nav-link-placeholder"></div>
                 <?php endif; ?>
               </div>
             </div>
