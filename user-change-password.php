@@ -166,7 +166,7 @@ if (isset($_POST['submit'])) {
               placeholder=" Confirm New Password" autocomplete="off" required>
           </div>
           <div class="input-field">
-            <button type="submit" name="submit">Login</button>
+            <button type="submit" name="submit">Change Password</button>
           </div>
         </form>
       </div>

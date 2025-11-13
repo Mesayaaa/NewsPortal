@@ -18,7 +18,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 30px;
-  z-index: 99;
+  z-index: 99; /* Layer 100: Utility buttons - below navbar */
   border: none;
   outline: none;
   background-color: var(--primary-color);
@@ -34,17 +34,17 @@ body {
   background-color: var(--active-color);
 }
 
-/* NAVBAR DESKTOP - ENHANCED STICKY POSITIONING */
+/* NAVBAR DESKTOP */
 .navbar {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   font-family: var(--ff-nunito);
   position: -webkit-sticky !important; /* Safari compatibility with priority */
-  position: sticky !important; /* Make navbar follow scroll with priority */
-  top: 0 !important; /* Stick to top of viewport */
-  left: 0; /* Ensure full width positioning */
-  right: 0; /* Ensure full width positioning */
-  z-index: 9999 !important; /* Very high z-index to stay above everything */
+  position: sticky !important; 
+  top: 0 !important; 
+  left: 0; 
+  right: 0; 
+  z-index: 9999 !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -52,13 +52,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0;
-  width: 100%; /* Ensure full width */
-  will-change: transform, box-shadow; /* Optimize for smooth scrolling */
+  width: 100%; 
+  will-change: transform, box-shadow;
   height: 100px;
   min-height: 100px;
 }
 
-/* Remove all underlines from navbar - FORCE OVERRIDE */
 .navbar *,
 .navbar *:before,
 .navbar *:after,
@@ -94,7 +93,7 @@ body {
   display: table;
 }
 
-/* Desktop - Keep it simple */
+/* Desktop */
 @media (min-width: 769px) {
   .hamburger {
     display: none;
@@ -109,12 +108,10 @@ body {
     flex-direction: row;
   }
   
-  /* Hide mobile-only items on desktop */
   .mobile-only {
     display: none !important;
   }
   
-  /* Show desktop-only items */
   .desktop-only {
     display: inline-block !important;
   }
@@ -147,7 +144,7 @@ body {
 .navbar ul,
 .navbar .nav-menu {
   margin-right: 40px;
-  margin-left: auto; /* Push navigation items to the right */
+  margin-left: auto;
   list-style: none;
   position: relative;
   display: flex;
@@ -203,7 +200,6 @@ body {
 .navbar .nav-menu li a.current #search-icon {
   color: white;
 }
-/* Desktop only navbar - no mobile support */
 
 /* Dropdown styles */
 .navbar .dropdown {
@@ -216,7 +212,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* Remove Bootstrap default dropdown arrow */
 .navbar .dropdown-toggle::after {
   display: none !important;
   content: none !important;
@@ -251,7 +246,6 @@ body {
   transform: translateY(0);
 }
 
-/* Dropdown menu items styling */
 .navbar .dropdown-menu li {
   list-style: none;
   margin: 0;
@@ -290,7 +284,7 @@ body {
   color: var(--primary-color);
 }
 
-/* HAMBURGER MENU - SIMPLE */
+/* HAMBURGER MENU */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -325,7 +319,7 @@ body {
   width: 100%;
   height: 450px;
   background: #1d212b;
-  margin-bottom: 4rem; /* Explicit large spacing after hero section */
+  margin-bottom: 4rem;
 }
 
 .img-slider .slide {
@@ -367,31 +361,27 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Semi-transparent black overlay */
+  background: rgba(0, 0, 0, 0.4);
   z-index: 2;
   border-radius: var(--border-radius);
 }
 
 .img-slider .slide .info {
   position: absolute;
-  top: 2rem; /* Reduced from 3rem to bring content higher */
-  left: 2rem; /* Reduced from 3rem for better positioning */
-  width: 75%; /* Set to exactly 3/4 (75%) of the background image width */
-  max-width: calc(75% - 2rem); /* Ensure content stays within 3/4 bounds with padding consideration */
+  top: 2rem; 
+  left: 2rem; 
+  width: 75%; 
+  max-width: calc(75% - 2rem); 
   color: var(--light-color);
-  padding: 1rem 1.5rem; /* Reduced padding to save space */
-  z-index: 3; /* Above the overlay for better text visibility */
-  /* Prevent content overflow and breaking layout */
+  padding: 1rem 1.5rem; 
+  z-index: 3; 
   box-sizing: border-box;
-  /* Ensure button stays above pagination dots (bottom: 30px + spacing) */
-  max-height: calc(100% - 80px); /* Leave space for pagination at bottom */
+  max-height: calc(100% - 80px); 
 }
 
-/* Reduce spacing for tags in hero slider */
 .img-slider .slide .info .tag {
-  margin-bottom: 0.1rem; /* Reduced from 0.2rem to make it closer to title */
+  margin-bottom: 0.1rem; 
   margin-right: 0.5rem;
-  /* Prevent tags from breaking layout */
   display: inline-block;
   max-width: 100%;
   white-space: nowrap;
@@ -400,11 +390,10 @@ body {
 }
 
 .img-slider .slide .info h1 {
-  padding-top: 0; /* Removed padding to reduce spacing */
+  padding-top: 0; 
   font-size: var(--hs-md);
   font-family: var(--ff-monts);
-  font-weight: bold; /* Make news titles bold */
-  /* Enhanced title display with line limit */
+  font-weight: bold; 
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -418,8 +407,7 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 11rem; /* 3 lines * 1.3 line-height * 2.75rem (--hs-md) = 10.725rem, rounded up */
-  /* Prevent layout breaking */
+  max-height: 11rem; 
   width: 100%;
   max-width: 100%;
 }
@@ -436,8 +424,7 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-height: 6.5rem; /* 3 lines * 1.6 line-height * 1.25rem (--ts-md) = 6rem + buffer */
-  /* Prevent layout breaking */
+  max-height: 6.5rem; 
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -452,11 +439,11 @@ body {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 0.5rem; /* Space from paragraph */
+  margin-top: 0.5rem; 
 }
 
 .img-slider .navigation {
-  z-index: 2;
+  z-index: 2; 
   position: absolute;
   display: flex;
   bottom: 30px;
@@ -478,7 +465,7 @@ body {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Hero Section Spacing Fix - Consolidated */
+/* Hero Section Spacing */
 header.img-slider {
   position: relative !important;
   z-index: 1 !important;
@@ -492,7 +479,7 @@ header.img-slider {
   margin-top: 6rem !important;
   clear: both;
   position: relative;
-  z-index: 2;
+  z-index: 2; 
 }
 
 /* CARD LIST MOBILE*/
@@ -592,13 +579,13 @@ header.img-slider {
 
 /* Card Elements Visual Matching */
 .card-title {
-  font-size: var(--hs-vs); /* 1.6rem - match admin table visual size */
+  font-size: var(--hs-vs);
   font-weight: 600;
   line-height: 1.3;
 }
 
 .card-data {
-  font-size: var(--ts-lg); /* 1.5rem - larger for visual balance */
+  font-size: var(--ts-lg); 
   line-height: 1.5;
 }
 
@@ -1384,7 +1371,7 @@ form button {
   animation: pulse 1.5s infinite;
 }
 
-/* CRITICAL FIX: Bootstrap Override for Card Buttons */  
+/* BUTTON STYLE FOR CARDS */
 a.btn-card {
   background-color: var(--primary-color) !important;
   color: white !important;

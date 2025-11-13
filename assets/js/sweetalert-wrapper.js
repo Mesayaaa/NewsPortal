@@ -278,6 +278,15 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add custom CSS for notice and validation toasts
 const style = document.createElement('style');
 style.textContent = `
+    /* Z-index hierarchy: SweetAlert2 should always be above navbar (9999) */
+    .swal2-container {
+        z-index: 10000 !important; /* Above navbar */
+    }
+    
+    .swal2-overlay {
+        z-index: 10000 !important; /* Above navbar */
+    }
+    
     /* Custom styling for notice and validation toasts */
     .notice-toast {
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
@@ -285,6 +294,7 @@ style.textContent = `
         font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
         font-size: 14px !important;
         margin-top: 20px !important;
+        z-index: 10001 !important; /* Ensure toast is above container */
     }
     
     .validation-notice-toast {
@@ -294,6 +304,7 @@ style.textContent = `
         font-size: 14px !important;
         margin-top: 20px !important;
         text-align: left !important;
+        z-index: 10001 !important; /* Ensure toast is above container */
     }
     
     .validation-notice-toast .swal2-html-container {
