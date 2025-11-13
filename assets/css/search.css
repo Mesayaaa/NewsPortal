@@ -136,47 +136,53 @@
   transform: translateY(-1px);
 }
 
-/* Trending Checkbox */
+/* Trending Toggle (No Checkbox) */
 .trending-check {
-  background: rgba(199, 39, 39, 0.05);
-  border: 2px solid rgba(199, 39, 39, 0.1);
+  background: white; /* Default white background like other forms */
+  border: 2px solid #e9ecef; /* Same border as other form controls */
   border-radius: 10px;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1rem; /* Same padding as form-select and form-control */
   margin-top: 0.5rem;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  min-height: 50px; /* Ensure consistent height */
+  justify-content: flex-start; /* Align to left like other forms */
+  min-height: 50px;
+  cursor: pointer;
+  user-select: none;
 }
 
-.trending-check:hover {
-  background: rgba(199, 39, 39, 0.08);
+/* When active (value = 1) */
+.trending-check.active {
+  background: rgba(199, 39, 39, 0.05);
   border-color: rgba(199, 39, 39, 0.2);
 }
 
-.trending-check .form-check-input {
-  margin: 0; /* Remove default Bootstrap margin */
-  flex-shrink: 0; /* Prevent checkbox from shrinking */
+.trending-check:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
 }
 
-.trending-check .form-check-label {
-  margin: 0;
+/* When active and hovered */
+.trending-check.active:hover {
+  background: rgba(199, 39, 39, 0.08);
+  border-color: rgba(199, 39, 39, 0.3);
+}
+
+.trending-label {
+  font-weight: 500; /* Normal weight like form text */
+  color: var(--black-color);
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  flex: 1;
+  gap: 0.2rem; /* Consistent gap with icon */
+  line-height: 1.5;
+  font-size: 1.2rem; /* Same as form-select and form-control */
 }
 
-.form-check-input:checked {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-.form-check-label {
-  font-weight: 500;
-  color: var(--black-color);
-  cursor: pointer;
+.trending-label i {
+  font-size: 1.2rem; /* Same icon size as form text */
+  position: relative;
+  top: 1px; /* Move icon down slightly */
 }
 
 /* Action Buttons */
