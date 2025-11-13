@@ -376,7 +376,9 @@ require('./includes/nav.inc.php');
                     $article_author = $data['author_name'];
                     $article_active = $data['article_active'];
 
-                    $article_desc = substr($article_desc, 0, 150) . "...";
+                    // Strip HTML tags first, then truncate
+                    $article_desc_plain = strip_tags($article_desc);
+                    $article_desc_short = substr($article_desc_plain, 0, 150) . "...";
                     $article_title_short = strlen($article_title) > 45 ? substr($article_title, 0, 45) . "..." : $article_title;
                     $article_date = date("d M y", strtotime($article_date));
 
@@ -391,8 +393,8 @@ require('./includes/nav.inc.php');
                           <span class="label label-info">' . htmlspecialchars($category_name) . '</span>
                         </td>
                         <td class="content-col">
-                          <div class="text-truncate-custom" title="' . htmlspecialchars(strip_tags($data['article_description'])) . '">
-                            ' . htmlspecialchars($article_desc) . '
+                          <div class="text-truncate-custom" title="' . htmlspecialchars($article_desc_plain) . '">
+                            ' . htmlspecialchars($article_desc_short) . '
                           </div>
                         </td>
                         <td class="image-col">
