@@ -279,9 +279,16 @@ body {
   transition: all 0.2s ease;
 }
 
+/* Hover state for non-active search icon */
 .navbar ul li a:hover #search-icon,
 .navbar .nav-menu li a:hover #search-icon {
   color: var(--primary-color);
+}
+
+/* Hover state for active search icon - override to white */
+.navbar ul li a.current:hover #search-icon,
+.navbar .nav-menu li a.current:hover #search-icon {
+  color: white;
 }
 
 /* HAMBURGER MENU */

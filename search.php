@@ -3,8 +3,38 @@
 require('./includes/nav.inc.php');
 ?>
 
-<!-- Search Section -->
+<!-- Search Section with Background Slider -->
 <section class="search-hero">
+  <!-- Background Image Slider -->
+  <div class="search-hero-slider">
+    <?php
+    // Query to fetch 4 trending articles for background slider
+    $sliderQuery = "SELECT article_image FROM article 
+                    WHERE article_trend = 1 
+                    AND article_active = 1 
+                    ORDER BY RAND() 
+                    LIMIT 4";
+
+    $sliderResult = mysqli_query($con, $sliderQuery);
+    $slideCount = mysqli_num_rows($sliderResult);
+
+    if ($slideCount > 0) {
+      $counter = 0;
+      while ($slideData = mysqli_fetch_assoc($sliderResult)) {
+        $active = ($counter == 0) ? 'active' : '';
+        echo '<div class="search-hero-slide ' . $active . '" style="background-image: url(\'./assets/images/articles/' . $slideData['article_image'] . '\');"></div>';
+        $counter++;
+      }
+    } else {
+      // Fallback gradient if no trending articles
+      echo '<div class="search-hero-slide active" style="background: linear-gradient(135deg, rgba(199, 39, 39, 0.9) 0%, rgba(255, 87, 51, 0.9) 50%, rgba(255, 165, 0, 0.8) 100%);"></div>';
+    }
+    ?>
+  </div>
+
+  <!-- Overlay -->
+  <div class="search-hero-overlay"></div>
+
   <div class="container">
     <!-- Search Form -->
     <div class="row justify-content-center">
@@ -110,8 +140,8 @@ require('./includes/nav.inc.php');
 
                   if ($hasActiveFilters) {
                     echo '<a href="./search.php" class="btn btn-clear">
-                            <i class="fas fa-times me-2"></i>Clear Filters
-                          </a>';
+                          <i class="fas fa-times me-2"></i>Clear Filters
+                        </a>';
                   }
                   ?>
                 </div>
@@ -123,370 +153,369 @@ require('./includes/nav.inc.php');
     </div>
   </div>
 </section>
+
 <!-- Container to store the Search Results -->
-<section class="py-1 category-list"></section>
-<div class="container">
-  <h2 class="search-heading">Search Results :</h2>
-  <div class="card-container">
-    <?php
+<section class="py-1 category-list">
+  <div class="container">
+    <h2 class="search-heading">Search Results :</h2>
+    <div class="card-container">
+      <?php
 
-    // Limit variable to specify the maximum no of articles in each page
-    $limit = 6;
+      // Limit variable to specify the maximum no of articles in each page
+      $limit = 6;
 
-    // Check if we get page no from URL
-    if (isset($_GET['page'])) {
+      // Check if we get page no from URL
+      if (isset($_GET['page'])) {
 
-      // Update the page
-      $page = $_GET['page'];
-    }
+        // Update the page
+        $page = $_GET['page'];
+      }
 
-    // If page no is not fetched from URL => default to first page
-    else {
+      // If page no is not fetched from URL => default to first page
+      else {
 
-      // Update to 1 as first page
-      $page = 1;
-    }
+        // Update to 1 as first page
+        $page = 1;
+      }
 
-    // Calculate the offset value for SQL Query => pagination
-    $offset = ($page - 1) * $limit;
+      // Calculate the offset value for SQL Query => pagination
+      $offset = ($page - 1) * $limit;
 
-    // Declaring trending variable
-    $trending = "";
+      // Declaring trending variable
+      $trending = "";
 
-    // Check if we get trending value from URL
-    if (isset($_GET['trending'])) {
+      // Check if we get trending value from URL
+      if (isset($_GET['trending'])) {
 
-      // Fetching trending value via GET and passing them to user defined 
-      // function to get rid of special characters used in SQL
-      $trending = get_safe_value($_GET['trending']);
-    }
+        // Fetching trending value via GET and passing them to user defined 
+        // function to get rid of special characters used in SQL
+        $trending = get_safe_value($_GET['trending']);
+      }
 
-    // Declaring category ID variable
-    $cat_id = "";
+      // Declaring category ID variable
+      $cat_id = "";
 
-    // Check if we get category_ID value from URL
-    if (isset($_GET['category_select'])) {
+      // Check if we get category_ID value from URL
+      if (isset($_GET['category_select'])) {
 
-      // Fetching category_ID value via GET and passing them to user defined 
-      // function to get rid of special characters used in SQL
-      $cat_id = get_safe_value($_GET['category_select']);
-    }
+        // Fetching category_ID value via GET and passing them to user defined 
+        // function to get rid of special characters used in SQL
+        $cat_id = get_safe_value($_GET['category_select']);
+      }
 
-    // Declaring name variable
-    $name = "";
+      // Declaring name variable
+      $name = "";
 
-    // Check if we get name value from URL
-    if (isset($_GET['name'])) {
+      // Check if we get name value from URL
+      if (isset($_GET['name'])) {
 
-      // Fetching name value via GET and passing them to user defined 
-      // function to get rid of special characters used in SQL
-      $name = get_safe_value($_GET['name']);
-    }
+        // Fetching name value via GET and passing them to user defined 
+        // function to get rid of special characters used in SQL
+        $name = get_safe_value($_GET['name']);
+      }
 
-    // Declaring from date variable
-    $from_date = "";
+      // Declaring from date variable
+      $from_date = "";
 
-    // Check if we get from_date value from URL
-    if (isset($_GET['from_date'])) {
+      // Check if we get from_date value from URL
+      if (isset($_GET['from_date'])) {
 
-      // Fetching from date value via GET and passing them to user defined 
-      // function to get rid of special characters used in SQL
-      $from_date = get_safe_value($_GET['from_date']);
-    }
+        // Fetching from date value via GET and passing them to user defined 
+        // function to get rid of special characters used in SQL
+        $from_date = get_safe_value($_GET['from_date']);
+      }
 
-    $to_date = "";
-    // Check if we get to_date value from URL
-    if (isset($_GET['to_date'])) {
+      $to_date = "";
+      // Check if we get to_date value from URL
+      if (isset($_GET['to_date'])) {
 
-      // Fetching to date value via GET and passing them to user defined 
-      // function to get rid of special characters used in SQL
-      $to_date = get_safe_value($_GET['to_date']);
-    }
+        // Fetching to date value via GET and passing them to user defined 
+        // function to get rid of special characters used in SQL
+        $to_date = get_safe_value($_GET['to_date']);
+      }
 
-    // Initialising the Search Query with simple select Query
-    $searchQuery = "SELECT * FROM article WHERE ";
+      // Initialising the Search Query with simple select Query
+      $searchQuery = "SELECT * FROM article WHERE ";
 
-    // If Category_ID filter is present
-    if ($cat_id != "") {
+      // If Category_ID filter is present
+      if ($cat_id != "") {
 
-      // Search Query is updated with category_ID condition
-      $searchQuery .= "category_id = {$cat_id}";
-    }
+        // Search Query is updated with category_ID condition
+        $searchQuery .= "category_id = {$cat_id}";
+      }
 
-    // If Category_ID filter is not present
-    else {
+      // If Category_ID filter is not present
+      else {
 
-      // Search Query is updated with category_ID condition
-      $searchQuery .= "category_id IS NOT NULL";
-    }
+        // Search Query is updated with category_ID condition
+        $searchQuery .= "category_id IS NOT NULL";
+      }
 
-    // If name filter is present
-    if ($name != "") {
+      // If name filter is present
+      if ($name != "") {
 
-      // Search Query is updated with name condition
-      $searchQuery .= ' AND article_title LIKE "%' . $name . '%"';
-    }
+        // Search Query is updated with name condition
+        $searchQuery .= ' AND article_title LIKE "%' . $name . '%"';
+      }
 
-    // If name filter is not present
-    else {
+      // If name filter is not present
+      else {
 
-      // Search Query is updated with name condition
-      $searchQuery .= " AND article_title IS NOT NULL";
-    }
+        // Search Query is updated with name condition
+        $searchQuery .= " AND article_title IS NOT NULL";
+      }
 
-    // If trending filter is present
-    if ($trending != "") {
+      // If trending filter is present
+      if ($trending != "") {
 
-      // Search Query is updated with trending condition
-      $searchQuery .= " AND article_trend = 1";
-    }
+        // Search Query is updated with trending condition
+        $searchQuery .= " AND article_trend = 1";
+      }
 
-    // If trending filter is not present
-    else {
+      // If trending filter is not present
+      else {
 
-      // Search Query is updated with trending condition
-      $searchQuery .= " AND article_trend IS NOT NULL";
-    }
+        // Search Query is updated with trending condition
+        $searchQuery .= " AND article_trend IS NOT NULL";
+      }
 
-    // If both from and to date filters are present
-    if ($from_date != "" && $to_date != "") {
+      // If both from and to date filters are present
+      if ($from_date != "" && $to_date != "") {
 
-      // Search Query is updated with from and to date condition
-      $searchQuery .= ' AND article_date BETWEEN "' . $from_date . '" AND "' . $to_date . '" ';
-    }
+        // Search Query is updated with from and to date condition
+        $searchQuery .= ' AND article_date BETWEEN "' . $from_date . '" AND "' . $to_date . '" ';
+      }
 
-    // If both to and from date filter values are same
-    else if ($to_date == $from_date && $to_date != "") {
+      // If both to and from date filter values are same
+      else if ($to_date == $from_date && $to_date != "") {
 
-      // Search Query is updated with date condition
-      $searchQuery .= ' AND article_date ="' . $from_date . '"';
-    }
+        // Search Query is updated with date condition
+        $searchQuery .= ' AND article_date ="' . $from_date . '"';
+      }
 
-    // If only from date filter is present 
-    else if ($to_date == "" && $from_date != "") {
+      // If only from date filter is present 
+      else if ($to_date == "" && $from_date != "") {
 
-      // Search Query is updated with from date condition
-      $searchQuery .= ' AND article_date >= "' . $from_date . '"';
-    }
+        // Search Query is updated with from date condition
+        $searchQuery .= ' AND article_date >= "' . $from_date . '"';
+      }
 
-    // If only to date filter is present
-    else if ($from_date == "" && $to_date != "") {
+      // If only to date filter is present
+      else if ($from_date == "" && $to_date != "") {
 
-      // Search Query is updated with to date condition
-      $searchQuery .= ' AND article_date <= "' . $to_date . '"';
-    }
+        // Search Query is updated with to date condition
+        $searchQuery .= ' AND article_date <= "' . $to_date . '"';
+      }
 
-    // Search Query is updated with the article active condition => all articles with above search filters
-    $searchQuery .= " AND article_active = 1 ";
+      // Search Query is updated with the article active condition => all articles with above search filters
+      $searchQuery .= " AND article_active = 1 ";
 
-    // Search Query1 is updated with lexicographic order condition and LIMIT condition => limit no of articles with above search filters
-    $searchQuery1 = $searchQuery . " ORDER BY article_title LIMIT {$offset}, {$limit}";
+      // Search Query1 is updated with lexicographic order condition and LIMIT condition => limit no of articles with above search filters
+      $searchQuery1 = $searchQuery . " ORDER BY article_title LIMIT {$offset}, {$limit}";
 
-    // Running the Search Query
-    $searchResult = mysqli_query($con, $searchQuery1);
+      // Running the Search Query
+      $searchResult = mysqli_query($con, $searchQuery1);
 
-    // Returns the number of rows from the result retrieved.
-    $row = mysqli_num_rows($searchResult);
+      // Returns the number of rows from the result retrieved.
+      $row = mysqli_num_rows($searchResult);
 
-    // If query has any result (records) => If any articles are present with the above filters
-    if ($row > 0) {
+      // If query has any result (records) => If any articles are present with the above filters
+      if ($row > 0) {
 
-      // Fetching the data of particular record as an Associative Array
-      while ($data = mysqli_fetch_assoc($searchResult)) {
+        // Fetching the data of particular record as an Associative Array
+        while ($data = mysqli_fetch_assoc($searchResult)) {
 
-        // Storing the article data in variables
-        $article_id = $data['article_id'];
-        $category_id = $data['category_id'];
-        $article_title = $data['article_title'];
-        $article_image = $data['article_image'];
-        $article_desc = $data['article_description'];
-        $article_date = $data['article_date'];
-        $article_trend = $data['article_trend'];
+          // Storing the article data in variables
+          $article_id = $data['article_id'];
+          $category_id = $data['category_id'];
+          $article_title = $data['article_title'];
+          $article_image = $data['article_image'];
+          $article_desc = $data['article_description'];
+          $article_date = $data['article_date'];
+          $article_trend = $data['article_trend'];
 
-        // Updating the title with a substring containing at most length of 55 characters
-        $article_title = substr($article_title, 0, 55) . ' . . . . .';
+          // Updating the title with a substring containing at most length of 55 characters
+          $article_title = substr($article_title, 0, 55) . ' . . . . .';
 
-        // Strip HTML tags and extract plain text for excerpt, then truncate to 150 characters
-        $article_desc = strip_tags($article_desc);
-        $article_desc = substr($article_desc, 0, 150) . ' . . . . .';
+          // Strip HTML tags and extract plain text for excerpt, then truncate to 150 characters
+          $article_desc = strip_tags($article_desc);
+          $article_desc = substr($article_desc, 0, 150) . ' . . . . .';
 
-        // New variable to determine if the article is NEW
-        $new = false;
+          // New variable to determine if the article is NEW
+          $new = false;
 
-        // Fetching present timestamp
-        $tdy = time();
+          // Fetching present timestamp
+          $tdy = time();
 
-        // Article date is updated to a timestamp 
-        $article_date = strtotime($article_date);
+          // Article date is updated to a timestamp 
+          $article_date = strtotime($article_date);
 
-        // Found the difference between the article release timestamp and present timestamp
-        $datediff = $tdy - $article_date;
+          // Found the difference between the article release timestamp and present timestamp
+          $datediff = $tdy - $article_date;
 
-        // Converting the difference into no of days
-        $datediff = round($datediff / (60 * 60 * 24));
+          // Converting the difference into no of days
+          $datediff = round($datediff / (60 * 60 * 24));
 
-        // If the difference is less than 2 => article is less than 2 days older
-        if ($datediff < 2) {
+          // If the difference is less than 2 => article is less than 2 days older
+          if ($datediff < 2) {
 
-          // Updating the variable to true to have a new tag on article card
-          $new = true;
-        }
+            // Updating the variable to true to have a new tag on article card
+            $new = true;
+          }
 
-        // Category Query to fetch the category details of the particular article
-        $categorysql = "SELECT category_name, category_color 
+          // Category Query to fetch the category details of the particular article
+          $categorysql = "SELECT category_name, category_color 
                             FROM category 
                             WHERE category_id = {$category_id}";
 
-        // Running the Category Query
-        $categoryres = mysqli_query($con, $categorysql);
+          // Running the Category Query
+          $categoryres = mysqli_query($con, $categorysql);
 
-        // Fetching the data of particular record as an Associative Array
-        $categorydata = mysqli_fetch_assoc($categoryres);
+          // Fetching the data of particular record as an Associative Array
+          $categorydata = mysqli_fetch_assoc($categoryres);
 
-        // Bookmarked variable to determine if the article is bookmarked by the user
-        $bookmarked = false;
+          // Bookmarked variable to determine if the article is bookmarked by the user
+          $bookmarked = false;
 
-        // Checking if the user is logged in
-        if (isset($_SESSION['USER_ID'])) {
+          // Checking if the user is logged in
+          if (isset($_SESSION['USER_ID'])) {
 
-          // Bookmark Query to check if the particular article is bookmarked by user
-          $bookmarkQuery = "SELECT * FROM bookmark 
+            // Bookmark Query to check if the particular article is bookmarked by user
+            $bookmarkQuery = "SELECT * FROM bookmark 
                                 WHERE user_id = {$_SESSION['USER_ID']}
                                 AND article_id = {$article_id}";
 
-          // Running the Bookmark Query
-          $bookmarkResult = mysqli_query($con, $bookmarkQuery);
+            // Running the Bookmark Query
+            $bookmarkResult = mysqli_query($con, $bookmarkQuery);
 
-          // Returns the number of rows from the result retrieved.
-          $bookmarkRow = mysqli_num_rows($bookmarkResult);
+            // Returns the number of rows from the result retrieved.
+            $bookmarkRow = mysqli_num_rows($bookmarkResult);
 
-          // If query has any result (records) => User has the article bookmarked
-          if ($bookmarkRow > 0) {
+            // If query has any result (records) => User has the article bookmarked
+            if ($bookmarkRow > 0) {
 
-            // Updating the variable to true to have bookmarked icon on article card
-            $bookmarked = true;
+              // Updating the variable to true to have bookmarked icon on article card
+              $bookmarked = true;
+            }
           }
+
+          // Declaring the Category variables
+          $category_color = $categorydata['category_color'];
+          $category_name = $categorydata['category_name'];
+
+          // Calling user defined function to create an article card based upon given data
+          createArticleCard(
+            $article_title,
+            $article_image,
+            $article_desc,
+            $category_name,
+            $category_id,
+            $article_id,
+            $category_color,
+            $new,
+            $article_trend,
+            $bookmarked
+          );
         }
-
-        // Declaring the Category variables
-        $category_color = $categorydata['category_color'];
-        $category_name = $categorydata['category_name'];
-
-        // Calling user defined function to create an article card based upon given data
-        createArticleCard(
-          $article_title,
-          $article_image,
-          $article_desc,
-          $category_name,
-          $category_id,
-          $article_id,
-          $category_color,
-          $new,
-          $article_trend,
-          $bookmarked
-        );
       }
-    }
 
-    // If query has no records => If no articles are present with the above filters
-    else {
-      echo "</div>";
+      // If query has no records => If no articles are present with the above filters
+      else {
+        echo "</div>";
 
-      // Calling user defined function to create a card that says no articles present
-      createNoArticlesCard();
-    }
+        // Calling user defined function to create a card that says no articles present
+        createNoArticlesCard();
+      }
 
-    // Running Search Query to get all the article with above search filters
-    $paginationResult = mysqli_query($con, $searchQuery);
+      // Running Search Query to get all the article with above search filters
+      $paginationResult = mysqli_query($con, $searchQuery);
 
-    // If query has any result (records) => If articles are present with above search filters
-    if (mysqli_num_rows($paginationResult) > 0) {
+      // If query has any result (records) => If articles are present with above search filters
+      if (mysqli_num_rows($paginationResult) > 0) {
 
-      // Returns the number of rows from the result retrieved => total no of articles
-      $total_articles = mysqli_num_rows($paginationResult);
+        // Returns the number of rows from the result retrieved => total no of articles
+        $total_articles = mysqli_num_rows($paginationResult);
 
-      // Calculated no of pages based on limit and no of articles
-      $total_page = ceil($total_articles / $limit);
-
-
-      echo "</div>";
-      ?>
+        // Calculated no of pages based on limit and no of articles
+        $total_page = ceil($total_articles / $limit);
 
 
-      <!-- Enhanced Pagination Block -->
-      <div class="search-pagination-wrapper">
-        <div class="search-pagination">
-          <?php
-          // Function to build clean pagination URL
-          function buildPaginationUrl($page_num)
-          {
-            global $cat_id, $name, $from_date, $to_date, $trending;
-            $params = array();
-            if ($cat_id != "")
-              $params['category_select'] = $cat_id;
-            if ($name != "")
-              $params['name'] = $name;
-            if ($from_date != "")
-              $params['from_date'] = $from_date;
-            if ($to_date != "")
-              $params['to_date'] = $to_date;
-            if ($trending != "")
-              $params['trending'] = $trending;
-            $params['page'] = $page_num;
-            return 'search.php?' . http_build_query($params);
-          }
+        echo "</div>";
+        ?>
 
-          // Previous page link
-          if ($page > 1) {
-            echo '<a href="' . buildPaginationUrl($page - 1) . '" class="pagination-btn prev-btn" title="Previous Page">';
-            echo '<i class="fas fa-chevron-left"></i>';
-            echo '<span class="d-none d-sm-inline">Previous</span>';
-            echo '</a>';
-          }
 
-          // Page numbers with smart truncation
-          $start_page = max(1, $page - 2);
-          $end_page = min($total_page, $page + 2);
-
-          // Show first page if not in range
-          if ($start_page > 1) {
-            echo '<a href="' . buildPaginationUrl(1) . '" class="pagination-number">1</a>';
-            if ($start_page > 2) {
-              echo '<span class="pagination-ellipsis">...</span>';
+        <!-- Enhanced Pagination Block -->
+        <div class="search-pagination-wrapper">
+          <div class="search-pagination">
+            <?php
+            // Function to build clean pagination URL
+            function buildPaginationUrl($page_num)
+            {
+              global $cat_id, $name, $from_date, $to_date, $trending;
+              $params = array();
+              if ($cat_id != "")
+                $params['category_select'] = $cat_id;
+              if ($name != "")
+                $params['name'] = $name;
+              if ($from_date != "")
+                $params['from_date'] = $from_date;
+              if ($to_date != "")
+                $params['to_date'] = $to_date;
+              if ($trending != "")
+                $params['trending'] = $trending;
+              $params['page'] = $page_num;
+              return 'search.php?' . http_build_query($params);
             }
-          }
 
-          // Show page numbers in range
-          for ($i = $start_page; $i <= $end_page; $i++) {
-            $active_class = ($i == $page) ? 'active' : '';
-            echo '<a href="' . buildPaginationUrl($i) . '" class="pagination-number ' . $active_class . '">' . $i . '</a>';
-          }
-
-          // Show last page if not in range
-          if ($end_page < $total_page) {
-            if ($end_page < $total_page - 1) {
-              echo '<span class="pagination-ellipsis">...</span>';
+            // Previous page link
+            if ($page > 1) {
+              echo '<a href="' . buildPaginationUrl($page - 1) . '" class="pagination-btn prev-btn" title="Previous Page">';
+              echo '<i class="fas fa-chevron-left"></i>';
+              echo '<span class="d-none d-sm-inline">Previous</span>';
+              echo '</a>';
             }
-            echo '<a href="' . buildPaginationUrl($total_page) . '" class="pagination-number">' . $total_page . '</a>';
-          }
 
-          // Next page link
-          if ($total_page > $page) {
-            echo '<a href="' . buildPaginationUrl($page + 1) . '" class="pagination-btn next-btn" title="Next Page">';
-            echo '<span class="d-none d-sm-inline">Next</span>';
-            echo '<i class="fas fa-chevron-right"></i>';
-            echo '</a>';
-          }
-          ?>
+            // Page numbers with smart truncation
+            $start_page = max(1, $page - 2);
+            $end_page = min($total_page, $page + 2);
+
+            // Show first page if not in range
+            if ($start_page > 1) {
+              echo '<a href="' . buildPaginationUrl(1) . '" class="pagination-number">1</a>';
+              if ($start_page > 2) {
+                echo '<span class="pagination-ellipsis">...</span>';
+              }
+            }
+
+            // Show page numbers in range
+            for ($i = $start_page; $i <= $end_page; $i++) {
+              $active_class = ($i == $page) ? 'active' : '';
+              echo '<a href="' . buildPaginationUrl($i) . '" class="pagination-number ' . $active_class . '">' . $i . '</a>';
+            }
+
+            // Show last page if not in range
+            if ($end_page < $total_page) {
+              if ($end_page < $total_page - 1) {
+                echo '<span class="pagination-ellipsis">...</span>';
+              }
+              echo '<a href="' . buildPaginationUrl($total_page) . '" class="pagination-number">' . $total_page . '</a>';
+            }
+
+            // Next page link
+            if ($total_page > $page) {
+              echo '<a href="' . buildPaginationUrl($page + 1) . '" class="pagination-btn next-btn" title="Next Page">';
+              echo '<span class="d-none d-sm-inline">Next</span>';
+              echo '<i class="fas fa-chevron-right"></i>';
+              echo '</a>';
+            }
+            ?>
+          </div>
         </div>
-      </div>
-      <?php
-    }
-    ?>
+        <?php
+      }
+      ?>
+    </div>
   </div>
-
-</div>
-</div>
 </section>
 
 <script>
@@ -510,6 +539,21 @@ require('./includes/nav.inc.php');
         trendingToggle.classList.add('active');
       }
     });
+
+    // Auto-slide background images
+    const slides = document.querySelectorAll('.search-hero-slide');
+    if (slides.length > 1) {
+      let currentSlide = 0;
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+
+      // Change slide every 5 seconds
+      setInterval(nextSlide, 5000);
+    }
   });
 </script>
 
