@@ -360,7 +360,12 @@ body.focus-mode {
 }
 
 .btn-bookmark:hover{
-  background: linear-gradient(135deg, #3498db, #2980b9);
+  background: linear-gradient(135deg, #3498db, #2980b9);  
+  color: black;
+}
+
+.btn-bookmark.bookmarked:hover {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
   color: black;
 }
 
