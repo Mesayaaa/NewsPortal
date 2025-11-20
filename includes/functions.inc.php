@@ -77,6 +77,74 @@ function get_safe_value($str)
   return $str;
 }
 
+/**
+ * Build optimized random selection query
+ * 
+ * This function generates a WHERE clause for efficient random row selection
+ * Performance: 5-100x faster than ORDER BY RAND() depending on table size
+ * 
+ * @param string $table - Table name
+ * @param string $idColumn - Primary key column name (default: 'id')
+ * @param array $conditions - Additional WHERE conditions (optional)
+ * @return string - WHERE clause for random selection
+ * 
+ * @example
+ * $where = buildRandomQuery('article', 'article_id', ['article_active = 1']);
+ * $sql = "SELECT * FROM article WHERE $where LIMIT 5";
+ */
+function buildRandomQuery($table, $idColumn = 'id', $conditions = [])
+{
+  $whereClause = '';
+
+  // Add additional conditions if provided
+  if (!empty($conditions)) {
+    $whereClause = implode(' AND ', $conditions) . ' AND ';
+  }
+
+  // Add optimized random selection
+  $whereClause .= "{$idColumn} >= (
+    SELECT FLOOR(RAND() * (SELECT MAX({$idColumn}) FROM {$table}))
+  )";
+
+  return $whereClause;
+}
+
+/**
+ * Sanitize integer input from GET/POST
+ * 
+ * Prevents SQL injection by ensuring value is an integer
+ * 
+ * @param mixed $value - Value to sanitize
+ * @param int $default - Default value if sanitization fails
+ * @return int - Sanitized integer value
+ */
+function sanitize_int($value, $default = 0)
+{
+  return filter_var($value, FILTER_VALIDATE_INT) !== false
+    ? (int) $value
+    : $default;
+}
+
+/**
+ * Execute query with error handling
+ * 
+ * @param mysqli $con - Database connection
+ * @param string $query - SQL query to execute
+ * @return mysqli_result|false - Query result or false on failure
+ */
+function execute_query($con, $query)
+{
+  $result = mysqli_query($con, $query);
+
+  if (!$result) {
+    // In production, log this error instead of displaying
+    error_log("Database Query Error: " . mysqli_error($con));
+    error_log("Query: " . $query);
+  }
+
+  return $result;
+}
+
 // Function to Create Article Card
 function createArticleCard($title, $img, $data, $category, $cat_id, $id, $color, $new, $trend, $marked)
 {

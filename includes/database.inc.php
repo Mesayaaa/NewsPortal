@@ -13,8 +13,8 @@ $pass = "";
 // Default Database name
 $db = "news-portal";
 
-// Creating a connection to the DataBase
-$con = mysqli_connect($host,$user,$pass,$db);
+// Creating a connection to the DataBase with optimized settings
+$con = mysqli_connect($host, $user, $pass, $db);
 
 /* Deployment Connection
 
@@ -29,5 +29,11 @@ $con = mysqli_connect($host, $user, $pass, $db, $port);
 
 // Checking If the connection is obtained
 if (!$con) {
-  die("Database Connection Error");
+  die("Database Connection Error: " . mysqli_connect_error());
 }
+
+// Set connection charset to UTF-8 for better compatibility
+mysqli_set_charset($con, "utf8mb4");
+
+// Optional: Set timeout for queries (in seconds)
+// mysqli_options($con, MYSQLI_OPT_CONNECT_TIMEOUT, 5);

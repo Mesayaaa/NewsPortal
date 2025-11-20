@@ -46,6 +46,16 @@ if (strpos($uri, "/add-category.php") != false) {
   $home = false;
 }
 
+if (strpos($uri, "/users.php") != false) {
+  $page_title = "Users";
+  $home = false;
+}
+
+if (strpos($uri, "/authors.php") != false) {
+  $page_title = "Authors";
+  $home = false;
+}
+
 if (strpos($uri, "/change-password.php") != false) {
   $page_title = "Change Password";
   $home = false;

@@ -105,6 +105,12 @@ if (strpos($uri, "news.php") != false) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- DNS Prefetch & Preconnect for faster CDN loading -->
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
   <!-- PARTIAL CSS INCLUSIONS -->
   <link rel="stylesheet" href="./assets/css/partials/0-fonts.css" />
   <link rel="stylesheet" href="./assets/css/partials/1-variables.css" />
