@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
     modules: {
       toolbar: toolbarOptions
     },
-    placeholder: 'Write your article content here...',
     bounds: '#quill-editor'
   });
 

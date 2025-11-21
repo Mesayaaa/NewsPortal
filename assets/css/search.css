@@ -1,5 +1,10 @@
 /* Enhanced Search Page Styles */
 
+/* Smooth scroll behavior for pagination navigation */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Search Hero Section with Background Slider */
 .search-hero {
   position: relative;

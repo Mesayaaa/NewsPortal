@@ -170,7 +170,7 @@ require('./includes/nav.inc.php');
 </section>
 
 <!-- Container to store the Search Results -->
-<section class="py-1 category-list">
+<section class="py-1 category-list" id="search-results">
   <div class="container">
     <h2 class="search-heading">Search Results :</h2>
     <div class="card-container">
@@ -479,7 +479,7 @@ require('./includes/nav.inc.php');
               if ($trending != "")
                 $params['trending'] = $trending;
               $params['page'] = $page_num;
-              return 'search.php?' . http_build_query($params);
+              return 'search.php?' . http_build_query($params) . '#search-results';
             }
 
             // Previous page link
@@ -568,7 +568,8 @@ require('./includes/nav.inc.php');
 
       // Change slide every 5 seconds
       setInterval(nextSlide, 5000);
-    } });
+    }
+  });
 </script>
 
 <?php

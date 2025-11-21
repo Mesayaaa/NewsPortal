@@ -8,9 +8,6 @@
 <!-- QUILL.JS LIBRARY -->
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
-<!-- TABLE SCROLL INDICATOR -->
-<script src="../assets/js/table-scroll-indicator.js"></script>
-
 </body>
 
 </html>
