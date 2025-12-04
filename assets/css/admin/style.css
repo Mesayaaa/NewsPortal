@@ -398,7 +398,7 @@ body {
   font-size: var(--hs-lg); /* Konsisten dengan public (3.5rem) */
   font-weight: 700;
   color: var(--primary-color);
-  margin-bottom: 10px;
+  margin-top: 0;
   font-family: var(--ff-monts);
 }
 
@@ -417,7 +417,6 @@ body {
 
 .dash-icon {
   text-align: center;
-  margin-bottom: 15px;
 }
 
 .dash-icon .glyphicon {
@@ -2566,5 +2565,41 @@ body[class*="authors"] .article-list td:first-child {
     .authors-page .article-list th:nth-child(3),
     .authors-page .article-list td:nth-child(3) {
         min-width: 150px !important;
+    }
+}
+
+/* Search Form Styling for Users and Authors Pages */
+.users-page .form-inline input[name="search"],
+.authors-page .form-inline input[name="search"] {
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 100% !important;
+}
+
+/* Responsive search input */
+@media (max-width: 768px) {
+    .users-page .form-inline input[name="search"],
+    .authors-page .form-inline input[name="search"] {
+        width: 100% !important;
+        min-width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .users-page .form-inline,
+    .authors-page .form-inline {
+        display: block !important;
+    }
+    
+    .users-page .form-inline .btn,
+    .authors-page .form-inline .btn {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .users-page .form-inline input[name="search"],
+    .authors-page .form-inline input[name="search"] {
+        font-size: var(--ts-sml) !important;
+        padding: 12px 15px !important;
     }
 }

@@ -38,31 +38,33 @@ require('./includes/nav.inc.php');
             <h3 class="panel-title">Overview</h3>
           </div>
           <div class="panel-body" style="padding: 2.5rem;">
-            <div class="col-md-4">
-              <div class="well dash-box">
-                <h2>
-                  <span class="glyphicon glyphicon-pencil"></span>
-                  <?php echo $no_of_articles; ?>
-                </h2>
-                <h4>Articles</h4>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="dash-box">
+                  <div class="dash-icon" style="color: var(--primary-color);">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </div>
+                  <h2><?php echo $no_of_articles; ?></h2>
+                  <h4>Articles</h4>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="well dash-box">
-                <h2>
-                  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                  <?php echo $no_of_categories; ?>
-                </h2>
-                <h4>Categories</h4>
+              <div class="col-md-4">
+                <div class="dash-box">
+                  <div class="dash-icon" style="color: var(--secondary-color);">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                  </div>
+                  <h2><?php echo $no_of_categories; ?></h2>
+                  <h4>Categories</h4>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="well dash-box">
-                <h2>
-                  <span class="glyphicon glyphicon-bookmark"></span>
-                  <?php echo $no_of_bookmarks; ?>
-                </h2>
-                <h4>Bookmarks</h4>
+              <div class="col-md-4">
+                <div class="dash-box">
+                  <div class="dash-icon" style="color: var(--tag-green-color);">
+                    <span class="glyphicon glyphicon-bookmark"></span>
+                  </div>
+                  <h2><?php echo $no_of_bookmarks; ?></h2>
+                  <h4>Bookmarks</h4>
+                </div>
               </div>
             </div>
           </div>

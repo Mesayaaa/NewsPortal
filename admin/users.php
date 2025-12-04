@@ -29,8 +29,7 @@ require('./includes/nav.inc.php');
                     </div>
                     <div class="panel-body">
                         <form method="get" class="form-inline" style="margin-bottom: 1rem;">
-                            <input type="text" name="search" class="form-control"
-                                placeholder="Search users by name or email"
+                            <input type="text" name="search" class="form-control" placeholder="Search by name or email"
                                 value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                             <button type="submit" class="btn btn-danger">Search</button>
                         </form>

@@ -111,7 +111,7 @@ if (strpos($uri, "/change-password.php") != false) {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="./index.php">
+        <a class="navbar-brand">
           WinniCode Admin
         </a>
       </div>
