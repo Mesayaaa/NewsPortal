@@ -37,10 +37,10 @@ require('./includes/nav.inc.php');
           <div class="panel-heading main-color-bg">
             <h3 class="panel-title">Overview</h3>
           </div>
-          <div class="panel-body" style="padding: 2.5rem;">
+          <div class="panel-body author-dashboard-overview" style="padding: 2.5rem;">
             <div class="row">
-              <div class="col-md-4">
-                <div class="dash-box">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dash-box author-dash-box">
                   <div class="dash-icon" style="color: var(--primary-color);">
                     <span class="glyphicon glyphicon-pencil"></span>
                   </div>
@@ -48,8 +48,8 @@ require('./includes/nav.inc.php');
                   <h4>Articles</h4>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="dash-box">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dash-box author-dash-box">
                   <div class="dash-icon" style="color: var(--secondary-color);">
                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                   </div>
@@ -57,8 +57,8 @@ require('./includes/nav.inc.php');
                   <h4>Categories</h4>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="dash-box">
+              <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="dash-box author-dash-box">
                   <div class="dash-icon" style="color: var(--tag-green-color);">
                     <span class="glyphicon glyphicon-bookmark"></span>
                   </div>

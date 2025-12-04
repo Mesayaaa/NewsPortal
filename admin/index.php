@@ -26,7 +26,7 @@ require('./includes/nav.inc.php');
           </div>
           <div class="panel-body" style="padding: 2.5rem;">
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="dash-box">
                   <div class="dash-icon" style="color: var(--primary-color);">
                     <span class="glyphicon glyphicon-pencil"></span>
@@ -38,7 +38,7 @@ require('./includes/nav.inc.php');
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="dash-box">
                   <div class="dash-icon" style="color: var(--secondary-color);">
                     <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
@@ -50,7 +50,7 @@ require('./includes/nav.inc.php');
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="dash-box">
                   <div class="dash-icon" style="color: var(--tag-green-color);">
                     <span class="glyphicon glyphicon-user"></span>
@@ -62,7 +62,7 @@ require('./includes/nav.inc.php');
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="dash-box">
                   <div class="dash-icon" style="color: var(--tag-blue-color);">
                     <span class="glyphicon glyphicon-briefcase"></span>
