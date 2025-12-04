@@ -40,11 +40,11 @@ require('./includes/nav.inc.php');
           <div class="table-responsive">
             <table class="table table-striped table-hover article-list">
               <tr>
-                <th style="min-width: 80px; text-align:center">Name</th>
-                <th style="min-width: 100px">Image</th>
-                <th style="min-width: 280px">Description</th>
-                <th style="min-width: 20px">Tag Color</th>
-                <th style="min-width: 20px">Actions</th>
+                <th class="category-name-col">Name</th>
+                <th class="image-col">Image</th>
+                <th class="content-col">Description</th>
+                <th class="tag-color-col">Tag Color</th>
+                <th class="actions-col">Actions</th>
               </tr>
               <?php
               if ($row > 0) {

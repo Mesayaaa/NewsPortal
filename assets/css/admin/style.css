@@ -1436,17 +1436,56 @@ input.form-control {
   .table-responsive-custom {
     margin: 0 -15px;
     border-radius: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
+  /* Increase font size for better readability on mobile */
   .article-list, .article-table, .table {
-    font-size: var(--ts-vs) !important;
+    font-size: var(--ts-md) !important;
+    min-width: 600px;
   }
   
   .article-list td, .article-list th,
   .article-table td, .article-table th,
   .table td, .table th {
-    padding: 8px 4px !important;
-    font-size: var(--ts-vs) !important; /* Consistent smallest size on mobile */
+    padding: 10px 6px !important;
+    font-size: var(--ts-md) !important;
+    vertical-align: middle;
+  }
+  
+  /* Make first column (ID/No) narrower */
+  .table th:first-child,
+  .table td:first-child {
+    width: 50px;
+    min-width: 50px;
+  }
+  
+  /* Action column adjustments */
+  .table td:last-child {
+    white-space: nowrap;
+  }
+  
+  /* Image thumbnails smaller on mobile */
+  .table td img {
+    max-width: 50px;
+    height: auto;
+  }
+  
+  /* Button styling in mobile tables */
+  .table .btn {
+    font-size: var(--ts-sml) !important;
+    padding: 6px 8px !important;
+    min-width: 36px;
+  }
+  
+  /* Status tags smaller on mobile */
+  .table .tag,
+  .table .label,
+  .table .badge {
+    font-size: var(--ts-sml) !important;
+    padding: 4px 8px !important;
+    min-width: 60px;
   }
 }
 
@@ -2157,6 +2196,41 @@ body {
   .table-responsive {
     border-radius: 15px;
     overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Tablet Table Styling - Readable fonts */
+  .article-list, .article-table, .table {
+    font-size: var(--ts-md) !important;
+    min-width: 100%;
+  }
+  
+  .article-list td, .article-list th,
+  .article-table td, .article-table th,
+  .table td, .table th {
+    padding: 12px 8px !important;
+    font-size: var(--ts-md) !important;
+    white-space: nowrap;
+  }
+  
+  /* Allow text wrapping for description columns */
+  .table td:nth-child(2),
+  .article-table td:nth-child(2) {
+    white-space: normal;
+    min-width: 150px;
+  }
+  
+  /* Button groups in tables */
+  .table .btn-group {
+    display: flex;
+    gap: 5px;
+    flex-wrap: nowrap;
+  }
+  
+  .table .btn {
+    font-size: var(--ts-sml) !important;
+    padding: 6px 10px !important;
   }
   
   .btn-box {
