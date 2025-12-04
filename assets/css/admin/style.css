@@ -495,8 +495,8 @@ body {
 /* Modern Login Form */
 #login {
   width: 100%;
-  max-width: 480px;
-  padding: 3.5rem 2.5rem;
+  max-width: 600px;
+  padding: 4rem 3.5rem;
   background: white;
   border-radius: 24px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.13);
@@ -508,8 +508,8 @@ body {
 
 @media (min-width: 600px) {
   #login {
-    max-width: 540px;
-    padding: 4rem 3rem;
+    max-width: 680px;
+    padding: 4.5rem 4rem;
   }
 }
 
@@ -521,22 +521,24 @@ body {
 }
 
 #login label {
-  font-size: var(--ts-lg);
+  font-size: 1.8rem;
   font-family: var(--ff-nunito);
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   color: var(--dark-color);
+  display: block;
 }
 
 #login input {
   border-radius: 12px;
-  padding: 15px 20px;
-  font-size: var(--ts-lg);
-  margin-bottom: 1.5rem;
+  padding: 18px 24px;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
   border: 2px solid #e1e5e9;
   transition: all 0.3s ease;
   font-family: var(--ff-nunito);
   background: #f8f9fa;
+  width: 100%;
 }
 
 #login input:focus {
@@ -551,11 +553,12 @@ body {
   background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
   border: none;
   border-radius: 12px;
-  padding: 15px 40px;
-  font-size: var(--ts-lg);
+  padding: 18px 48px;
+  font-size: 1.8rem;
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(199, 39, 39, 0.3);
+  width: 100%;
 }
 
 #login .btn:hover {
