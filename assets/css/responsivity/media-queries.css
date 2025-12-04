@@ -298,11 +298,11 @@
   .img-slider .slide .info .tag {
     margin-bottom: 0.2rem;
     margin-right: 0.4rem;
-    padding: 0.3rem 0.6rem;
-    font-size: var(--ts-sml);
+    padding: 0.4rem 0.8rem;
+    font-size: 1.1rem;
   }
   .img-slider .slide .info h1 {
-    font-size: var(--hs-sml);
+    font-size: 2.8rem;
     /* Enhanced responsive title display with line limit */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -318,14 +318,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 6rem; /* 2 lines * 1.3 line-height * 2.25rem (--hs-sml) = 5.85rem */
+    max-height: 7.5rem;
     /* Prevent layout breaking */
     width: 100%;
     max-width: 100%;
   }
 
   .img-slider .slide .info p {
-    font-size: var(--ts-md);
+    font-size: 1.4rem;
     line-height: 1.5;
     margin: 0.4rem 0 0.6rem 0;
     /* Limit to 2 lines on tablet to keep button visible */
@@ -334,7 +334,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 4rem; /* 2 lines * 1.5 line-height * 1.25rem (--ts-md) = 3.75rem */
+    max-height: 4.5rem;
   }
   .img-slider .navigation {
     bottom: 25px;
@@ -371,11 +371,11 @@
   .img-slider .slide .info .tag {
     margin-bottom: 0.2rem;
     margin-right: 0.3rem;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.7rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.95rem;
   }
   .img-slider .slide .info h1 {
-    font-size: var(--ts-lg);
+    font-size: 2.2rem;
     /* Enhanced responsive title display for tablet portrait */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -391,14 +391,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 4rem; /* 2 lines * 1.3 line-height * 1.5rem (--ts-lg) = 3.9rem */
+    max-height: 6rem;
     /* Prevent layout breaking */
     width: 100%;
     max-width: 100%;
   }
 
   .img-slider .slide .info p {
-    font-size: var(--ts-sml);
+    font-size: 1.2rem;
     line-height: 1.5;
     margin: 0.3rem 0 0.5rem 0;
     /* Limit to 2 lines on tablet portrait to keep button visible */
@@ -407,7 +407,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 3.5rem; /* 2 lines * 1.5 line-height * 1rem (--ts-sml) = 3rem */
+    max-height: 4rem;
   }
   .img-slider .navigation {
     bottom: 15px;
@@ -444,11 +444,11 @@
   .img-slider .slide .info .tag {
     margin-bottom: 0.15rem;
     margin-right: 0.25rem;
-    padding: 0.2rem 0.4rem;
-    font-size: 0.65rem;
+    padding: 0.3rem 0.55rem;
+    font-size: 0.85rem;
   }
   .img-slider .slide .info h1 {
-    font-size: var(--ts-md);
+    font-size: 1.8rem;
     /* Enhanced responsive title display for mobile */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -464,14 +464,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 3.5rem; /* 2 lines * 1.3 line-height * 1.25rem (--ts-md) = 3.25rem */
+    max-height: 5rem;
     /* Prevent layout breaking */
     width: 100%;
     max-width: 100%;
   }
 
   .img-slider .slide .info p {
-    font-size: var(--ts-sml);
+    font-size: 1.1rem;
     line-height: 1.4;
     margin: 0.2rem 0 0.4rem 0;
     /* Limit to 2 lines on phone for very compact display */
@@ -480,7 +480,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-height: 3rem; /* 2 lines * 1.4 line-height * 1rem (--ts-sml) = 2.8rem */
+    max-height: 3.5rem;
   }
   
   .img-slider .slide .info .btn {

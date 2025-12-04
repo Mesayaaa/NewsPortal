@@ -1,7 +1,13 @@
 /* Spacing for header so back button doesn't overlap title */
 body.login-page #header .container {
   position: relative;
-  padding-left: 0;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+body.login-page #header {
+  background: var(--primary-color);
+  padding: 15px 0;
 }
 /* Back button in login navbar */
 .back-nav {
@@ -32,11 +38,17 @@ body.login-page #header .container {
 @media (max-width: 600px) {
   .back-nav {
     font-size: var(--ts-lg);
-    padding: 4px 10px 4px 6px;
+    padding: 6px 12px 6px 8px;
+    margin-left: 0;
   }
   .back-nav .glyphicon {
     font-size: var(--ts-lg);
     margin-right: 4px;
+  }
+  
+  body.login-page #header .container {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 /* ===============================
@@ -496,7 +508,7 @@ body {
 #login {
   width: 100%;
   max-width: 600px;
-  padding: 4rem 3.5rem;
+  padding: 3rem 3.5rem;
   background: white;
   border-radius: 24px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.13);
@@ -509,14 +521,146 @@ body {
 @media (min-width: 600px) {
   #login {
     max-width: 680px;
-    padding: 4.5rem 4rem;
+    padding: 3.5rem 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #login {
+    max-width: 90vw;
+    padding: 2.5rem 2rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .login-main {
+    padding: 40px 20px;
+  }
+  
+  .login-main .container {
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-main .row {
+    margin: 0;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-main .col-md-4 {
+    width: 100% !important;
+    float: none !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-main .col-md-offset-4 {
+    margin-left: 0 !important;
+  }
+  
+  body.login-page #header .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  #login label {
+    font-size: 1.6rem;
+  }
+  
+  #login input {
+    font-size: 1.5rem;
+    padding: 16px 20px;
+  }
+  
+  #login .btn {
+    font-size: 1.6rem;
+    padding: 16px 40px;
+  }
+  
+  .login-main {
+    padding: 40px 15px;
   }
 }
 
 @media (max-width: 480px) {
   #login {
-    max-width: 98vw;
-    padding: 2rem 0.5rem;
+    max-width: 95vw;
+    padding: 2rem 1.5rem;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .login-main {
+    padding: 30px 15px;
+  }
+  
+  .login-main .container {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-main .row {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-main .col-md-4 {
+    width: 100% !important;
+    padding: 0 10px !important;
+    float: none !important;
+    margin: 0 auto !important;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-main .col-md-offset-4 {
+    margin-left: 0 !important;
+  }
+  
+  body.login-page #header .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .back-nav {
+    margin-left: 0;
+  }
+  
+  #login label {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  #login input {
+    font-size: 1.4rem;
+    padding: 14px 18px;
+    margin-bottom: 1.2rem;
+  }
+  
+  #login .btn {
+    font-size: 1.5rem;
+    padding: 15px 36px;
+  }
+  
+  .login-main {
+    padding: 30px 10px;
   }
 }
 
@@ -524,7 +668,7 @@ body {
   font-size: 1.8rem;
   font-family: var(--ff-nunito);
   font-weight: 600;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.8rem;
   color: var(--dark-color);
   display: block;
 }
@@ -533,7 +677,7 @@ body {
   border-radius: 12px;
   padding: 18px 24px;
   font-size: 1.6rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   border: 2px solid #e1e5e9;
   transition: all 0.3s ease;
   font-family: var(--ff-nunito);
@@ -960,14 +1104,13 @@ table th:last-child {
 }
 
 .login-main {
-  min-height: 100vh !important;
+  min-height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 60px 20px;
 }
-
-
 
 .login-main .container {
   position: relative;
@@ -2265,7 +2408,7 @@ body {
   }
   
   .login-main {
-    padding: 20px;
+    padding: 40px 20px;
   }
   
   /* Header Mobile */
