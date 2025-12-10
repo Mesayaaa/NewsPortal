@@ -1388,10 +1388,32 @@ input[type="file"]:hover {
   color: var(--dark-color);
 }
 
+/* Disable HTML5 validation visual feedback (red/green borders) */
+.form-control:valid,
+.form-control:invalid,
+input.form-control:valid,
+input.form-control:invalid,
+textarea.form-control:valid,
+textarea.form-control:invalid,
+select.form-control:valid,
+select.form-control:invalid {
+  border-color: #e1e5e9 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
 .form-control:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 4px rgba(199, 39, 39, 0.1);
-  outline: none;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 4px rgba(199, 39, 39, 0.1) !important;
+  outline: none !important;
+}
+
+input.form-control:focus,
+textarea.form-control:focus,
+select.form-control:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 4px rgba(199, 39, 39, 0.1) !important;
+  outline: none !important;
 }
 
 /* Enhanced Select Dropdown Styling */

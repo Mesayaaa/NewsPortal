@@ -40,7 +40,6 @@ if (isset($_POST['submit'])) {
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="./index.php">Dashboard</a></li>
-      <li class="active">Settings</li>
       <li class="active">Change Name</li>
     </ol>
   </div>

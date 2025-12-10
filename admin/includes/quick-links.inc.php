@@ -48,7 +48,7 @@ $no_of_categories = $cat_data['no_of_categories'];
 
     <a href="./change-password.php" class="list-group-item">
       <span class="glyphicon glyphicon-cog"></span>
-      Settings
+      Change Password
     </a>
     <a href="../index.php" class="list-group-item" target="_blank">
       <span class="glyphicon glyphicon-eye-open"></span>

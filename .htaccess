@@ -53,8 +53,3 @@ FileETag None
   Header set X-Frame-Options "SAMEORIGIN"
   Header set X-XSS-Protection "1; mode=block"
 </IfModule>
-
-# Custom Error Pages
-ErrorDocument 404 /404.php
-ErrorDocument 403 /404.php
-ErrorDocument 500 /404.php

@@ -148,7 +148,7 @@ if (strpos($uri, "/change-password.php") != false) {
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="./change-password.php"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+              <li><a href="./change-password.php"><i class="glyphicon glyphicon-cog"></i> Change Password</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="./logout.php"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
             </ul>
