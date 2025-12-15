@@ -39,6 +39,9 @@ if (isset($_POST['submit'])) {
     if ($result) {
       alert("Category updated ", "success", "Success");
       redirect('./categories.php');
+    } else {
+      alert("Failed to update category. Please try again later", "error", "Error");
+      redirect('./categories.php');
     }
 
   } else {

@@ -43,6 +43,9 @@ if (isset($_POST['submit'])) {
     if ($result) {
       alert("Article updated " . $author_name . " !", "success", "Success");
       redirect('./articles.php');
+    } else {
+      alert("Failed to update article. Please try again later", "error", "Error");
+      redirect('./articles.php');
     }
 
   } else {

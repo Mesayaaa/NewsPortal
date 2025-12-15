@@ -83,6 +83,13 @@ if (isset($_POST['submit'])) {
           redirect('./index.php');
         }
       }
+
+      // If the password fails to match
+      else {
+
+        // Redirected to same page along with a message
+        alert("Wrong Password. Try again !", "error", "Error");
+      }
     }
 
     // If query has any result (records) => If email is an author email
