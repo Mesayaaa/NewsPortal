@@ -1,23 +1,44 @@
-// Navbar Dropdown Toggle - Desktop Only
+// Navbar Dropdown Toggle Handler - Left-aligned only
 document.addEventListener('DOMContentLoaded', function() {
-    // Get all dropdown toggles
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    const dropdowns = document.querySelectorAll('.dropdown');
+    const isDesktop = window.innerWidth > 768;
     
+    // Toggle dropdown on click (for mobile and keyboard users)
     dropdownToggles.forEach(function(toggle) {
         toggle.addEventListener('click', function(e) {
-            // Desktop only - no mobile responsiveness
-            // Dropdowns work on hover on desktop, click handling removed
+            if (!isDesktop) {
+                e.preventDefault();
+                const dropdown = toggle.closest('.dropdown');
+                dropdown.classList.toggle('active');
+            }
+        });
+        
+        // Add keyboard support (Enter/Space)
+        toggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggle.click();
+            }
         });
     });
     
-    // Close dropdowns when clicking outside - desktop only
+    // Close dropdowns when clicking outside
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.dropdown')) {
-            document.querySelectorAll('.dropdown').forEach(function(dropdown) {
+            dropdowns.forEach(function(dropdown) {
                 dropdown.classList.remove('active');
             });
         }
     });
     
-    // Desktop only - no resize handling needed
+    // Prevent dropdown from closing when clicking inside the menu
+    dropdowns.forEach(function(dropdown) {
+        const menu = dropdown.querySelector('.dropdown-menu');
+        if (menu) {
+            menu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    });
 });

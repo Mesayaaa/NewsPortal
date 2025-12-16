@@ -192,6 +192,7 @@ if (strpos($uri, "news.php") != false) {
             <ul class="dropdown-menu">
               <li><a href="./user-login.php">Reader</a></li>
               <li><a href="./author-login.php">Author</a></li>
+              <li><a href="./admin/login.php">Admin</a></li>
             </ul>
           </li>
 
@@ -200,6 +201,7 @@ if (strpos($uri, "news.php") != false) {
             echo ' class="current"' ?>>Login as Reader</a></li>
           <li class="mobile-only"><a href="./author-login.php" <?php if ($login && strpos($uri, "author-login.php") != false)
             echo ' class="current"' ?>>Login as Author</a></li>
+          <li class="mobile-only"><a href="./admin/login.php">Login as Admin</a></li>
         <?php
       }
       ?>
