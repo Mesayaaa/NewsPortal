@@ -50,8 +50,7 @@ if (isset($_POST['submit'])) {
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="./index.php">Dashboard</a></li>
-      <li><a href="./articles.php">Articles</a></li>
-      <li class="active">Add</li>
+      <li class="active">Add Article</li>
     </ol>
   </div>
 </section>
