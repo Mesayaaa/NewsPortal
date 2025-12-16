@@ -46,8 +46,7 @@ if (isset($_POST['submit'])) {
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="./index.php">Dashboard</a></li>
-      <li><a href="./categories.php">Categories</a></li>
-      <li class="active">Add</li>
+      <li class="active">Add Category</li>
     </ol>
   </div>
 </section>
