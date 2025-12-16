@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2025 at 01:04 PM
+-- Generation Time: Dec 16, 2025 at 01:07 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.2.12
 
@@ -423,8 +423,7 @@ INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_password`) VALUE
 (22, 'Radha Krishnan', 'radha.k@email.com', '$2y$10$123jkl456mno789pqr012stu345vwx678yz901234abc567def890ghi123'),
 (23, 'Harish Reddy', 'harish.r@email.com', '$2y$10$jkl456mno789pqr012stu345vwx678yz901234abc567def890ghi123jkl'),
 (24, 'Neha Sharma', 'neha.s@email.com', '$2y$10$456mno789pqr012stu345vwx678yz901234abc567def890ghi123jkl456'),
-(25, 'Sanjay Malhotra', 'sanjay.m@email.com', '$2y$10$mno789pqr012stu345vwx678yz901234abc567def890ghi123jkl456mno'),
-(26, 'Christopher Mesaya', 'mesayachristopher2112@gmail.com', '$2y$10$jP9K8QSrDDmL3CvkMPIyOuzhTsllpjRGLzvx/a72lSQZ93QmBPzIG');
+(25, 'Sanjay Malhotra', 'sanjay.m@email.com', '$2y$10$mno789pqr012stu345vwx678yz901234abc567def890ghi123jkl456mno');
 
 --
 -- Indexes for dumped tables
