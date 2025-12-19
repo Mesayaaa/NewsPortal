@@ -7,6 +7,24 @@ require('./includes/nav.inc.php');
     document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.add('authors-page');
     });
+
+    // Delete author function with SweetAlert confirmation
+    function deleteAuthor(authorId, authorName) {
+        Swal.fire({
+            title: 'Delete Author?',
+            html: 'Are you sure you want to delete author <strong>' + authorName + '</strong>?<br/><br/>This action cannot be undone.<br/>All articles and bookmarks associated with this author will be deleted.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = './delete-author.php?author_id=' + authorId;
+            }
+        });
+    }
 </script>
 
 <!-- BREADCRUMB -->
@@ -18,6 +36,32 @@ require('./includes/nav.inc.php');
         </ol>
     </div>
 </section>
+
+<!-- Success/Error Messages -->
+<?php
+if (isset($_SESSION['delete_success'])) {
+    echo '<script>
+        Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "' . htmlspecialchars($_SESSION['delete_success']) . '",
+            confirmButtonText: "OK"
+        });
+    </script>';
+    unset($_SESSION['delete_success']);
+}
+if (isset($_SESSION['delete_error'])) {
+    echo '<script>
+        Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "' . htmlspecialchars($_SESSION['delete_error']) . '",
+            confirmButtonText: "OK"
+        });
+    </script>';
+    unset($_SESSION['delete_error']);
+}
+?>
 
 <section id="main">
     <div class="container">
@@ -40,6 +84,7 @@ require('./includes/nav.inc.php');
                                         <th>Author ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -59,10 +104,13 @@ require('./includes/nav.inc.php');
                                             echo '<td>' . $author['author_id'] . '</td>';
                                             echo '<td>' . htmlspecialchars($author['author_name']) . '</td>';
                                             echo '<td>' . htmlspecialchars($author['author_email']) . '</td>';
+                                            echo '<td>';
+                                            echo '<button class="btn btn-sm btn-danger" onclick="deleteAuthor(' . $author['author_id'] . ', \'' . htmlspecialchars($author['author_name'], ENT_QUOTES) . '\')"><i class="fa fa-trash"></i> Delete</button>';
+                                            echo '</td>';
                                             echo '</tr>';
                                         }
                                     } else {
-                                        echo '<tr><td colspan="3" align="center">No authors found.</td></tr>';
+                                        echo '<tr><td colspan="4" align="center">No authors found.</td></tr>';
                                     }
                                     ?>
                                 </tbody>

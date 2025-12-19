@@ -21,6 +21,8 @@ $home = true;
 $pass = false;
 $category = false;
 $article = false;
+$user = false;
+$author = false;
 
 // Strpos returns the position of the search string in the main string or returns 0 (false)
 // Checking if the page is Home Page
@@ -55,11 +57,13 @@ if (strpos($uri, "/edit-category.php") != false) {
 if (strpos($uri, "/users.php") != false) {
   $page_title = "Users";
   $home = false;
+  $user = true;
 }
 
 if (strpos($uri, "/authors.php") != false) {
   $page_title = "Authors";
   $home = false;
+  $author = true;
 }
 
 if (strpos($uri, "/change-password.php") != false) {
@@ -136,6 +140,20 @@ if (strpos($uri, "/change-password.php") != false) {
               <a href="./categories.php">
                 <i class="glyphicon glyphicon-list"></i>
                 Categories
+              </a>
+            </li>
+            <li <?php if ($user)
+            echo 'class="active"' ?>>
+              <a href="./users.php">
+                <i class="glyphicon glyphicon-user"></i>
+                Users
+              </a>
+            </li>
+            <li <?php if ($author)
+            echo 'class="active"' ?>>
+              <a href="./authors.php">
+                <i class="glyphicon glyphicon-pencil"></i>
+                Authors
               </a>
             </li>
           </ul>
