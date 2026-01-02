@@ -40,7 +40,6 @@ function initReadingProgress() {
     if (!bar || !article) return;
 
     function onScroll() {
-        const rect = article.getBoundingClientRect();
         const total = article.scrollHeight - window.innerHeight;
         const scrolled = Math.min(Math.max(window.scrollY - (article.offsetTop || 0), 0), total);
         const pct = total > 0 ? (scrolled / total) * 100 : 0;
@@ -122,25 +121,6 @@ function showToast(message, type = 'info') {
     }, 3000);
 }
 
-// Keyboard shortcuts
-// ...existing code...
-
-// Click outside modal to close
-// ...existing code...
-
-// Performance optimizations
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
 // Lazy load sidebar content for better performance
 function initLazyLoadSidebar() {
     const sidebarCards = document.querySelectorAll('.enhanced-sidebar-card');
@@ -202,9 +182,9 @@ function initAccessibility() {
     }
     
     // Add aria labels to buttons
-    const shareBtn = document.querySelector('.btn-share');
-    if (shareBtn) {
-        shareBtn.setAttribute('aria-label', 'Share this article');
+    const focusBtn = document.getElementById('focusToggle');
+    if (focusBtn) {
+        focusBtn.setAttribute('aria-label', 'Toggle focus mode');
     }
     
     const bookmarkBtn = document.querySelector('.btn-bookmark');
@@ -456,8 +436,7 @@ function initArticleTTS() {
 // ==========================
 function initFocusMode() {
     const btn = document.getElementById('focusToggle');
-    const pageContainer = document.querySelector('.page-container');
-    if (!btn || !pageContainer) return;
+    if (!btn) return;
 
     // initialize state
     btn.setAttribute('aria-pressed', 'false');
@@ -485,5 +464,3 @@ function initFocusMode() {
         }
     });
 }
-
-// Removed follow category feature per cleanup

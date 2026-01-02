@@ -171,7 +171,7 @@ if ($row > 0) {
                         </a>';
                   ?>
                   <!-- Focus Mode -->
-                  <button class="btn btn-share" id="focusToggle" type="button" title="Toggle Focus Mode">
+                  <button class="btn btn-focus" id="focusToggle" type="button" title="Toggle Focus Mode">
                     <i class="fas fa-eye-slash"></i>
                     <span>Focus Mode</span>
                   </button>

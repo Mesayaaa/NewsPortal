@@ -354,7 +354,7 @@ body.focus-mode {
   color: black;
 }
 
-.btn-share {
+.btn-focus {
   background: linear-gradient(135deg, #9b59b6, #8e44ad);
   color: white;
 }
@@ -772,22 +772,6 @@ body.focus-mode {
     width: 80px;
   }
   
-  .share-modal-content {
-    margin: 25% auto;
-    padding: 1.5rem;
-    width: 95%;
-  }
-  
-  .share-buttons {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .share-btn {
-    width: 100%;
-    justify-content: center;
-  }
-  
   .sidebar-footer {
     padding: 0.6rem 1rem; /* More compact on mobile */
   }
@@ -961,67 +945,3 @@ body.focus-mode {
   }
 }
 
-/* Share functionality styles */
-.share-modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.share-modal-content {
-  background-color: white;
-  margin: 15% auto;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.share-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.share-btn {
-  padding: 0.7rem 1.2rem;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.share-btn.facebook {
-  background: #3b5998;
-}
-
-.share-btn.twitter {
-  background: #1da1f2;
-}
-
-.share-btn.whatsapp {
-  background: #25d366;
-}
-
-.share-btn.linkedin {
-  background: #0077b5;
-}
-
-.share-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-}
