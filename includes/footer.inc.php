@@ -1,4 +1,4 @@
-<!--? ======== FOOTER ======== -->
+<!-- ======== FOOTER ======== -->
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-content">
@@ -147,10 +147,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- SCRIPT FOR BACK TO TOP BUTTON -->
-<script src="../assets/js/back-to-top.js"></script>
-
-<!-- SCRIPT FOR NAVBAR COLLAPSE -->
-<script src="../assets/js/navbar-collapse.js"></script>
+<script src="./assets/js/back-to-top.js"></script>
 </body>
 
 </html>
