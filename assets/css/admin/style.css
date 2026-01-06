@@ -18,22 +18,32 @@ body.login-page #header {
   font-weight: 700;
   font-size: var(--ts-lg);
   z-index: 10;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.9);
   padding: 4px 14px 4px 8px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
 }
 .back-nav:hover {
-  background: var(--primary-color);
-  color: #fff !important;
+  background: #fff;
+  color: var(--primary-color) !important;
   text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 .back-nav .glyphicon {
   font-size: var(--ts-lg);
   margin-right: 6px;
   width: 1.6rem;
   height: 1.6rem;
+  transition: transform 0.3s ease;
+  position: relative;
+  top: -1px;
+}
+.back-nav:hover .glyphicon {
+  transform: scale(1.15) translateY(-1px);
 }
 @media (max-width: 600px) {
   .back-nav {
