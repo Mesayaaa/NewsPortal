@@ -87,7 +87,7 @@ if (isset($_POST['login-submit'])) {
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
-  <link href="../assets/css/admin/style.css" rel="stylesheet" />
+  <link href="../assets/css/admin/style.css?v=<?php echo time(); ?>" rel="stylesheet" />
   <link href="../assets/css/partials/1-variables.css" rel="stylesheet" />
 
   <!-- SWEETALERT2 CSS & JS -->
