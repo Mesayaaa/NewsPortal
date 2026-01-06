@@ -5,7 +5,7 @@
 
 // SweetAlert2 Wrapper Functions for WinniCode
 function showAlert(title, message, type = 'info', timer = 3000) {
-    Swal.fire({
+    return Swal.fire({
         title: title,
         text: message,
         icon: type,
@@ -13,12 +13,15 @@ function showAlert(title, message, type = 'info', timer = 3000) {
         timerProgressBar: true,
         showConfirmButton: false,
         toast: false,
-        position: 'center'
+        position: 'center',
+        customClass: {
+            popup: 'swal-flash-popup'
+        }
     });
 }
 
 function showSuccess(title, message, timer = 3000) {
-    Swal.fire({
+    return Swal.fire({
         title: title,
         text: message,
         icon: 'success',
@@ -29,12 +32,15 @@ function showSuccess(title, message, timer = 3000) {
         position: 'center',
         background: '#f0f9ff',
         color: '#065f46',
-        iconColor: '#10b981'
+        iconColor: '#10b981',
+        customClass: {
+            popup: 'swal-flash-popup'
+        }
     });
 }
 
 function showError(title, message, timer = 4000) {
-    Swal.fire({
+    return Swal.fire({
         title: title,
         text: message,
         icon: 'error',
@@ -45,12 +51,15 @@ function showError(title, message, timer = 4000) {
         position: 'center',
         background: '#fef2f2',
         color: '#991b1b',
-        iconColor: '#ef4444'
+        iconColor: '#ef4444',
+        customClass: {
+            popup: 'swal-flash-popup'
+        }
     });
 }
 
 function showWarning(title, message, timer = 3500) {
-    Swal.fire({
+    return Swal.fire({
         title: title,
         text: message,
         icon: 'warning',
@@ -70,7 +79,7 @@ function showWarning(title, message, timer = 3500) {
 }
 
 function showInfo(title, message, timer = 3000) {
-    Swal.fire({
+    return Swal.fire({
         title: title,
         text: message,
         icon: 'info',
@@ -89,7 +98,7 @@ function showInfo(title, message, timer = 3000) {
     });
 }
 
-function showConfirm(title, message, confirmText = 'Yes', cancelText = 'No') {
+function showConfirm(title, message, confirmText = 'Yes', cancelText = 'No', options = {}) {
     return Swal.fire({
         title: title,
         text: message,
@@ -100,7 +109,8 @@ function showConfirm(title, message, confirmText = 'Yes', cancelText = 'No') {
         confirmButtonColor: '#dc2626',
         cancelButtonColor: '#6b7280',
         background: '#ffffff',
-        color: '#374151'
+        color: '#374151',
+        ...options
     });
 }
 
@@ -117,7 +127,7 @@ function showToast(message, type = 'success', position = 'top-end') {
         }
     });
 
-    Toast.fire({
+    return Toast.fire({
         icon: type,
         title: message
     });
@@ -250,7 +260,6 @@ window.alert = function(message) {
 // Auto-detect and convert PHP alerts when page loads
 document.addEventListener('DOMContentLoaded', function() {
     // This will catch any remaining native alerts and convert them
-    const originalAlert = window.alert;
     window.alert = function(message) {
         if (message && typeof message === 'string') {
             // Determine alert type based on message content
@@ -285,6 +294,17 @@ style.textContent = `
     
     .swal2-overlay {
         z-index: 10000 !important; /* Above navbar */
+    }
+
+        /*
+            Admin stylesheet sets a global span font-size with !important.
+            SweetAlert2 icons use em units internally. Forcing font-size on icon spans
+            breaks the geometry (error "X" becomes a "V" shape).
+            Keep SweetAlert2 icon internals inheriting from the icon root.
+        */
+    .swal2-icon span {
+        font-size: inherit !important;
+        line-height: inherit !important;
     }
     
     /* Custom styling for notice and validation toasts */

@@ -48,11 +48,9 @@ $delete_sql = "DELETE FROM category WHERE category_id = {$category_id}";
 $cat_result = mysqli_query($con, $delete_sql);
 
 if ($cat_result) {
-    alert('Category deleted successfully.', 'success', 'Success');
-    redirect('./categories.php');
+    redirect_with_alert('./categories.php', 'Category deleted successfully.', 'success', 'Success');
 } else {
-    alert('Failed to delete category.', 'error', 'Error');
-    redirect('./categories.php');
+    redirect_with_alert('./categories.php', 'Failed to delete category.', 'error', 'Error!');
 }
 ?>
 

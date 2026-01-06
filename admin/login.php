@@ -62,8 +62,7 @@ if (isset($_POST['login-submit'])) {
 
       // If the password fails to match
       else {
-        $_SESSION['LOGIN_ERROR'] = 'Password salah!';
-        redirect('./login.php');
+        redirect_with_alert('./login.php', 'Incorrect password!', 'error', 'Login Failed');
       }
     }
   }
@@ -71,9 +70,8 @@ if (isset($_POST['login-submit'])) {
   // If the email is not registered 
   else {
 
-    // Email tidak ditemukan
-    $_SESSION['LOGIN_ERROR'] = 'Email tidak terdaftar untuk Admin!';
-    redirect('./login.php');
+    // Email not found
+    redirect_with_alert('./login.php', 'Email not found!', 'error', 'Login Failed');
   }
 }
 
@@ -98,6 +96,8 @@ if (isset($_POST['login-submit'])) {
 
   <!-- CUSTOM SWEETALERT2 WRAPPER -->
   <script src="../assets/js/sweetalert-wrapper.js"></script>
+
+  <?php render_flash_alert(); ?>
 </head>
 
 <body>
@@ -142,15 +142,3 @@ if (isset($_POST['login-submit'])) {
   <?php
   require('./includes/footer.inc.php')
     ?>
-
-  <script>
-    // Menampilkan alert jika ada error login
-    <?php if (isset($_SESSION['LOGIN_ERROR'])): ?>
-      Swal.fire({
-        icon: 'error',
-        title: 'Login Gagal',
-        text: '<?php echo $_SESSION['LOGIN_ERROR']; ?>'
-      });
-      <?php unset($_SESSION['LOGIN_ERROR']); ?>
-    <?php endif; ?>
-  </script>

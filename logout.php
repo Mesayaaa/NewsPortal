@@ -7,7 +7,8 @@ require('./includes/database.inc.php');
 session_start();
 
 // Sending an goodbye message
-alert("See You Soon " . $_SESSION['USER_NAME'], "success", "Logged Out");
+$goodbyeMessage = "See You Soon " . ($_SESSION['USER_NAME'] ?? '');
+flash_alert($goodbyeMessage, "success", "Logged Out");
 
 // Unsetting all the user specific session variables
 unset($_SESSION['USER_NAME']);

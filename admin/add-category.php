@@ -6,8 +6,7 @@ if (isset($_POST['submit'])) {
   if (isset($_SESSION['ADMIN_ID'])) {
     $ADMIN_ID = $_SESSION['ADMIN_ID'];
   } else {
-    alert("Please Login to Enter Admin Panel", "warning", "Access Denied");
-    redirect('./login.php');
+    redirect_with_alert('./login.php', "Please login to access the Admin Portal", "warning", "Access Denied");
   }
 
   $category_name = $_POST['category_title'];
@@ -33,11 +32,9 @@ if (isset($_POST['submit'])) {
 
   if ($result) {
     move_uploaded_file($tempname, $folder);
-    alert("Category Added !", "success", "Success");
-    redirect('./categories.php');
+    redirect_with_alert('./categories.php', "Category Added !", "success", "Success");
   } else {
-    alert("Failed to add category. Please try again later", "error", "Error");
-    redirect('./add-category.php');
+    redirect_with_alert('./add-category.php', "Failed to add category. Please try again later", "error", "Error!");
   }
 }
 ?>

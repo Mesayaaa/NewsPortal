@@ -35,8 +35,7 @@ if (isset($_POST['signup-submit'])) {
     if ($check_row > 0) {
 
         // Redirecting to the registration page along with a message
-        alert("Email Already Exists", "error", "Registration Failed");
-        redirect('./user-register.php');
+        redirect_with_alert('./user-register.php', "Email already exists", "error", "Registration Failed");
     }
 
     // If the query has no records => No user with the email exists (New User)
@@ -55,16 +54,14 @@ if (isset($_POST['signup-submit'])) {
         if ($result) {
 
             // Redirected to login page with a message
-            alert("Signup Successful, Please Login", "success", "Registration Success");
-            redirect('./user-login.php');
+            redirect_with_alert('./user-login.php', "Signup successful, please login", "success", "Registration Success");
         }
 
         // If the Query failed
         else {
 
             // Show error message
-            alert("Registration failed. Please try again later", "error", "Registration Failed");
-            redirect('./user-register.php');
+            redirect_with_alert('./user-register.php', "Registration failed. Please try again later", "error", "Registration Failed");
         }
     }
 }

@@ -16,8 +16,7 @@ if (isset($_POST['submit'])) {
   if (isset($_SESSION['AUTHOR_ID'])) {
     $author_id = $_SESSION['AUTHOR_ID'];
   } else {
-    alert("Please Login to Enter Author Portal", "warning", "Access Denied");
-    redirect('../author-login.php');
+    redirect_with_alert('../author-login.php', "Please login to access the Author Portal", "warning", "Access Denied");
   }
   $article_id = $_GET['id'];
   $article_title = $_POST['article_title'];
@@ -41,11 +40,9 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($con, $sql);
 
     if ($result) {
-      alert("Article updated " . $author_name . " !", "success", "Success");
-      redirect('./articles.php');
+      redirect_with_alert('./articles.php', "Article updated " . $author_name . " !", "success", "Success");
     } else {
-      alert("Failed to update article. Please try again later", "error", "Error");
-      redirect('./articles.php');
+      redirect_with_alert('./articles.php', "Failed to update article. Please try again later", "error", "Error!");
     }
 
   } else {
@@ -73,11 +70,9 @@ if (isset($_POST['submit'])) {
       unlink("../assets/images/articles/{$article_old_img}");
       move_uploaded_file($tempname, $folder);
       // echo "Data uploaded successfully"; 
-      alert("Article updated " . $author_name . " !", "success", "Success");
-      redirect('./articles.php');
+      redirect_with_alert('./articles.php', "Article updated " . $author_name . " !", "success", "Success");
     } else {
-      alert("Failed to update article. Please try again later", "error", "Error");
-      redirect('./articles.php');
+      redirect_with_alert('./articles.php', "Failed to update article. Please try again later", "error", "Error!");
     }
   }
 }

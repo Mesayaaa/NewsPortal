@@ -6,8 +6,7 @@ require('./includes/nav.inc.php');
 if (!isset($_SESSION['USER_LOGGED_IN'])) {
 
   // If user not logged in Redirect to login page along with a message
-  alert("Please Login to Change your password", "warning", "Access Denied");
-  redirect('./user-login.php');
+  redirect_with_alert('./user-login.php', "Please login to change your password", "warning", "Access Denied");
 }
 
 // Fetching user data from Session variable
@@ -72,15 +71,14 @@ if (isset($_POST['submit'])) {
         if (!$update_result) {
 
           // Print Error along with an error
-          alert("Sorry. Try again later !", "error", "Error");
+          alert("Sorry. Please try again later!", "error", "Error!");
         }
 
         // If Query ran successfully
         else {
 
           // Redirect to the home page along with a message
-          alert("Password Updated !", "success", "Success");
-          redirect('./index.php');
+          redirect_with_alert('./index.php', "Password Updated !", "success", "Success");
         }
       }
 
@@ -119,14 +117,13 @@ if (isset($_POST['submit'])) {
         if (!$update_result) {
 
           // Print Error along with an error
-          alert("Sorry. Try again later !", "error", "Error");
+          alert("Sorry. Please try again later!", "error", "Error!");
         }
         // If Query ran successfully
         else {
 
           // Redirect to the home page along with a message
-          alert("Password Updated !", "success", "Success");
-          redirect('./index.php');
+          redirect_with_alert('./index.php', "Password Updated !", "success", "Success");
         }
       }
 
@@ -141,8 +138,7 @@ if (isset($_POST['submit'])) {
 
   // If no user with email exists =>  email is not registered
   else {
-    alert("Try again Later!", "error", "Error");
-    redirect('./user-login.php');
+    redirect_with_alert('./user-login.php', "Please try again later!", "error", "Error!");
   }
 }
 

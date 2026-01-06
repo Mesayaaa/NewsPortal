@@ -6,8 +6,7 @@ if (isset($_POST['submit'])) {
   if (isset($_SESSION['AUTHOR_ID'])) {
     $author_id = $_SESSION['AUTHOR_ID'];
   } else {
-    alert("Please Login to Enter Author Portal", "warning", "Access Denied");
-    redirect('../author-login.php');
+    redirect_with_alert('../author-login.php', "Please login to access the Author Portal", "warning", "Access Denied");
   }
 
   $old_password = $_POST['old_password'];
@@ -33,7 +32,7 @@ if (isset($_POST['submit'])) {
 
       $update_result = mysqli_query($con, $update_sql);
       if (!$update_result) {
-        alert("Sorry. Try again later !", "error", "Error");
+        alert("Sorry. Please try again later!", "error", "Error!");
       } else {
         alert("Password Updated !", "success", "Success");
       }

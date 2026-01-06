@@ -10,8 +10,7 @@ session_start();
 if (!isset($_SESSION['USER_LOGGED_IN'])) {
 
   // Redirected to login page along with a message
-  alert('Please log in to Add Bookmarks', "warning", "Access Denied");
-  redirect('./user-login.php');
+  redirect_with_alert('./user-login.php', 'Please login to add bookmarks', "warning", "Access Denied");
 }
 
 // If we dont get article_id from URL
@@ -67,16 +66,14 @@ $result = mysqli_query($con, $bookmarkQuery);
 if ($result) {
 
   // Redirected to home page along with a message
-  alert("Bookmark Added Successfuly", "success", "Success");
-  redirect('./bookmarks.php');
+  redirect_with_alert('./bookmarks.php', "Bookmark Added Successfuly", "success", "Success");
 }
 
 // If the Query failed
 else {
 
   // Redirected to home page along with a message
-  alert('Try Again Later', "error", "Error");
-  redirect('./index.php');
+  redirect_with_alert('./index.php', 'Please try again later', "error", "Error!");
 }
 
 ?>

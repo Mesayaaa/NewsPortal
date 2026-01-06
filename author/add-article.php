@@ -6,8 +6,7 @@ if (isset($_POST['submit'])) {
   if (isset($_SESSION['AUTHOR_ID'])) {
     $author_id = $_SESSION['AUTHOR_ID'];
   } else {
-    alert("Please Login to Enter Author Portal", "warning", "Access Denied");
-    redirect('../author-login.php');
+    redirect_with_alert('../author-login.php', "Please login to access the Author Portal", "warning", "Access Denied");
   }
 
   $article_title = $_POST['article_title'];
@@ -37,11 +36,9 @@ if (isset($_POST['submit'])) {
 
   if ($result) {
     move_uploaded_file($tempname, $folder);
-    alert("Article posted. Please wait for Admin to activate it.", "success", "Article Posted");
-    redirect('./articles.php');
+    redirect_with_alert('./articles.php', "Article posted successfully. Please wait for Admin to activate it.", "success", "Success!");
   } else {
-    alert("Failed to add article. Please try again later", "error", "Error");
-    redirect('./add-article.php');
+    redirect_with_alert('./add-article.php', "Failed to add article. Please try again later", "error", "Error!");
   }
 }
 ?>

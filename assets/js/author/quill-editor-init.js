@@ -91,7 +91,10 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Error',
             text: 'Article description cannot be empty!',
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            customClass: {
+              popup: 'swal-flash-popup'
+            }
           });
         } else {
           alert('Article description cannot be empty!');
@@ -109,7 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Error',
             text: 'Article description must be at least 50 characters long!',
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            customClass: {
+              popup: 'swal-flash-popup'
+            }
           });
         } else {
           alert('Article description must be at least 50 characters long!');
@@ -166,7 +172,10 @@ document.addEventListener('DOMContentLoaded', function() {
               title: 'Error',
               text: 'Image size must be less than 2MB!',
               icon: 'error',
-              confirmButtonText: 'OK'
+              confirmButtonText: 'OK',
+              customClass: {
+                popup: 'swal-flash-popup'
+              }
             });
           } else {
             alert('Image size must be less than 2MB!');

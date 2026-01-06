@@ -4,7 +4,7 @@ require('../includes/database.inc.php');
 session_start();
 
 if (!isset($_SESSION['ADMIN_LOGGED_IN'])) {
-  alert("Please Login to Enter Admin Panel", "warning", "Access Denied");
+  flash_alert("Please login to access the Admin Portal", "warning", "Access Denied");
   redirect('./login.php');
 }
 
@@ -94,6 +94,8 @@ if (strpos($uri, "/change-password.php") != false) {
 
   <!-- CUSTOM SWEETALERT2 WRAPPER -->
   <script src="../assets/js/sweetalert-wrapper.js"></script>
+
+  <?php render_flash_alert(); ?>
 
   <!-- BOOTSTRAP JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

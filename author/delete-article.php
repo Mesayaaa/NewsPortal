@@ -25,11 +25,9 @@ $delete_sql = " DELETE FROM article
 $cat_result = mysqli_query($con, $delete_sql);
 
 if ($cat_result) {
-  alert("Article deleted successfully", "success", "Success");
-  redirect('./articles.php');
+  redirect_with_alert('./articles.php', "Article deleted successfully", "success", "Success");
 } else {
-  alert("Failed to delete article. Please try again later", "error", "Error");
-  redirect('./articles.php');
+  redirect_with_alert('./articles.php', "Failed to delete article. Please try again later", "error", "Error!");
 }
 ?>
 

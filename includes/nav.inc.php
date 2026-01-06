@@ -149,6 +149,8 @@ if (strpos($uri, "news.php") != false) {
   <!-- CUSTOM SWEETALERT2 WRAPPER -->
   <script src="./assets/js/sweetalert-wrapper.js"></script>
 
+  <?php render_flash_alert(); ?>
+
   <!-- NAVBAR DROPDOWN SCRIPT -->
   <script src="./assets/js/navbar-dropdown.js"></script>
 

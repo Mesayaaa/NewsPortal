@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         cancelButtonColor: '#6c757d',
                         confirmButtonText: 'Yes, delete it!',
                         cancelButtonText: 'Cancel',
+                        customClass: {
+                            popup: 'swal-delete-popup'
+                        }
                     }).then((result) => {
                         if (result.isConfirmed) {
                             if (this.tagName === 'A') {

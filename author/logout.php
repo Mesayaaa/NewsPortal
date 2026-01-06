@@ -4,7 +4,8 @@ require('../includes/database.inc.php');
 
 session_start();
 
-alert("See You Soon " . $_SESSION['AUTHOR_NAME'], "success", "Logged Out");
+$goodbyeMessage = "See You Soon " . ($_SESSION['AUTHOR_NAME'] ?? '');
+flash_alert($goodbyeMessage, "success", "Logged Out");
 
 unset($_SESSION['AUTHOR_NAME']);
 unset($_SESSION['AUTHOR_LOGGED_IN']);

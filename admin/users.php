@@ -14,6 +14,9 @@ require('./includes/nav.inc.php');
             title: 'Delete User?',
             html: 'Are you sure you want to delete user <strong>' + userName + '</strong>?<br/><br/>This action cannot be undone.<br/>All bookmarks associated with this user will also be deleted.',
             icon: 'warning',
+            customClass: {
+                popup: 'swal-delete-popup'
+            },
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
@@ -36,32 +39,6 @@ require('./includes/nav.inc.php');
         </ol>
     </div>
 </section>
-
-<!-- Success/Error Messages -->
-<?php
-if (isset($_SESSION['delete_success'])) {
-    echo '<script>
-        Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: "' . htmlspecialchars($_SESSION['delete_success']) . '",
-            confirmButtonText: "OK"
-        });
-    </script>';
-    unset($_SESSION['delete_success']);
-}
-if (isset($_SESSION['delete_error'])) {
-    echo '<script>
-        Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: "' . htmlspecialchars($_SESSION['delete_error']) . '",
-            confirmButtonText: "OK"
-        });
-    </script>';
-    unset($_SESSION['delete_error']);
-}
-?>
 
 <section id="main">
     <div class="container">

@@ -1,41 +1,28 @@
 <?php
-/**
- * Delete User Handler
- * Deletes a user account and all associated data (bookmarks)
- * 
- * GET Parameters:
- * - user_id: The ID of the user to delete
- */
-
-// Start session for authentication
+// Fetching all the Functions and DB Code
+require('../includes/functions.inc.php');
+require('../includes/database.inc.php');
 session_start();
 
-// Include database connection
-include_once '../includes/database.inc.php';
-
 // Check if user is authenticated (admin session)
-if (!isset($_SESSION['admin_id'])) {
-    header('Location: ./login.php');
-    exit();
+if (!isset($_SESSION['ADMIN_LOGGED_IN']) || $_SESSION['ADMIN_LOGGED_IN'] !== 'YES') {
+    redirect_with_alert('./login.php', 'Please login as Admin first.', 'warning', 'Access Denied');
 }
 
 // Validate and sanitize user_id parameter
-if (!isset($_GET['user_id']) || empty($_GET['user_id'])) {
-    $_SESSION['delete_error'] = 'Invalid user ID';
-    header('Location: ./users.php');
-    exit();
+if (!isset($_GET['user_id']) || $_GET['user_id'] === '') {
+    redirect_with_alert('./users.php', 'Invalid user ID.', 'error', 'Error!');
 }
 
-$user_id = intval($_GET['user_id']);
+$user_id = (int) $_GET['user_id'];
 
 // Verify user exists before deletion
 $verify_sql = "SELECT user_id, user_name FROM user WHERE user_id = $user_id";
 $verify_result = mysqli_query($con, $verify_sql);
 
 if (mysqli_num_rows($verify_result) === 0) {
-    $_SESSION['delete_error'] = 'User not found';
-    header('Location: ./users.php');
-    exit();
+    mysqli_close($con);
+    redirect_with_alert('./users.php', 'User not found.', 'error', 'Error!');
 }
 
 $user_data = mysqli_fetch_assoc($verify_result);
@@ -60,19 +47,22 @@ try {
     // Commit transaction
     mysqli_query($con, "COMMIT");
 
-    // Set success message
-    $_SESSION['delete_success'] = "User '$user_name' has been successfully deleted along with all associated bookmarks.";
+    $alertType = 'success';
+    $alertTitle = 'Success!';
+    $alertMessage = "User '$user_name' was deleted successfully, including all related bookmarks.";
 
 } catch (Exception $e) {
     // Rollback transaction on error
     mysqli_query($con, "ROLLBACK");
-    $_SESSION['delete_error'] = "Error deleting user: " . $e->getMessage();
+
+    $alertType = 'error';
+    $alertTitle = 'Error!';
+    $alertMessage = 'Failed to delete user. Please try again.';
 }
 
 // Close database connection
 mysqli_close($con);
 
 // Redirect back to users list
-header('Location: ./users.php');
-exit();
+redirect_with_alert('./users.php', $alertMessage, $alertType, $alertTitle);
 ?>

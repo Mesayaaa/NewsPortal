@@ -6,8 +6,7 @@ require('./includes/nav.inc.php');
 if (!isset($_SESSION['USER_LOGGED_IN'])) {
 
   // Redirected to login page along with a message
-  alert("Please Login to See Your Bookmarks", "warning", "Access Denied");
-  redirect('./user-login.php');
+  redirect_with_alert('./user-login.php', "Please login to view your bookmarks", "warning", "Access Denied");
 }
 
 // Function to build pagination URL with current parameters

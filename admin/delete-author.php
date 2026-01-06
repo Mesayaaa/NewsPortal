@@ -1,41 +1,28 @@
 <?php
-/**
- * Delete Author Handler
- * Deletes an author account and all associated articles, bookmarks, and related data
- * 
- * GET Parameters:
- * - author_id: The ID of the author to delete
- */
-
-// Start session for authentication
+// Fetching all the Functions and DB Code
+require('../includes/functions.inc.php');
+require('../includes/database.inc.php');
 session_start();
 
-// Include database connection
-include_once '../includes/database.inc.php';
-
 // Check if user is authenticated (admin session)
-if (!isset($_SESSION['admin_id'])) {
-    header('Location: ./login.php');
-    exit();
+if (!isset($_SESSION['ADMIN_LOGGED_IN']) || $_SESSION['ADMIN_LOGGED_IN'] !== 'YES') {
+    redirect_with_alert('./login.php', 'Please login as Admin first.', 'warning', 'Access Denied');
 }
 
 // Validate and sanitize author_id parameter
-if (!isset($_GET['author_id']) || empty($_GET['author_id'])) {
-    $_SESSION['delete_error'] = 'Invalid author ID';
-    header('Location: ./authors.php');
-    exit();
+if (!isset($_GET['author_id']) || $_GET['author_id'] === '') {
+    redirect_with_alert('./authors.php', 'Invalid author ID.', 'error', 'Error!');
 }
 
-$author_id = intval($_GET['author_id']);
+$author_id = (int) $_GET['author_id'];
 
 // Verify author exists before deletion
 $verify_sql = "SELECT author_id, author_name FROM author WHERE author_id = $author_id";
 $verify_result = mysqli_query($con, $verify_sql);
 
 if (mysqli_num_rows($verify_result) === 0) {
-    $_SESSION['delete_error'] = 'Author not found';
-    header('Location: ./authors.php');
-    exit();
+    mysqli_close($con);
+    redirect_with_alert('./authors.php', 'Author not found.', 'error', 'Error!');
 }
 
 $author_data = mysqli_fetch_assoc($verify_result);
@@ -78,20 +65,23 @@ try {
     // Commit transaction
     mysqli_query($con, "COMMIT");
 
-    // Set success message
     $articles_count = count($article_ids);
-    $_SESSION['delete_success'] = "Author '$author_name' and " . $articles_count . " associated article(s) have been successfully deleted.";
+    $alertType = 'success';
+    $alertTitle = 'Success!';
+    $alertMessage = "Author '$author_name' was deleted successfully ($articles_count related articles).";
 
 } catch (Exception $e) {
     // Rollback transaction on error
     mysqli_query($con, "ROLLBACK");
-    $_SESSION['delete_error'] = "Error deleting author: " . $e->getMessage();
+
+    $alertType = 'error';
+    $alertTitle = 'Error!';
+    $alertMessage = 'Failed to delete author. Please try again.';
 }
 
 // Close database connection
 mysqli_close($con);
 
 // Redirect back to authors list
-header('Location: ./authors.php');
-exit();
+redirect_with_alert('./authors.php', $alertMessage, $alertType, $alertTitle);
 ?>

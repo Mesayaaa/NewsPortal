@@ -17,11 +17,9 @@ $sql = "UPDATE article
 $result = mysqli_query($con, $sql);
 
 if ($result) {
-  alert("Article made trending", "success", "Success");
-  redirect('./articles.php');
+  redirect_with_alert('./articles.php', "Article made trending", "success", "Success");
 } else {
-  alert("Error, Please try again later", "error", "Error");
-  redirect('./articles.php');
+  redirect_with_alert('./articles.php', "Something went wrong. Please try again later", "error", "Error!");
 }
 ?>
 

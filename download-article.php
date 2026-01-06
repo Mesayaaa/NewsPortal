@@ -13,8 +13,7 @@ session_start();
 if (!isset($_SESSION['USER_LOGGED_IN'])) {
 
   // Redirected to login page along with a message
-  alert('Please log in to Download Article', "warning", "Access Denied");
-  redirect('./user-login.php');
+  redirect_with_alert('./user-login.php', 'Please login to download the news', "warning", "Access Denied");
 }
 
 // If we dont get article_id from URL

@@ -14,8 +14,7 @@ if ($category_id == '' || $category_id == null) {
 if (isset($_POST['submit'])) {
 
   if (!isset($_SESSION['ADMIN_ID'])) {
-    alert("Please Login to Enter Admin Portal", "warning", "Access Denied");
-    redirect('./login.php');
+    redirect_with_alert('./login.php', "Please login to access the Admin Portal", "warning", "Access Denied");
   }
   $category_id = $_GET['id'];
   $category_name = $_POST['category_title'];
@@ -37,11 +36,9 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($con, $sql);
 
     if ($result) {
-      alert("Category updated ", "success", "Success");
-      redirect('./categories.php');
+      redirect_with_alert('./categories.php', "Category updated ", "success", "Success");
     } else {
-      alert("Failed to update category. Please try again later", "error", "Error");
-      redirect('./categories.php');
+      redirect_with_alert('./categories.php', "Failed to update category. Please try again later", "error", "Error!");
     }
 
   } else {
@@ -65,11 +62,9 @@ if (isset($_POST['submit'])) {
       unlink("../assets/images/category/{$category_old_img}");
       move_uploaded_file($tempname, $folder);
       // echo "Data uploaded successfully"; 
-      alert("Category updated", "success", "Success");
-      redirect('./categories.php');
+      redirect_with_alert('./categories.php', "Category updated", "success", "Success");
     } else {
-      alert("Failed to update category. Please try again later", "error", "Error");
-      redirect('./categories.php');
+      redirect_with_alert('./categories.php', "Failed to update category. Please try again later", "error", "Error!");
     }
   }
 }

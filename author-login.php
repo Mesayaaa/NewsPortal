@@ -57,12 +57,7 @@ if (isset($_POST['login-submit'])) {
 
       // If the password fails to match
       else {
-        echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-        echo "<script>
-          Swal.fire({icon: 'error', title: 'Login Gagal', text: 'Password salah!'}).then(() => {
-            window.location.href = 'author-login.php';
-          });
-        </script>";
+        redirect_with_alert('./author-login.php', 'Incorrect password!', 'error', 'Login Failed');
       }
     }
   }
@@ -70,13 +65,8 @@ if (isset($_POST['login-submit'])) {
   // If the email is not registered 
   else {
 
-    // Email tidak ditemukan
-    echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-    echo "<script>
-      Swal.fire({icon: 'error', title: 'Login Gagal', text: 'Email tidak ditemukan!'}).then(() => {
-        window.location.href = 'author-login.php';
-      });
-    </script>";
+    // Email not found
+    redirect_with_alert('./author-login.php', 'Email not found!', 'error', 'Login Failed');
   }
 }
 ?>

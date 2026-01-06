@@ -256,7 +256,7 @@ require('./includes/nav.inc.php');
     padding: 2px 6px;
     border-radius: 4px;
     font-size: var(--ts-vs);
-    /* Konsisten dengan public (0.75rem ≈ 12px, close to 10px) */
+    /* Consistent with public (0.75rem ≈ 12px, close to 10px) */
     cursor: pointer;
     margin-top: 4px;
     display: inline-block;
@@ -277,8 +277,9 @@ require('./includes/nav.inc.php');
     showConfirm(
       'Delete Article?',
       'Are you sure you want to delete this article? This action cannot be undone!',
-      'Yes, Delete it!',
-      'Cancel'
+      'Yes, delete it!',
+      'Cancel',
+      { customClass: { popup: 'swal-delete-popup' } }
     ).then((result) => {
       if (result.isConfirmed) {
         var url = "./delete-article.php?id=" + id;

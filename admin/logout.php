@@ -4,7 +4,7 @@ require('../includes/database.inc.php');
 
 session_start();
 
-alert("See You Soon Admin", "success", "Logged Out");
+flash_alert("See You Soon Admin", "success", "Logged Out");
 
 unset($_SESSION['ADMIN_LOGGED_IN']);
 unset($_SESSION['ADMIN_ID']);

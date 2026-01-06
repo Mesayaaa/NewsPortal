@@ -78,6 +78,48 @@ body {
 }
 
 /* Prevent horizontal overflow for main admin container */
+
+/* ===============================
+   SWEETALERT2 (DELETE CONFIRM)
+   =============================== */
+
+/* Bigger font for delete-confirm dialogs (Users/Authors) */
+.swal2-popup.swal-delete-popup {
+  font-size: var(--ts-lg);
+}
+
+/* Bigger font for flash success/error popups (logout, activate/deactivate, trending, etc) */
+.swal2-popup.swal-flash-popup {
+  font-size: var(--ts-lg);
+}
+
+.swal2-popup.swal-flash-popup .swal2-title {
+  font-size: var(--hs-sml);
+  line-height: var(--lh-tight);
+}
+
+.swal2-popup.swal-flash-popup .swal2-html-container {
+  font-size: var(--ts-lg);
+  line-height: var(--lh-relaxed);
+}
+
+.swal2-popup.swal-flash-popup .swal2-styled {
+  font-size: var(--ts-lg);
+}
+
+.swal2-popup.swal-delete-popup .swal2-title {
+  font-size: var(--hs-sml);
+  line-height: var(--lh-tight);
+}
+
+.swal2-popup.swal-delete-popup .swal2-html-container {
+  font-size: var(--ts-lg);
+  line-height: var(--lh-relaxed);
+}
+
+.swal2-popup.swal-delete-popup .swal2-styled {
+  font-size: var(--ts-lg);
+}
 #main, .container, .container-fluid {
   max-width: 100vw;
   overflow-x: hidden;

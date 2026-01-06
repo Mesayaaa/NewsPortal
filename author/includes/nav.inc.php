@@ -4,7 +4,7 @@ require('../includes/database.inc.php');
 session_start();
 
 if (!isset($_SESSION['AUTHOR_LOGGED_IN'])) {
-  alert("Please Login to Enter Author Portal", "warning", "Access Denied");
+  flash_alert("Please login to access the Author Portal", "warning", "Access Denied");
   redirect('../author-login.php');
 }
 $author_id = $_SESSION['AUTHOR_ID'];
@@ -82,6 +82,8 @@ if (strpos($uri, "/change-name.php") != false) {
 
   <!-- CUSTOM SWEETALERT2 WRAPPER -->
   <script src="../assets/js/sweetalert-wrapper.js"></script>
+
+  <?php render_flash_alert(); ?>
   <script src="../assets/js/admin/file-upload-enhanced.js"></script>
 </head>
 

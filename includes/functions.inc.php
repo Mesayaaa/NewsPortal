@@ -11,6 +11,91 @@ function redirect($link)
   die();
 }
 
+// Store an alert to be shown on the next page load (after redirect)
+function flash_alert($message, $type = 'info', $title = null)
+{
+  if (session_status() !== PHP_SESSION_ACTIVE) {
+    if (!headers_sent()) {
+      session_start();
+    } else {
+      return;
+    }
+  }
+
+  $_SESSION['FLASH_ALERT'] = [
+    'message' => (string) $message,
+    'type' => (string) $type,
+    'title' => $title !== null ? (string) $title : null,
+  ];
+}
+
+// Convenience helper: flash an alert and redirect in one call.
+function redirect_with_alert($link, $message, $type = 'info', $title = null)
+{
+  flash_alert($message, $type, $title);
+  redirect($link);
+}
+
+// Render (and clear) any pending flash alert.
+// Call this after SweetAlert2 + sweetalert-wrapper.js are loaded.
+function render_flash_alert()
+{
+  if (session_status() !== PHP_SESSION_ACTIVE) {
+    return;
+  }
+  if (!isset($_SESSION['FLASH_ALERT']) || !is_array($_SESSION['FLASH_ALERT'])) {
+    return;
+  }
+
+  $flash = $_SESSION['FLASH_ALERT'];
+  unset($_SESSION['FLASH_ALERT']);
+
+  $message = isset($flash['message']) ? (string) $flash['message'] : '';
+  $type = isset($flash['type']) ? (string) $flash['type'] : 'info';
+  $title = isset($flash['title']) ? $flash['title'] : null;
+
+  $jsMessage = json_encode($message, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+  $jsType = json_encode($type, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+  $jsTitle = json_encode($title !== null ? (string) $title : null, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+  ?>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        if (typeof Swal === 'undefined') return;
+
+        var type = <?php echo $jsType; ?>;
+        var title = <?php echo $jsTitle; ?>;
+        var message = <?php echo $jsMessage; ?>;
+
+        if (!title) {
+          title = (type === 'success') ? 'Success!' : (type === 'error') ? 'Error!' : (type === 'warning') ? 'Warning!' : 'Notice';
+        }
+
+        if (type === 'success' && typeof showSuccess === 'function') {
+          showSuccess(title, message);
+        } else if (type === 'error' && typeof showError === 'function') {
+          showError(title, message);
+        } else if (type === 'warning' && typeof showWarning === 'function') {
+          showWarning(title, message);
+        } else if (typeof showInfo === 'function') {
+          showInfo(title, message);
+        } else {
+          Swal.fire({
+            icon: type || 'info',
+            title: title,
+            text: message,
+            customClass: { popup: 'swal-flash-popup' }
+          });
+        }
+      } catch (e) {
+        // no-op
+      }
+    });
+  </script>
+  <?php
+}
+
 // Function For Enhanced Alert Message using SweetAlert2
 function alert($message, $type = 'info', $title = null)
 {

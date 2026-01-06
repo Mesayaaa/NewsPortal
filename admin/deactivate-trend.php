@@ -17,11 +17,9 @@ $sql = "UPDATE article
 $result = mysqli_query($con, $sql);
 
 if ($result) {
-  alert("Article removed from trending", "success", "Success");
-  redirect('./articles.php');
+  redirect_with_alert('./articles.php', "The article is no longer trending", "success", "Success");
 } else {
-  alert("Error, Please try again later", "error", "Error");
-  redirect('./articles.php');
+  redirect_with_alert('./articles.php', "Something went wrong. Please try again later", "error", "Error!");
 }
 ?>
 

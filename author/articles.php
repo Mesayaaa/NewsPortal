@@ -238,8 +238,9 @@ require('./includes/nav.inc.php');
     showConfirm(
       'Delete Article?',
       'Are you sure you want to delete this article? This action cannot be undone!',
-      'Yes, Delete it!',
-      'Cancel'
+      'Yes, delete it!',
+      'Cancel',
+      { customClass: { popup: 'swal-delete-popup' } }
     ).then((result) => {
       if (result.isConfirmed) {
         var url = "./delete-article.php?id=" + id;

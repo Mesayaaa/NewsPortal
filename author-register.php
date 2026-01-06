@@ -32,8 +32,7 @@ if (isset($_POST['signup-submit'])) {
     if ($check_row > 0) {
 
         // Redirecting to the registration page along with a message
-        alert("Email Already Exists", "error", "Registration Failed");
-        redirect('./author-register.php');
+        redirect_with_alert('./author-register.php', "Email already exists", "error", "Registration Failed");
     }
 
     // If the query has no records => No author with the email exists (New Author)
@@ -77,16 +76,14 @@ if (isset($_POST['signup-submit'])) {
             if ($author_result && $user_result) {
 
                 // Redirected to login page with a message
-                alert("Author Registration Successful, Please Login", "success", "Registration Success");
-                redirect('./author-login.php');
+                redirect_with_alert('./author-login.php', "Author registration successful, please login", "success", "Registration Success");
             }
 
             // If the Query failed
             else {
 
                 // Show error message
-                alert("Registration failed. Please try again later", "error", "Registration Failed");
-                redirect('./author-register.php');
+                redirect_with_alert('./author-register.php', "Registration failed. Please try again later", "error", "Registration Failed");
             }
         }
 
@@ -115,15 +112,13 @@ if (isset($_POST['signup-submit'])) {
             if ($user_result && $author_result) {
 
                 // Redirected to login page with a message
-                alert("Author and User Registration Successful, Please Login", "success", "Registration Success");
-                redirect('./author-login.php');
+                redirect_with_alert('./author-login.php', "Author and user registration successful, please login", "success", "Registration Success");
             }
             // If the Query failed
             else {
 
                 // Show error message
-                alert("Registration failed. Please try again later", "error", "Registration Failed");
-                redirect('./author-register.php');
+                redirect_with_alert('./author-register.php', "Registration failed. Please try again later", "error", "Registration Failed");
             }
         }
     }
