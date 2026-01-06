@@ -62,9 +62,7 @@ if (isset($_POST['login-submit'])) {
 
       // If the password fails to match
       else {
-
-        // Redirected to login page along with a message
-        alert("Wrong Password", "error", "Login Failed");
+        $_SESSION['LOGIN_ERROR'] = 'Password salah!';
         redirect('./login.php');
       }
     }
@@ -73,8 +71,8 @@ if (isset($_POST['login-submit'])) {
   // If the email is not registered 
   else {
 
-    // Redirected to login page along with a message
-    alert("This Email is not registered for Admin", "error", "Login Failed");
+    // Email tidak ditemukan
+    $_SESSION['LOGIN_ERROR'] = 'Email tidak terdaftar untuk Admin!';
     redirect('./login.php');
   }
 }
@@ -144,3 +142,15 @@ if (isset($_POST['login-submit'])) {
   <?php
   require('./includes/footer.inc.php')
     ?>
+
+  <script>
+    // Menampilkan alert jika ada error login
+    <?php if (isset($_SESSION['LOGIN_ERROR'])): ?>
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Gagal',
+        text: '<?php echo $_SESSION['LOGIN_ERROR']; ?>'
+      });
+      <?php unset($_SESSION['LOGIN_ERROR']); ?>
+    <?php endif; ?>
+  </script>
