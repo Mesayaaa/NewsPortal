@@ -3,23 +3,6 @@
  * Created for replacing default JavaScript alerts with beautiful modal alerts
  */
 
-// SweetAlert2 Wrapper Functions for WinniCode
-function showAlert(title, message, type = 'info', timer = 3000) {
-    return Swal.fire({
-        title: title,
-        text: message,
-        icon: type,
-        timer: timer,
-        timerProgressBar: true,
-        showConfirmButton: false,
-        toast: false,
-        position: 'center',
-        customClass: {
-            popup: 'swal-flash-popup'
-        }
-    });
-}
-
 function showSuccess(title, message, timer = 3000) {
     return Swal.fire({
         title: title,
@@ -111,25 +94,6 @@ function showConfirm(title, message, confirmText = 'Yes', cancelText = 'No', opt
         background: '#ffffff',
         color: '#374151',
         ...options
-    });
-}
-
-function showToast(message, type = 'success', position = 'top-end') {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: position,
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    });
-
-    return Toast.fire({
-        icon: type,
-        title: message
     });
 }
 

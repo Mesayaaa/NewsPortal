@@ -66,7 +66,7 @@ $result = mysqli_query($con, $bookmarkQuery);
 if ($result) {
 
   // Redirected to home page along with a message
-  redirect_with_alert('./bookmarks.php', "Bookmark Added Successfuly", "success", "Success");
+  redirect_with_alert('./bookmarks.php', "Bookmark Added Successfully", "success", "Success");
 }
 
 // If the Query failed
