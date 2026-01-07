@@ -134,59 +134,54 @@ body {
 /* ===============================
    ADMIN LOGIN (SCOPED ONLY)
    =============================== */
-/* Make only the admin login page form and text larger and clearer */
+/* Admin login sizing (scoped only) */
 .login-main .well {
-  padding: 48px 40px;
+  padding: 36px 32px;
   border-radius: 16px;
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
   background: #ffffff;
 }
 
 .login-title {
-  font-size: 3.25rem;
+  font-size: 2.9rem;
   font-weight: 700;
 }
 
 .login-main label {
-  font-size: 2.25rem !important; /* ~36px; override #login label */
-  margin-bottom: 14px;
+  font-size: 1.75rem !important;
+  margin-bottom: 12px;
 }
 
 .login-main .form-control {
-  font-size: 2rem !important; /* ~32px; override global .form-control */
-  padding: 28px 24px;
+  font-size: 1.75rem !important;
+  padding: 18px 16px;
   height: auto;
-  border-radius: 20px;
+  border-radius: 16px;
 }
 
 /* Match placeholder size with input text */
 .login-main .form-control::placeholder {
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 
 .login-main .btn.btn-danger.btn-block {
-  font-size: 2.25rem !important;
-  /*~36px:;
-  override#login.btn*/padding: 10px 10px !important;
-  border-radius: 22px;
-  -webkit-border-radius: 22px;
-  -moz-border-radius: 22px;
-  -ms-border-radius: 22px;
-  -o-border-radius: 22px;
+  font-size: 2rem !important;
+  padding: 16px 14px !important;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  -ms-border-radius: 16px;
+  -o-border-radius: 16px;
 }
 
 /* Increase spacing between fields for visual scale */
 .login-main .form-group {
-  margin-bottom: 26px;
+  margin-bottom: 22px;
 }
 
-/* Widen the login form column on desktop, scoped to login page only */
-@media (min-width: 992px) {
-  .login-main .col-md-4 {
-    width: 50%; /* behave like col-md-6 on this page */
-  }
-  .login-main .col-md-offset-4 {
-    margin-left: 25%; /* keep centered */
+@media (max-width: 600px) {
+  .login-main .well {
+    padding: 28px 20px;
   }
 }
 #main, .container, .container-fluid {
@@ -618,8 +613,8 @@ body {
 /* Modern Login Form */
 #login {
   width: 100%;
-  max-width: 600px;
-  padding: 3rem 3.5rem;
+  max-width: 560px;
+  padding: 2.4rem 2.6rem;
   background: white;
   border-radius: 24px;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.13);
@@ -631,8 +626,8 @@ body {
 
 @media (min-width: 600px) {
   #login {
-    max-width: 680px;
-    padding: 3.5rem 4rem;
+    max-width: 600px;
+    padding: 2.8rem 3.2rem;
   }
 }
 
@@ -685,17 +680,17 @@ body {
   }
   
   #login label {
-    font-size: 1.6rem;
+    font-size: 1.75rem !important;
   }
   
   #login input {
-    font-size: 1.5rem;
-    padding: 16px 20px;
+    font-size: 1.6rem !important;
+    padding: 18px 22px !important;
   }
   
   #login .btn {
-    font-size: 1.6rem;
-    padding: 16px 40px;
+    font-size: 1.85rem !important;
+    padding: 18px 40px !important;
   }
   
   .login-main {
@@ -755,19 +750,19 @@ body {
   }
   
   #login label {
-    font-size: 1.5rem;
+    font-size: 1.65rem !important;
     margin-bottom: 0.6rem;
   }
   
   #login input {
-    font-size: 1.4rem;
-    padding: 14px 18px;
+    font-size: 1.55rem !important;
+    padding: 16px 20px !important;
     margin-bottom: 1.2rem;
   }
   
   #login .btn {
-    font-size: 1.5rem;
-    padding: 15px 36px;
+    font-size: 1.75rem !important;
+    padding: 17px 36px !important;
   }
   
   .login-main {
@@ -776,7 +771,7 @@ body {
 }
 
 #login label {
-  font-size: 1.8rem;
+  font-size: 2.1rem;
   font-family: var(--ff-nunito);
   font-weight: 600;
   margin-bottom: 0.8rem;
@@ -785,9 +780,9 @@ body {
 }
 
 #login input {
-  border-radius: 12px;
-  padding: 18px 24px;
-  font-size: 1.6rem;
+  border-radius: 14px;
+  padding: 20px 24px;
+  font-size: 1.8rem;
   margin-bottom: 1.5rem;
   border: 2px solid #e1e5e9;
   transition: all 0.3s ease;
@@ -807,9 +802,9 @@ body {
 #login .btn {
   background: linear-gradient(135deg, var(--primary-color), var(--hover-color));
   border: none;
-  border-radius: 12px;
-  padding: 18px 48px;
-  font-size: 1.8rem;
+  border-radius: 14px;
+  padding: 20px 48px;
+  font-size: 2.1rem;
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(199, 39, 39, 0.3);
