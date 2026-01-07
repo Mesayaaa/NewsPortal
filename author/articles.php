@@ -377,9 +377,9 @@ require('./includes/nav.inc.php');
                 } else {
                   echo '
                     <tr>
-                      <td colspan="7" class="text-center" style="padding: 30px; color: var(--active-color);">
-                        <div>
-                          <p>Start writing your first article, ' . htmlspecialchars($_SESSION['AUTHOR_NAME']) . '!</p>
+                      <td colspan="7" class="text-center">
+                        <div class="empty-state empty-state--table">
+                          <p class="empty-state__text">Start writing your first article, ' . htmlspecialchars($_SESSION['AUTHOR_NAME']) . '.</p>
                         </div>
                       </td>
                     </tr>

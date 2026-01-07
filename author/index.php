@@ -139,11 +139,13 @@ require('./includes/nav.inc.php');
                   ';
                 } else {
                   echo '
-                    <td colspan="4" align="center" style="padding-top: 28px; color: var(--active-color);">
-                      <h4>
-                        You need to start writing ' . $_SESSION['AUTHOR_NAME'] . ' !
-                      </h4>
-                    </td>
+                    <tr>
+                      <td colspan="4" class="text-center">
+                        <div class="empty-state empty-state--table">
+                          <p class="empty-state__text">Start writing your first article, ' . htmlspecialchars($_SESSION['AUTHOR_NAME']) . '.</p>
+                        </div>
+                      </td>
+                    </tr>
                   ';
                 }
                 ?>

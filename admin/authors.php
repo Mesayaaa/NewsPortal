@@ -87,7 +87,9 @@ require('./includes/nav.inc.php');
                                             echo '</tr>';
                                         }
                                     } else {
-                                        echo '<tr><td colspan="4" align="center">No authors found.</td></tr>';
+                                        $empty_title = ($search !== '') ? 'No authors found' : 'No authors yet';
+                                        $empty_text = ($search !== '') ? 'No author accounts match your search.' : 'There are no author accounts to display.';
+                                        echo '<tr><td colspan="4" class="text-center"><div class="empty-state empty-state--table"><p class="empty-state__text">' . $empty_text . '</p></div></td></tr>';
                                     }
                                     ?>
                                 </tbody>

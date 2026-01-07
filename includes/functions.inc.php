@@ -322,7 +322,31 @@ function createMoreCard($link)
 function createNoArticlesCard()
 {
   echo '
-    <div class="w-100 d-flex justify-content-center">
+    <div class="no-articles-wrapper w-100 d-flex justify-content-center">
+      <div class="no-articles-card">
+        <div class="no-articles-icon">
+          <i class="far fa-bookmark"></i>
+        </div>
+        <h3 class="no-articles-title">No Articles Yet!</h3>
+        <p class="no-articles-text">Start exploring articles you want to read.</p>
+        <div class="no-articles-actions">
+          <a href="./index.php" class="btn btn-primary-custom">
+            <i class="fas fa-home me-2"></i>Browse Articles
+          </a>
+          <a href="./categories.php" class="btn btn-outline-custom">
+            <i class="fas fa-tags me-2"></i>View Categories
+          </a>
+        </div>
+      </div>
+    </div>
+    ';
+}
+
+// Function to Create a No Bookmarks Card
+function createNoBookmarksCard()
+{
+  echo '
+    <div class="no-articles-wrapper no-articles-wrapper--center w-100 d-flex justify-content-center">
       <div class="no-articles-card">
         <div class="no-articles-icon">
           <i class="far fa-bookmark"></i>

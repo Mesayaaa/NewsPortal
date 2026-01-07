@@ -247,6 +247,43 @@
   transform: translateX(4px);
 }
 
+/* EMPTY STATE */
+.empty-state {
+  display: block;
+  max-width: 560px;
+  margin: var(--space-sm) auto;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--border-radius);
+  background: var(--light-color);
+  color: var(--dark-color);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.empty-state--table {
+  margin: var(--space-sm) auto;
+}
+
+.empty-state__icon {
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.empty-state__title {
+  margin: 0 0 var(--space-xs) 0;
+  font-family: var(--ff-nunito);
+  font-weight: 800;
+  color: var(--black-color);
+  font-size: var(--ts-lg);
+}
+
+.empty-state__text {
+  margin: 0;
+  font-family: var(--ff-nunito);
+  font-size: var(--ts-sml);
+  line-height: var(--lh-relaxed);
+  color: var(--dark-color);
+}
+
 /* Bootstrap Override - Higher specificity to ensure card buttons display correctly */
 .card a.btn-card,
 .card .btn.btn-card,
@@ -533,6 +570,22 @@ a.btn-card.btn:hover span,
 }
 
 /* Enhanced No Articles Card */
+.card-container .no-articles-wrapper {
+  grid-column: 1 / -1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card-container .no-articles-wrapper--center {
+  align-items: center;
+  min-height: 60vh;
+}
+
+.card-container .no-articles-wrapper--center .no-articles-card {
+  margin: 0;
+}
+
 .no-articles-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border-radius: 20px;

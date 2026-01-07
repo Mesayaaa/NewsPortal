@@ -87,7 +87,9 @@ require('./includes/nav.inc.php');
                                             echo '</tr>';
                                         }
                                     } else {
-                                        echo '<tr><td colspan="4" align="center">No users found.</td></tr>';
+                                        $empty_title = ($search !== '') ? 'No users found' : 'No users yet';
+                                        $empty_text = ($search !== '') ? 'No user accounts match your search.' : 'There are no registered users to display.';
+                                        echo '<tr><td colspan="4" class="text-center"><div class="empty-state empty-state--table"><p class="empty-state__text">' . $empty_text . '</p></div></td></tr>';
                                     }
                                     ?>
                                 </tbody>

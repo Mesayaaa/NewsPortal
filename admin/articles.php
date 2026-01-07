@@ -445,11 +445,12 @@ require('./includes/nav.inc.php');
                 } else {
                   echo '
                     <tr>
-                      <td colspan="7" class="text-center" style="padding: 30px; color: var(--active-color);">
-                        <div>
-                          <i class="glyphicon glyphicon-file-alt empty-state-icon"></i>
-                          <h4>No Articles Found!</h4>
-                          <p>Authors need to start writing articles.</p>
+                      <td colspan="7" class="text-center">
+                        <div class="empty-state empty-state--table">
+                          <div class="empty-state__icon" aria-hidden="true">
+                            <i class="glyphicon glyphicon-file-alt empty-state-icon"></i>
+                          </div>
+                          <p class="empty-state__text">Authors have not published any articles yet.</p>
                         </div>
                       </td>
                     </tr>
@@ -501,8 +502,6 @@ require('./includes/nav.inc.php');
             </ul>
           </div>
           <?php
-        } else {
-          echo '<div class="text-center" style="padding: 30px; color: var(--active-color);"><div><i class="glyphicon glyphicon-file-alt empty-state-icon"></i><h4>No Articles Found!</h4><p>Authors need to start writing articles.</p></div></div>';
         }
         ?>
       </div>

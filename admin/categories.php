@@ -84,10 +84,13 @@ require('./includes/nav.inc.php');
                 }
               } else {
                 echo '
-                    <td colspan="5" align="center" style="padding-top: 28px; color: var(--active-color);">
-                      <h4>
-                        You need to create a Category !
-                      </h4>
+                    <tr>
+                      <td colspan="5" class="text-center">
+                        <div class="empty-state empty-state--table">
+                          <p class="empty-state__text">Create a category first to help organize articles.</p>
+                        </div>
+                      </td>
+                    </tr>
                   ';
               }
               ?>
@@ -135,8 +138,6 @@ require('./includes/nav.inc.php');
             </ul>
           </div>
           <?php
-        } else {
-          echo '<div class="text-center" style="padding-top: 28px; color: var(--active-color);"><h4>You need to create a Category !</h4></div>';
         }
         ?>
       </div>

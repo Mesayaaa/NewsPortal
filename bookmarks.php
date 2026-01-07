@@ -130,7 +130,7 @@ function buildPaginationUrl($page)
         }
       } else {
         // Calling user defined function to create a card that says no articles present
-        createNoArticlesCard();
+        createNoBookmarksCard();
       }
       ?>
     </div>

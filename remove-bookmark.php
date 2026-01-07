@@ -65,14 +65,14 @@ $result = mysqli_query($con, $bookmarkQuery);
 if ($result) {
 
   // Redirected to home page along with a message
-  redirect_with_alert('./index.php', "Bookmark Removed Successfully", "success", "Success");
+  redirect_with_alert('./bookmarks.php', "Bookmark removed successfully", "success", "Success");
 }
 
 // If the Query failed
 else {
 
   // Redirected to home page along with a message
-  redirect_with_alert('./index.php', 'Please try again later', "error", "Error!");
+  redirect_with_alert('./bookmarks.php', 'Please try again later', "error", "Error!");
 }
 
 ?>
