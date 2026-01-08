@@ -1,5 +1,12 @@
 {
+    "config": {
+        "platform": {
+            "php": "7.4.0"
+        }
+    },
     "require": {
-        "mpdf/mpdf": "^8.1"
+        "mpdf/mpdf": "^8.1",
+        "mpdf/psr-log-aware-trait": "^2.0",
+        "psr/log": "^1.1 || ^2.0"
     }
 }

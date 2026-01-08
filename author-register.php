@@ -112,7 +112,7 @@ if (isset($_POST['signup-submit'])) {
             if ($user_result && $author_result) {
 
                 // Redirected to login page with a message
-                redirect_with_alert('./author-login.php', "Author and user registration successful, please login", "success", "Registration Success");
+                redirect_with_alert('./author-login.php', "Author registration successful, please login", "success", "Registration Success");
             }
             // If the Query failed
             else {

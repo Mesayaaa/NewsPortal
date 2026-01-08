@@ -5,8 +5,6 @@ var articleTitle = document.getElementById('article_title');
 var articleDesc = document.getElementById('article_desc');
 var articleCategory = document.getElementById('category');
 
-var titleRegx = new RegExp(/^[-@.,?\/#&+\w\s:;\'\'\"\`]{30,500}$/);
-
 articleImage.addEventListener("change", function () {
   var file = this.files[0];
 
@@ -24,9 +22,6 @@ addForm.addEventListener("submit", function (e) {
 
   if (articleTitle.value == '' || articleTitle.value == null) {
     errorMessages.push('Title cannot be empty!');
-  }
-  else if (!titleRegx.test(articleTitle.value)) {
-    errorMessages.push('Article title should contain minimum of 30 alphanumeric characters.');
   }
 
   if (articleDesc.value == '' || articleDesc.value == null) {

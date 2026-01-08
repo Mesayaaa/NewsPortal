@@ -9,7 +9,6 @@ const signupEmail = document.getElementById("signup-email");
 const signupPassword = document.getElementById("signup-password");
 const signupConfirmPass = document.getElementById("signup-confirm-password");
 
-const nameRegx = new RegExp(/^[a-zA-Z ]{4,30}$/);
 const emailRegx = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
 const passRegx = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/);
 
@@ -53,9 +52,6 @@ if(signupForm && signupName && signupEmail && signupPassword && signupConfirmPas
     // Name Validation
     if (signupName.value == '' || signupName.value == null) {
       signupMessages.push('Name cannot be empty.');
-    }
-    if (!nameRegx.test(signupName.value)) {
-      signupMessages.push('Name must contain 4 to 30 alphabets only.');
     }
 
     // Email Validation

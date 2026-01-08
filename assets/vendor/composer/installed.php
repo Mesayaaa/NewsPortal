@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => '135ce1f285ea76e78e93d46bcdf351a584f3acda',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'c407f2b796e344ae0b7fb42231ec4a6fb4b4a996',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '135ce1f285ea76e78e93d46bcdf351a584f3acda',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'c407f2b796e344ae0b7fb42231ec4a6fb4b4a996',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -38,9 +38,9 @@
             'dev_requirement' => false,
         ),
         'mpdf/psr-log-aware-trait' => array(
-            'pretty_version' => 'v3.0.0',
-            'version' => '3.0.0.0',
-            'reference' => 'a633da6065e946cc491e1c962850344bb0bf3e78',
+            'pretty_version' => 'v2.0.0',
+            'version' => '2.0.0.0',
+            'reference' => '7a077416e8f39eb626dee4246e0af99dd9ace275',
             'type' => 'library',
             'install_path' => __DIR__ . '/../mpdf/psr-log-aware-trait',
             'aliases' => array(),
@@ -74,9 +74,9 @@
             'dev_requirement' => false,
         ),
         'psr/log' => array(
-            'pretty_version' => '3.0.2',
-            'version' => '3.0.2.0',
-            'reference' => 'f16e1d5863e37f8d8c2a01719f5b34baa2b714d3',
+            'pretty_version' => '1.1.4',
+            'version' => '1.1.4.0',
+            'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/log',
             'aliases' => array(),

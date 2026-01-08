@@ -5,8 +5,6 @@ var categoryTitle = document.getElementById("category_title");
 var categoryDesc = document.getElementById("category_desc");
 var categoryColor = document.getElementById("category_color");
 
-var titleRegex = new RegExp(/^[-@.,?\/#&+\w\s:;\'\'\"\`]{3,20}$/);
-
 categoryImage.addEventListener("change", function () {
   var file = this.files[0];
 
@@ -24,8 +22,6 @@ addForm.addEventListener("submit", function (e) {
 
   if (categoryDesc.value == "" || categoryDesc.value == null) {
     errorMessages.push('Description cannot be empty!');
-  } else if (categoryDesc.value.length < 100) {
-    errorMessages.push('Description should be minimum of 100 characters long.');
   }
 
   if (categoryImage.validity.valueMissing) {
@@ -38,8 +34,6 @@ addForm.addEventListener("submit", function (e) {
 
   if (categoryTitle.value == "" || categoryTitle.value == null) {
     errorMessages.push('Title cannot be empty!');
-  } else if (!titleRegex.test(categoryTitle.value)) {
-    errorMessages.push('Category should contain minimum of 3 alphanumeric characters long.');
   }
 
   if (errorMessages.length > 0) {

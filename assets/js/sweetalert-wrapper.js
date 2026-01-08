@@ -170,8 +170,8 @@ const ValidationRules = {
     email: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
     password: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/,
     title: /^[-@.,?\/#&+\w\s:;\'\'\"\`]{3,500}$/,
-    categoryTitle: /^[-@.,?\/#&+\w\s:;\'\'\"\`]{3,20}$/,
-    articleTitle: /^[-@.,?\/#&+\w\s:;\'\'\"\`]{30,500}$/
+    categoryTitle: null,
+    articleTitle: null
 };
 
 const ValidationMessages = {
@@ -179,8 +179,8 @@ const ValidationMessages = {
     email: 'Enter a valid email address',
     password: 'Password must be 6 to 20 characters long with at least 1 number, 1 uppercase and 1 lowercase',
     title: 'Title must contain 3 to 500 characters',
-    categoryTitle: 'Category title must contain 3 to 20 characters',
-    articleTitle: 'Article title must contain 30 to 500 characters',
+    categoryTitle: 'Category title is invalid',
+    articleTitle: 'Article title is invalid',
     required: 'This field is required',
     passwordMatch: 'Passwords do not match',
     passwordSame: 'New password must be different from old password'
